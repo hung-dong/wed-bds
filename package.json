@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
+    "postinstall": "prisma generate",
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
