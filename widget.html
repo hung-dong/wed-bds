@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết Căn hộ - The Riverview</title>
+    <link rel="stylesheet" href="widget.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="page-container">
+        <!-- Khu vực mô phỏng một bài đăng BĐS thông thường -->
+        <div class="listing-mockup">
+            <div class="gallery">
+                <div class="main-image">Hình ảnh Căn hộ (Mockup)</div>
+            </div>
+            <div class="listing-header">
+                <span class="badge sale">Đang mở bán</span>
+                <h1>Căn hộ 3 Lô Gia - Tầm nhìn ngoạn mục hướng sông</h1>
+                <p class="address">📍 Phường An Phú, TP. Thủ Đức, TP. Hồ Chí Minh</p>
+                <div class="price-tag">8.5 Tỷ <span>~ 115tr/m²</span></div>
+            </div>
+            <div class="listing-details">
+                <div class="detail-item">🛏️ 3 Phòng ngủ</div>
+                <div class="detail-item">🛁 2 Phòng tắm</div>
+                <div class="detail-item">📐 75 m²</div>
+            </div>
+            <div class="description">
+                <h3>Mô tả</h3>
+                <p>Căn hộ thiết kế hiện đại, ngập tràn ánh sáng tự nhiên. Nằm trong khu compound an ninh 24/7, hưởng trọn tiện ích nội khu đẳng cấp nghỉ dưỡng...</p>
+            </div>
+        </div>
+
+        <!-- Đây là phần Widget AI Báo cáo Tiềm năng (Có thể nhúng bất cứ đâu) -->
+        <div class="ai-widget-container">
+            <div class="ai-widget">
+                <div class="widget-header">
+                    <div class="ai-icon">✨ AI</div>
+                    <h2>Phân tích Đầu tư</h2>
+                </div>
+                
+                <div class="score-box">
+                    <div class="score-info">
+                        <span class="score-title">Điểm Tiềm Năng</span>
+                        <div class="score-value">8.5<span>/10</span></div>
+                    </div>
+                    <div class="score-tagline">Tăng giá mạnh trong 3 năm tới</div>
+                </div>
+
+                <div class="infra-impacts">
+                    <h3>Hạ tầng tác động</h3>
+                    <div class="impact-item">
+                        <div class="impact-icon train">🚂</div>
+                        <div class="impact-text">
+                            <strong>Cách Ga Metro An Phú 500m</strong>
+                            <span>Đi vào hoạt động cuối 2024</span>
+                        </div>
+                    </div>
+                    <div class="impact-item">
+                        <div class="impact-icon road">🛣️</div>
+                        <div class="impact-text">
+                            <strong>Nút giao An Phú hoàn thành 70%</strong>
+                            <span>Giảm ùn tắc khu vực, xong 2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h3>Dự báo Giá trị (Theo AI)</h3>
+                    <canvas id="predictionChart"></canvas>
+                </div>
+
+                <button class="cta-button">Tải Báo cáo Chi tiết</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="widget.js"></script>
+</body>
+</html>

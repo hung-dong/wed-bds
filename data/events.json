@@ -1,0 +1,1271 @@
+[
+  {
+    "id": "event-1779256993000-391594",
+    "type": "VIEW",
+    "listingId": "listing-1778916031540",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T06:03:13.000Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779255482897-c10197",
+    "type": "VIEW",
+    "listingId": "listing-1778916031583",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T05:38:02.897Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779254894834-8c2ea0",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "Pleiku",
+    "summary": "64 kết quả",
+    "createdAt": "2026-05-20T05:28:14.834Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779254894137-9f2dac",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "Pleiku",
+    "summary": "64 kết quả",
+    "createdAt": "2026-05-20T05:28:14.138Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779254307290-b50e31",
+    "type": "VIEW",
+    "listingId": "listing-1778916031579",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T05:18:27.290Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779252783618-e473a3",
+    "type": "ZALO",
+    "listingId": "listing-1778916031594",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T04:53:03.618Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779252782872-668bdf",
+    "type": "CALL",
+    "listingId": "listing-1778916031594",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T04:53:02.872Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779252782128-7a6693",
+    "type": "CALL",
+    "listingId": "listing-1778916031594",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T04:53:02.128Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779252781689-b6182c",
+    "type": "CALL",
+    "listingId": "listing-1778916031594",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T04:53:01.689Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779252781361-7cabc2",
+    "type": "CALL",
+    "listingId": "listing-1778916031594",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T04:53:01.361Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779252779782-d44b7c",
+    "type": "CALL",
+    "listingId": "listing-1778916031594",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T04:52:59.782Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779252775212-31e7b5",
+    "type": "ZALO",
+    "listingId": "listing-1778916031594",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T04:52:55.212Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779252763542-db37d4",
+    "type": "VIEW",
+    "listingId": "listing-1778916031594",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T04:52:43.543Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779252417013-b22857",
+    "type": "VIEW",
+    "listingId": "listing-1778916031540",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T04:46:57.013Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779252361911-8afcc1",
+    "type": "VIEW",
+    "listingId": "listing-1778916031583",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T04:46:01.911Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779250949547-160eac",
+    "type": "VIEW",
+    "listingId": "listing-1778916031695",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T04:22:29.547Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779249100360-6752b0",
+    "type": "VIEW",
+    "listingId": "listing-1778916031621",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T03:51:40.360Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779248883705-cebb7f",
+    "type": "VIEW",
+    "listingId": "listing-1778916031695",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T03:48:03.706Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779247881684-b03571",
+    "type": "VIEW",
+    "listingId": "listing-1778916031703",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T03:31:21.684Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779247800283-1dd7c2",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "",
+    "summary": "Phường An Bình",
+    "createdAt": "2026-05-20T03:30:00.283Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 15; CRT-NX1 Build/HONORCRT-N31;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/148.0.7778.120 Mobile Safari/537.36 Zalo android/260402903 Za"
+  },
+  {
+    "id": "event-1779247732330-e2ebe8",
+    "type": "ZALO",
+    "listingId": "listing-1778916031703",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T03:28:52.331Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779247729614-359976",
+    "type": "CALL",
+    "listingId": "listing-1778916031703",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T03:28:49.614Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779247107464-c21aa9",
+    "type": "VIEW",
+    "listingId": "listing-1778915603613",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T03:18:27.465Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779246978150-3c4758",
+    "type": "VIEW",
+    "listingId": "listing-1778916031557",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T03:16:18.150Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779246483864-bd7ea0",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "Biển Hồ",
+    "summary": "23 kết quả",
+    "createdAt": "2026-05-20T03:08:03.864Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779246381200-9e73b1",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "Biển Hồ",
+    "summary": "23 kết quả",
+    "createdAt": "2026-05-20T03:06:21.201Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779245469836-db619f",
+    "type": "VIEW",
+    "listingId": "listing-1778916031654",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T02:51:09.836Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779243377703-df4b91",
+    "type": "VIEW",
+    "listingId": "listing-1778916031787",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T02:16:17.703Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779243041783-19d370",
+    "type": "VIEW",
+    "listingId": "listing-1778916031698",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T02:10:41.783Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779242263813-94ace6",
+    "type": "VIEW",
+    "listingId": "listing-1778916031695",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T01:57:43.813Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779239412280-17e226",
+    "type": "VIEW",
+    "listingId": "listing-1779168521382",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T01:10:12.280Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779239264873-2c0608",
+    "type": "VIEW",
+    "listingId": "listing-1779168521382",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T01:07:44.873Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779239156249-7cea04",
+    "type": "VIEW",
+    "listingId": "listing-1779168521382",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T01:05:56.249Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779239033789-4c76a0",
+    "type": "VIEW",
+    "listingId": "listing-1779168521382",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T01:03:53.789Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779238993093-a988de",
+    "type": "VIEW",
+    "listingId": "listing-1778916031662",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-20T01:03:13.093Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779200332176-a9b8b7",
+    "type": "VIEW",
+    "listingId": "listing-1778916031935",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T14:18:52.176Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779200330136-a364e3",
+    "type": "CALL",
+    "listingId": "listing-1778916031935",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T14:18:50.136Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779200329098-f999d2",
+    "type": "ZALO",
+    "listingId": "listing-1778916031935",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T14:18:49.098Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779200328791-3cc1f3",
+    "type": "ZALO",
+    "listingId": "listing-1778916031935",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T14:18:48.791Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779200326812-672734",
+    "type": "ZALO",
+    "listingId": "listing-1778916031935",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T14:18:46.813Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779200326349-772b84",
+    "type": "ZALO",
+    "listingId": "listing-1778916031935",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T14:18:46.349Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779200325961-d3513e",
+    "type": "ZALO",
+    "listingId": "listing-1778916031935",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T14:18:45.961Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779200325373-b3f8de",
+    "type": "ZALO",
+    "listingId": "listing-1778916031935",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T14:18:45.373Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779200324368-19a1a4",
+    "type": "ZALO",
+    "listingId": "listing-1778916031935",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T14:18:44.368Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779200323159-89a799",
+    "type": "ZALO",
+    "listingId": "listing-1778916031935",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T14:18:43.159Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779200320108-e61e96",
+    "type": "CALL",
+    "listingId": "listing-1778916031935",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T14:18:40.108Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779200312127-e1ef99",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "",
+    "summary": "Phường Pleiku",
+    "createdAt": "2026-05-19T14:18:32.127Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779200204020-067715",
+    "type": "VIEW",
+    "listingId": "listing-1778916031666",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T14:16:44.020Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A266B Build/BP2A.250605.031.A3;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.138 Mobile Safari/537.36 Zalo android/26040"
+  },
+  {
+    "id": "event-1779200169905-847180",
+    "type": "VIEW",
+    "listingId": "listing-1778916031711",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T14:16:09.905Z",
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/29.0 Chrome/136.0.0.0 Mobile Safari/537.36"
+  },
+  {
+    "id": "event-1779200018856-ca31e5",
+    "type": "ZALO",
+    "listingId": "listing-1778916031907",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T14:13:38.856Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779200016693-02dafe",
+    "type": "VIEW",
+    "listingId": "listing-1778916031907",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T14:13:36.694Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779200012494-ccd6dd",
+    "type": "ZALO",
+    "listingId": "listing-1778916031907",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T14:13:32.494Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779200007167-987291",
+    "type": "ZALO",
+    "listingId": "listing-1778916031907",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T14:13:27.167Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779200005454-da04dd",
+    "type": "CALL",
+    "listingId": "listing-1778916031907",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T14:13:25.454Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779199356972-5a5e42",
+    "type": "VIEW",
+    "listingId": "listing-1778916031930",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T14:02:36.972Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779199341216-7856d6",
+    "type": "VIEW",
+    "listingId": "listing-1778916031855",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T14:02:21.216Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779197312027-811146",
+    "type": "VIEW",
+    "listingId": "listing-1778915603613",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T13:28:32.027Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779197300606-465cc4",
+    "type": "VIEW",
+    "listingId": "listing-1778916031703",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T13:28:20.606Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779197297597-a3ff3d",
+    "type": "SEARCH",
+    "listingId": "listing-1778916031791",
+    "query": "",
+    "summary": "Phường Pleiku",
+    "createdAt": "2026-05-19T13:28:17.597Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779197289177-02c075",
+    "type": "VIEW",
+    "listingId": "listing-1778916031791",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T13:28:09.177Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779197282552-4eceef",
+    "type": "VIEW",
+    "listingId": "listing-1778916031727",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T13:28:02.552Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779197274212-6b3a8d",
+    "type": "VIEW",
+    "listingId": "listing-1778916031606",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T13:27:54.212Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779197085998-f3030b",
+    "type": "SEARCH",
+    "listingId": "listing-1778916031841",
+    "query": "",
+    "summary": "Phường An Nhơn Đông",
+    "createdAt": "2026-05-19T13:24:45.998Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779197082261-6b2c10",
+    "type": "SEARCH",
+    "listingId": "listing-1778916031841",
+    "query": "",
+    "summary": "Phường Diên Hồng",
+    "createdAt": "2026-05-19T13:24:42.261Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779197071718-5b29d6",
+    "type": "SEARCH",
+    "listingId": "listing-1778916031841",
+    "query": "",
+    "summary": "Phường Bồng Sơn",
+    "createdAt": "2026-05-19T13:24:31.718Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779197064956-8b8104",
+    "type": "SEARCH",
+    "listingId": "listing-1778916031841",
+    "query": "",
+    "summary": "Phường Hoài Nhơn Tây",
+    "createdAt": "2026-05-19T13:24:24.956Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779197059368-7534c5",
+    "type": "SEARCH",
+    "listingId": "listing-1778916031841",
+    "query": "",
+    "summary": "Phường Quy Nhơn",
+    "createdAt": "2026-05-19T13:24:19.368Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779197052116-da14c1",
+    "type": "VIEW",
+    "listingId": "listing-1778916031841",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T13:24:12.116Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779196903939-d15c9f",
+    "type": "VIEW",
+    "listingId": "listing-1778916031860",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T13:21:43.939Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779173976116-f61e28",
+    "type": "VIEW",
+    "listingId": "listing-1778916031955",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T06:59:36.116Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779173945125-879dc5",
+    "type": "VIEW",
+    "listingId": "listing-1778916031666",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T06:59:05.126Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779172693732-7a7e57",
+    "type": "VIEW",
+    "listingId": "listing-1779168526600",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T06:38:13.732Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779172675579-03b35d",
+    "type": "VIEW",
+    "listingId": "listing-1778916031960",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T06:37:55.579Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779172669268-3d1a51",
+    "type": "VIEW",
+    "listingId": "listing-1778916031711",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T06:37:49.268Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779172629218-42aa7c",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "",
+    "summary": "10-20 tỷ",
+    "createdAt": "2026-05-19T06:37:09.218Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779172623404-0ced8c",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "",
+    "summary": "5 - 10 tỷ",
+    "createdAt": "2026-05-19T06:37:03.405Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779172617737-fda41c",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "",
+    "summary": "Dưới 5 tỷ",
+    "createdAt": "2026-05-19T06:36:57.737Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779170955037-862715",
+    "type": "VIEW",
+    "listingId": "listing-1778916031960",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T06:09:15.038Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779170335950-568a9f",
+    "type": "VIEW",
+    "listingId": "listing-1778916031888",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T05:58:55.950Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779170332286-a9a987",
+    "type": "ZALO",
+    "listingId": "listing-1778916031888",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T05:58:52.286Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779170331626-59559a",
+    "type": "CALL",
+    "listingId": "listing-1778916031888",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T05:58:51.626Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779170330269-16aa4f",
+    "type": "CALL",
+    "listingId": "listing-1778916031888",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T05:58:50.269Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779170328898-1612e5",
+    "type": "CALL",
+    "listingId": "listing-1778916031888",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T05:58:48.898Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779170105534-e31f54",
+    "type": "VIEW",
+    "listingId": "listing-1778916031711",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T05:55:05.534Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779169469535-8479cf",
+    "type": "SEARCH",
+    "listingId": "listing-1778916031748",
+    "query": "",
+    "summary": "Phường Pleiku",
+    "createdAt": "2026-05-19T05:44:29.535Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779169461671-2ebe84",
+    "type": "VIEW",
+    "listingId": "listing-1778916031748",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T05:44:21.671Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779168614445-6b735f",
+    "type": "SEARCH",
+    "listingId": "listing-1778916031823",
+    "query": "",
+    "summary": "Dưới 5 tỷ",
+    "createdAt": "2026-05-19T05:30:14.445Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779168599390-036e04",
+    "type": "VIEW",
+    "listingId": "listing-1778916031823",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T05:29:59.391Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779168591502-0aa1ad",
+    "type": "VIEW",
+    "listingId": "listing-1778916031823",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T05:29:51.502Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779168586584-78e577",
+    "type": "VIEW",
+    "listingId": "listing-1778916031846",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T05:29:46.584Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779168581484-523676",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "",
+    "summary": "Phường Pleiku • Nhà phố • Dưới 5 tỷ",
+    "createdAt": "2026-05-19T05:29:41.484Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779168577937-a5c1c5",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "",
+    "summary": "Phường Pleiku • Kho/xưởng • Dưới 5 tỷ",
+    "createdAt": "2026-05-19T05:29:37.937Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779168574665-805e38",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "",
+    "summary": "Phường Pleiku • Kho/xưởng",
+    "createdAt": "2026-05-19T05:29:34.665Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779168571952-ddf167",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "",
+    "summary": "Phường Pleiku • Đất nền",
+    "createdAt": "2026-05-19T05:29:31.952Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779168569540-34b443",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "",
+    "summary": "Phường Pleiku",
+    "createdAt": "2026-05-19T05:29:29.540Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779168567069-90de8b",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "",
+    "summary": "Phường Pleiku • Nhà phố",
+    "createdAt": "2026-05-19T05:29:27.069Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779168564837-6ca746",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "",
+    "summary": "Phường Pleiku",
+    "createdAt": "2026-05-19T05:29:24.837Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779168539097-03122d",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "",
+    "summary": "Phường Pleiku",
+    "createdAt": "2026-05-19T05:28:59.097Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779168235572-b58ab1",
+    "type": "VIEW",
+    "listingId": "listing-1778916031787",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T05:23:55.572Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779168205105-e8b94e",
+    "type": "VIEW",
+    "listingId": "listing-1778915603613",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T05:23:25.106Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779162607303-2990bb",
+    "type": "VIEW",
+    "listingId": "listing-1778916031583",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T03:50:07.303Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779162587581-079bc0",
+    "type": "VIEW",
+    "listingId": "listing-1778916031902",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T03:49:47.582Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779162433343-62e8c8",
+    "type": "VIEW",
+    "listingId": "listing-1778916031902",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T03:47:13.343Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779162224924-38e1e1",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "",
+    "summary": "Phường An Nhơn Đông",
+    "createdAt": "2026-05-19T03:43:44.924Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779162221442-2b6108",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "",
+    "summary": "Phường An Nhơn Bắc",
+    "createdAt": "2026-05-19T03:43:41.443Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779162212795-0c5c20",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "",
+    "summary": "Phường An Nhơn",
+    "createdAt": "2026-05-19T03:43:32.795Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779162197498-486dda",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "",
+    "summary": "Phường An Khê",
+    "createdAt": "2026-05-19T03:43:17.498Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779162193879-0e7864",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "",
+    "summary": "Phường An Bình",
+    "createdAt": "2026-05-19T03:43:13.879Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779162163646-59c4cd",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "",
+    "summary": "Phường An Bình",
+    "createdAt": "2026-05-19T03:42:43.647Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779161955465-22d2ac",
+    "type": "SEARCH",
+    "listingId": "",
+    "query": "",
+    "summary": "Phường An Bình",
+    "createdAt": "2026-05-19T03:39:15.465Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779160016311-264acd",
+    "type": "VIEW",
+    "listingId": "listing-1778916031860",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T03:06:56.312Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779159966955-2ce3c0",
+    "type": "VIEW",
+    "listingId": "listing-1778916031907",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T03:06:06.955Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779159692700-7b3158",
+    "type": "VIEW",
+    "listingId": "listing-1778916031907",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T03:01:32.700Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779159371964-1342a1",
+    "type": "VIEW",
+    "listingId": "listing-1778916031637",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T02:56:11.965Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779159363904-1d2e60",
+    "type": "VIEW",
+    "listingId": "listing-1778916031805",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T02:56:03.904Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779159351487-961561",
+    "type": "VIEW",
+    "listingId": "listing-1778916031897",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T02:55:51.487Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779159344281-2db7ba",
+    "type": "SEARCH",
+    "listingId": "listing-1778916031950",
+    "query": "",
+    "summary": "Phường Pleiku • Đất nền",
+    "createdAt": "2026-05-19T02:55:44.281Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779159338844-1a898c",
+    "type": "SEARCH",
+    "listingId": "listing-1778916031950",
+    "query": "",
+    "summary": "Phường Pleiku • Đất nền • Tin đã lưu",
+    "createdAt": "2026-05-19T02:55:38.844Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779159051093-f7493c",
+    "type": "VIEW",
+    "listingId": "listing-1778916031950",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T02:50:51.093Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779159048190-16edee",
+    "type": "SEARCH",
+    "listingId": "listing-1778916031805",
+    "query": "",
+    "summary": "Phường Pleiku • Tin đã lưu",
+    "createdAt": "2026-05-19T02:50:48.190Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779158955888-b0f27e",
+    "type": "VIEW",
+    "listingId": "listing-1778916031805",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T02:49:15.889Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779158935986-a11666",
+    "type": "VIEW",
+    "listingId": "listing-1778916031940",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T02:48:55.987Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779158912106-0a5cf2",
+    "type": "VIEW",
+    "listingId": "listing-1778916031698",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T02:48:32.106Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779158905369-676290",
+    "type": "SEARCH",
+    "listingId": "listing-1778915603617",
+    "query": "",
+    "summary": "Phường Pleiku",
+    "createdAt": "2026-05-19T02:48:25.369Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779158891743-1abe29",
+    "type": "VIEW",
+    "listingId": "listing-1778915603617",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T02:48:11.743Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779158885783-7be697",
+    "type": "VIEW",
+    "listingId": "listing-1778916031626",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T02:48:05.783Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779158873868-cb9d12",
+    "type": "VIEW",
+    "listingId": "listing-1778916031955",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T02:47:53.868Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779158859391-5a24f7",
+    "type": "VIEW",
+    "listingId": "listing-1778916031860",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T02:47:39.391Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779158831669-1ee4e5",
+    "type": "VIEW",
+    "listingId": "listing-1778916031739",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T02:47:11.669Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779158700676-c4c60e",
+    "type": "VIEW",
+    "listingId": "listing-1778916031739",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T02:45:00.676Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779158393017-9bdbd6",
+    "type": "SEARCH",
+    "listingId": "listing-1778916031711",
+    "query": "",
+    "summary": "Phường Quy Nhơn",
+    "createdAt": "2026-05-19T02:39:53.017Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779158375049-7bd2b4",
+    "type": "VIEW",
+    "listingId": "listing-1778916031711",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T02:39:35.049Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "event-1779158178683-b0b55c",
+    "type": "VIEW",
+    "listingId": "listing-1778916031748",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T02:36:18.683Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779158100681-8e4349",
+    "type": "VIEW",
+    "listingId": "listing-1778916031687",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T02:35:00.681Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779158092858-38b471",
+    "type": "VIEW",
+    "listingId": "listing-1778916031819",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T02:34:52.858Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779156941295-ec9a9d",
+    "type": "SEARCH",
+    "listingId": "listing-1778916031819",
+    "query": "",
+    "summary": "Đất nền • Dưới 5 tỷ • 100 - 300m2",
+    "createdAt": "2026-05-19T02:15:41.296Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779156934652-965b32",
+    "type": "SEARCH",
+    "listingId": "listing-1778916031819",
+    "query": "",
+    "summary": "Đất nền • Dưới 5 tỷ • 100 - 300m2",
+    "createdAt": "2026-05-19T02:15:34.652Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779156932056-8b015a",
+    "type": "SEARCH",
+    "listingId": "listing-1778916031819",
+    "query": "",
+    "summary": "Đất nền • Dưới 5 tỷ",
+    "createdAt": "2026-05-19T02:15:32.056Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779156929813-dc2947",
+    "type": "SEARCH",
+    "listingId": "listing-1778916031819",
+    "query": "",
+    "summary": "Đất nền",
+    "createdAt": "2026-05-19T02:15:29.813Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779156802673-e7ffd9",
+    "type": "VIEW",
+    "listingId": "listing-1778916031819",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T02:13:22.674Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  },
+  {
+    "id": "event-1779156710419-cac633",
+    "type": "VIEW",
+    "listingId": "listing-1778916031841",
+    "query": "",
+    "summary": "",
+    "createdAt": "2026-05-19T02:11:50.420Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+  }
+]

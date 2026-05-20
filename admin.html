@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Quản trị | Nhà Đất Việt</title>
+    <meta name="theme-color" content="#0f172a">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Nha Dat Viet Admin">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon-192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+    <link rel="stylesheet" href="admin.css?v=48">
+    <link rel="stylesheet" href="mobile-app.css?v=48">
+</head>
+<body>
+    <main class="admin-shell">
+        <section id="login-view" class="auth-card">
+            <p class="eyebrow">Hệ thống bảo mật</p>
+            <h1>Đăng nhập quản trị</h1>
+            <p class="muted">Dùng tài khoản admin để thao tác. Kết nối được bảo vệ bằng mã hóa HMAC Session.</p>
+            <form id="login-form" class="stack">
+                <label>
+                    <span>Tài khoản</span>
+                    <input name="username" type="text" value="admin" autocomplete="username" required>
+                </label>
+                <label>
+                    <span>Mật khẩu</span>
+                    <input name="password" type="password" value="Admin@123456" autocomplete="current-password" required>
+                </label>
+                <button class="button" type="submit">Đăng nhập an toàn</button>
+                <p id="login-message" class="message"></p>
+            </form>
+        </section>
+
+        <section id="dashboard-view" class="dashboard hidden">
+            <header class="dashboard-header">
+                <div>
+                    <p class="eyebrow">Bảng điều khiển</p>
+                    <h1>Quản lý tin bất động sản</h1>
+                    <p id="welcome-text" class="muted"></p>
+                </div>
+                <div class="header-actions">
+                    <a class="button button-ghost" href="/">Xem website</a>
+                    <button id="logout-button" class="button button-ghost" type="button">Đăng xuất</button>
+                </div>
+            </header>
+
+            <section class="admin-kpi-grid">
+                <article>
+                    <span>Tin công khai</span>
+                    <strong id="kpi-listings">0</strong>
+                </article>
+                <article>
+                    <span>Chờ kiểm duyệt</span>
+                    <strong id="kpi-pending">0</strong>
+                </article>
+                <article>
+                    <span>Khách mới</span>
+                    <strong id="kpi-new-leads">0</strong>
+                </article>
+                <article>
+                    <span>Đang chăm sóc</span>
+                    <strong id="kpi-active-leads">0</strong>
+                </article>
+                <article>
+                    <span>Lượt xem tin</span>
+                    <strong id="kpi-views">0</strong>
+                </article>
+                <article>
+                    <span>Gọi/Zalo</span>
+                    <strong id="kpi-contacts">0</strong>
+                </article>
+                <article>
+                    <span>Lượt tìm kiếm</span>
+                    <strong id="kpi-searches">0</strong>
+                </article>
+            </section>
+
+            <section class="panel">
+                <div class="panel-head">
+                    <div>
+                        <p class="eyebrow">Đo lường sàn giao dịch</p>
+                        <h2>Tin hiệu quả và nhu cầu khách</h2>
+                    </div>
+                </div>
+                <div id="analytics-list" class="analytics-list"></div>
+            </section>
+
+            <section class="panel">
+                <div class="panel-head">
+                    <div>
+                        <p class="eyebrow">Thông tin website</p>
+                        <h2>Liên hệ và thương hiệu</h2>
+                    </div>
+                </div>
+                <form id="site-form" class="grid-form">
+                    <label>
+                        <span>Tên thương hiệu</span>
+                        <input name="brandName" type="text" required>
+                    </label>
+                    <label>
+                        <span>Tagline</span>
+                        <input name="tagline" type="text" required>
+                    </label>
+                    <label>
+                        <span>Số điện thoại hiển thị</span>
+                        <input name="phoneDisplay" type="text" required>
+                    </label>
+                    <label>
+                        <span>Số điện thoại gọi trực tiếp</span>
+                        <input name="phoneRaw" type="text" required>
+                    </label>
+                    <label>
+                        <span>Email</span>
+                        <input name="email" type="email" required>
+                    </label>
+                    <label>
+                        <span>Link Zalo</span>
+                        <input name="zaloUrl" type="url" required>
+                    </label>
+                    <button class="button" type="submit">Lưu thông tin website</button>
+                    <p id="site-message" class="message"></p>
+                </form>
+            </section>
+
+            <section class="panel">
+                <div class="panel-head">
+                    <div>
+                        <p class="eyebrow">Khách từ website</p>
+                        <h2>Yêu cầu tư vấn mới</h2>
+                    </div>
+                    <span id="lead-count" class="count-badge">0 khách</span>
+                </div>
+                <div id="lead-list" class="lead-list"></div>
+            </section>
+
+            <section class="panel">
+                <div class="panel-head">
+                    <div>
+                        <p class="eyebrow">Kiểm duyệt thành viên</p>
+                        <h2>Tin chờ duyệt</h2>
+                    </div>
+                    <span id="submission-count" class="count-badge">0 tin</span>
+                </div>
+                <div id="submission-list" class="submission-list"></div>
+            </section>
+
+            <section class="panel">
+                <div class="panel-head">
+                    <div>
+                        <p class="eyebrow">Danh sách tin</p>
+                        <h2>Tạo hoặc chỉnh sửa tin đăng</h2>
+                    </div>
+                    <button id="new-listing-button" class="button button-ghost" type="button">Tạo tin mới</button>
+                </div>
+
+                <div class="workspace">
+                    <aside class="listing-sidebar">
+                        <div id="listing-count" class="count-badge">0 tin</div>
+                        <div id="admin-list" class="admin-list"></div>
+                    </aside>
+
+                    <form id="listing-editor" class="editor">
+                        <input name="id" type="hidden">
+
+                        <!-- ====== ACCORDION SECTION 1: Thông tin cơ bản ====== -->
+                        <details class="form-section" open>
+                            <summary>📋 Thông tin cơ bản</summary>
+                            <div class="grid-form">
+                                <label class="full"><span>Tiêu đề</span><input name="title" type="text" required></label>
+                                <label><span>Khu vực</span><input name="location" type="text" required></label>
+                                <label><span>Loại hình</span><input name="type" type="text" required></label>
+                                <label><span>Giá bán (tỷ)</span><input name="price" type="number" min="0" step="0.1" required></label>
+                                <label><span>Diện tích (m²)</span><input name="area" type="number" min="1" step="1" required></label>
+                                <label><span>Pháp lý</span><input name="legal" type="text" required></label>
+                                <label><span>Hướng</span><input name="direction" type="text" placeholder="Đông Nam..."></label>
+                            </div>
+                        </details>
+
+                        <!-- ====== ACCORDION SECTION 2: Chi tiết tài sản ====== -->
+                        <details class="form-section">
+                            <summary>📐 Chi tiết tài sản</summary>
+                            <div class="grid-form">
+                                <label><span>Ngang (m)</span><input name="frontage" type="number" min="0" step="0.1"></label>
+                                <label><span>Dài (m)</span><input name="depth" type="number" min="0" step="0.1"></label>
+                                <label><span>Đường trước nhà (m)</span><input name="roadWidth" type="number" min="0" step="0.1"></label>
+                                <label><span>Phòng ngủ</span><input name="beds" type="number" min="0" step="1" required></label>
+                                <label><span>Phòng tắm</span><input name="baths" type="number" min="0" step="1" required></label>
+                                <label><span>Thổ cư</span><input name="landUse" type="text" placeholder="100m² thổ cư"></label>
+                                <label><span>Vay ngân hàng</span><input name="bankLoan" type="text" placeholder="Có/không"></label>
+                                <label class="full"><span>Quy hoạch/lộ giới</span><input name="planningStatus" type="text" placeholder="Không quy hoạch, dính lộ giới..."></label>
+                                <label class="full"><span>Mô tả</span><textarea name="description" rows="4" required></textarea></label>
+                            </div>
+                        </details>
+
+                        <!-- ====== ACCORDION SECTION 3: Hình ảnh & Video ====== -->
+                        <details class="form-section">
+                            <summary>🖼️ Hình ảnh & Video</summary>
+                            <div class="grid-form">
+                                <div class="full">
+                                    <span class="eyebrow" style="margin-bottom: 8px; display:block;">Kéo thả hoặc click để thêm ảnh</span>
+                                    <div id="image-dropzone" class="image-dropzone">
+                                        <div class="dropzone-placeholder">
+                                            <span class="dropzone-icon">📷</span>
+                                            <p>Kéo ảnh vào đây hoặc <strong>click để chọn</strong></p>
+                                            <small>Hỗ trợ JPG, PNG, WebP — Tối đa 10 ảnh</small>
+                                        </div>
+                                        <button class="attach-image-button" type="button">+ Thêm ảnh</button>
+                                        <input id="image-file-input" type="file" accept="image/*" multiple style="display:none;">
+                                    </div>
+                                    <div id="image-preview-grid" class="image-preview-grid"></div>
+                                </div>
+                                <label class="full"><span>Hoặc nhập link ảnh (mỗi dòng 1 link)</span><textarea name="imagesText" rows="3" placeholder="https://..."></textarea></label>
+                                <input name="image" type="hidden">
+                                <label class="full"><span>Video YouTube hoặc file đã tải</span><input name="video" type="text" placeholder="https://www.youtube.com/embed/... hoặc /uploads/videos/..."></label>
+                            </div>
+                        </details>
+
+                        <!-- ====== ACCORDION SECTION 4: Vị trí bản đồ ====== -->
+                        <details class="form-section">
+                            <summary>📍 Vị trí bản đồ</summary>
+                            <div class="grid-form">
+                                <label><span>Vĩ độ</span><input name="latitude" type="number" step="0.000001" required></label>
+                                <label><span>Kinh độ</span><input name="longitude" type="number" step="0.000001" required></label>
+                                <label class="full"><span>Ghi chú bản đồ</span><textarea name="mapSummary" rows="2"></textarea></label>
+                                <div class="admin-map-container full">
+                                    <div class="admin-map-header">
+                                        <div><span>Bản đồ (Ghim tự động)</span><small>Kéo ghim hoặc click để lấy tọa độ.</small></div>
+                                        <div style="display:flex; gap:6px;">
+                                            <button type="button" id="toggle-satellite" class="button button-ghost" style="padding:6px 10px; font-size:0.78rem;">🛰️ Vệ tinh</button>
+                                            <button type="button" onclick="detectMyLocation()" class="button button-ghost" style="padding:6px 10px; font-size:0.78rem;">📍 Vị trí tôi</button>
+                                        </div>
+                                    </div>
+                                    <div class="admin-map-wrap">
+                                        <div id="admin-map"></div>
+                                    </div>
+                                    <p id="admin-location-status" class="location-status">Chưa có vị trí. Bấm vị trí tôi hoặc chạm bản đồ một lần.</p>
+                                </div>
+                            </div>
+                        </details>
+
+                        <!-- ====== ACCORDION SECTION 5: Prop-Tech 2026 ====== -->
+                        <details class="form-section">
+                            <summary>🤖 Prop-Tech 2026</summary>
+                            <div class="grid-form">
+                                <label class="full"><span>URL Không gian 3D / VR</span><input name="vrUrl" type="url" placeholder="https://kuula.co/share/..."></label>
+                                <label><span>Định giá AI (Tỷ)</span>
+                                    <div style="display:flex; gap:6px;"><input name="aiValuation" type="number" min="0" step="0.1" placeholder="4.5" style="flex:1;"><button type="button" onclick="predictPrice()" class="button button-ghost" style="padding:0 10px; font-size:0.78rem; height:48px;">🤖 Gợi ý</button></div>
+                                </label>
+                                <label><span>Walk Score (1-100)</span><input name="walkScore" type="number" min="1" max="100" step="1" placeholder="95"></label>
+                            </div>
+                        </details>
+
+                        <div class="nearby-editor">
+                            <div class="panel-head compact">
+                                <div>
+                                    <p class="eyebrow">Tiện ích xung quanh</p>
+                                    <h3>Điểm nổi bật trên bản đồ</h3>
+                                </div>
+                                <button id="add-nearby-button" class="button button-ghost" type="button">Thêm điểm</button>
+                            </div>
+                            <div id="nearby-editor-list" class="nearby-editor-list"></div>
+                        </div>
+
+                        <div class="editor-actions">
+                            <button class="button" type="submit">Lưu tin đăng</button>
+                            <button id="delete-button" class="button button-danger hidden" type="button">Xóa tin</button>
+                            <p id="editor-message" class="message"></p>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <template id="nearby-item-template">
+        <article class="nearby-item">
+            <div class="nearby-item-head">
+                <strong>Điểm tiện ích</strong>
+                <button class="remove-nearby button button-ghost" type="button">Xóa</button>
+            </div>
+            <div class="grid-form">
+                <label>
+                    <span>Tên điểm</span>
+                    <input data-field="name" type="text" required>
+                </label>
+                <label>
+                    <span>Khoảng cách</span>
+                    <input data-field="distance" type="text" placeholder="500 m" required>
+                </label>
+                <label>
+                    <span>Vĩ độ</span>
+                    <input data-field="latitude" type="number" step="0.000001" required>
+                </label>
+                <label>
+                    <span>Kinh độ</span>
+                    <input data-field="longitude" type="number" step="0.000001" required>
+                </label>
+                <label class="full">
+                    <span>Ảnh điểm tiện ích</span>
+                    <input data-field="image" type="url" placeholder="https://...">
+                </label>
+                <label class="full">
+                    <span>Link video khu vực</span>
+                    <input data-field="videoUrl" type="url" placeholder="https://www.youtube.com/watch?...">
+                </label>
+                <label class="full">
+                    <span>Mô tả</span>
+                    <textarea data-field="text" rows="3" required></textarea>
+                </label>
+            </div>
+        </article>
+    </template>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script src="mobile-app.js?v=48"></script>
+    <script src="admin.js?v=48"></script>
+</body>
+</html>

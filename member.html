@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Thành viên | Nhà Đất Việt</title>
+    <meta name="description" content="Khu thành viên Nhà Đất Việt: theo dõi tin đăng, sửa tin chờ duyệt và xem khách quan tâm.">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Nha Dat Viet">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon-192.png">
+    <link rel="stylesheet" href="member.css?v=48">
+    <link rel="stylesheet" href="mobile-app.css?v=48">
+</head>
+<body>
+    <main class="member-shell">
+        <header class="member-header">
+            <nav class="top-links">
+                <a href="/">Bản đồ</a>
+                <a href="/submit.html">Đăng tin mới</a>
+                <a href="/admin">Quản trị</a>
+            </nav>
+            <div class="header-grid">
+                <div>
+                    <p class="eyebrow">Khu thành viên</p>
+                    <h1>Quản lý tin đăng như một sàn giao dịch</h1>
+                    <p>Theo dõi hồ sơ, sửa tin còn chờ duyệt, xem tin đã lên sàn và khách đang quan tâm.</p>
+                </div>
+                <form id="member-search-form" class="member-search">
+                    <label>
+                        <span>Số điện thoại đã đăng tin</span>
+                        <input id="member-phone" name="phone" type="tel" placeholder="0900 000 000">
+                    </label>
+                    <label>
+                        <span>Mã hồ sơ nếu có</span>
+                        <input id="member-code" name="code" type="text" placeholder="NDV-...">
+                    </label>
+                    <button type="submit">Vào khu thành viên</button>
+                    <p id="member-message"></p>
+                </form>
+            </div>
+        </header>
+
+        <section id="member-dashboard" class="member-dashboard hidden">
+            <div class="kpi-grid">
+                <article>
+                    <span>Tổng hồ sơ</span>
+                    <strong id="kpi-total">0</strong>
+                </article>
+                <article>
+                    <span>Chờ duyệt</span>
+                    <strong id="kpi-pending">0</strong>
+                </article>
+                <article>
+                    <span>Đã lên sàn</span>
+                    <strong id="kpi-approved">0</strong>
+                </article>
+                <article>
+                    <span>Khách hỏi tin</span>
+                    <strong id="kpi-leads">0</strong>
+                </article>
+                <article>
+                    <span>Lượt xem</span>
+                    <strong id="kpi-views">0</strong>
+                </article>
+                <article>
+                    <span>Gọi/Zalo</span>
+                    <strong id="kpi-contact">0</strong>
+                </article>
+            </div>
+
+            <section class="panel">
+                <div class="panel-head">
+                    <div>
+                        <p class="eyebrow">Tin của tôi</p>
+                        <h2>Trạng thái kiểm duyệt</h2>
+                    </div>
+                    <a class="button button-ghost" href="/submit.html">Đăng thêm tin</a>
+                </div>
+                <div id="member-submissions" class="submission-grid"></div>
+            </section>
+
+            <section class="panel">
+                <div class="panel-head">
+                    <div>
+                        <p class="eyebrow">Khách hàng</p>
+                        <h2>Lead từ các tin đã được duyệt</h2>
+                    </div>
+                </div>
+                <div id="member-leads" class="lead-grid"></div>
+            </section>
+        </section>
+    </main>
+
+    <template id="edit-template">
+        <form class="member-edit-form">
+            <div class="edit-grid">
+                <label><span>Tiêu đề</span><input name="title" required></label>
+                <label><span>Khu vực</span><input name="location" required></label>
+                <label><span>Loại hình</span><input name="type" required></label>
+                <label><span>Giá tỷ</span><input name="price" type="number" min="0" step="0.1" required></label>
+                <label><span>Diện tích m2</span><input name="area" type="number" min="1" step="1" required></label>
+                <label><span>Ngang m</span><input name="frontage" type="number" min="0" step="0.1"></label>
+                <label><span>Dài m</span><input name="depth" type="number" min="0" step="0.1"></label>
+                <label><span>Đường m</span><input name="roadWidth" type="number" min="0" step="0.1"></label>
+                <label><span>Phòng ngủ</span><input name="beds" type="number" min="0" step="1"></label>
+                <label><span>Phòng tắm</span><input name="baths" type="number" min="0" step="1"></label>
+                <label><span>Vĩ độ</span><input name="latitude" type="number" step="0.000001" required></label>
+                <label><span>Kinh độ</span><input name="longitude" type="number" step="0.000001" required></label>
+                <label class="full"><span>Pháp lý</span><input name="legal" required></label>
+                <div class="full member-image-tool">
+                    <span>Ảnh đại diện</span>
+                    <input name="image" type="hidden" required>
+                    <input name="imageFile" type="file" accept="image/*" hidden>
+                    <button class="member-attach-image" type="button">+ Thêm ảnh</button>
+                    <img class="member-image-preview" alt="">
+                    <small>Chọn ảnh từ máy/điện thoại, hệ thống tự nén và dùng làm ảnh bìa.</small>
+                </div>
+                <label class="full"><span>Mô tả</span><textarea name="description" rows="4" required></textarea></label>
+            </div>
+            <div class="edit-actions">
+                <button type="submit">Lưu chỉnh sửa</button>
+                <button type="button" class="button-ghost cancel-edit">Hủy</button>
+            </div>
+            <p class="edit-message"></p>
+        </form>
+    </template>
+
+    <script src="mobile-app.js?v=48"></script>
+    <script src="member.js?v=48"></script>
+</body>
+</html>

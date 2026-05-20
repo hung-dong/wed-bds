@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nha Dat Viet
 
-## Getting Started
+Website dang tin bat dong san co:
 
-First, run the development server:
+- Trang public xem tin dang
+- Ban do tuong tac trong chi tiet tin
+- Trang quan tri dang nhap admin
+- Backend Node luu du lieu that bang JSON
+- Form khach de lai so dien thoai, luu vao `data/leads.json`
+- Trang thanh vien gui tin cho duyet: `submit.html`, luu vao `data/submissions.json`
+- Admin duyet hoac tu choi tin thanh vien truoc khi hien thi cong khai
+- PWA co manifest/service worker de cai nhu ung dung web
+- Link chia se rieng tung tin bang `#ma-tin`
+- JSON-LD Schema.org cho du lieu tin dang
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Chay local
+
+```powershell
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Sau do mo:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `http://localhost:3000`
+- `http://localhost:3000/admin.html`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tai khoan mac dinh
 
-## Learn More
+- User: `admin`
+- Password: `Admin@123456`
 
-To learn more about Next.js, take a look at the following resources:
+Truoc khi dua len mang, nen doi bang bien moi truong:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```powershell
+$env:ADMIN_USERNAME="admin"
+$env:ADMIN_PASSWORD="MatKhauMoiRatManh"
+$env:SESSION_SECRET="mot-chuoi-bi-mat-dai-va-kho-doan"
+npm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Du lieu
 
-## Deploy on Vercel
+- Tin dang: `data/listings.json`
+- Thong tin website: `data/site.json`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Ban co the quan ly du lieu bang trang admin, khong can sua tay file JSON.

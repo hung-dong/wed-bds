@@ -1,0 +1,42 @@
+[
+  {
+    "id": "metro-1",
+    "name": "Metro Tuyến số 1 (Bến Thành - Suối Tiên)",
+    "type": "Rail",
+    "completionYear": 2024,
+    "currentStatus": "Testing",
+    "impactRadius": 2,
+    "coords": { "x": 40, "y": 50 },
+    "description": "Tuyến đường sắt đô thị hiện đại đầu tiên tại TP.HCM, kết nối trung tâm với các quận phía Đông."
+  },
+  {
+    "id": "thu-thiem-4",
+    "name": "Cầu Thủ Thiêm 4",
+    "type": "Bridge",
+    "completionYear": 2027,
+    "currentStatus": "Planned",
+    "impactRadius": 1.5,
+    "coords": { "x": 55, "y": 65 },
+    "description": "Kết nối trực tiếp Quận 7 và Khu đô thị mới Thủ Thiêm (Quận 2), thúc đẩy giá trị BĐS khu vực lân cận."
+  },
+  {
+    "id": "vanh-dai-3",
+    "name": "Đường Vành Đai 3",
+    "type": "Highway",
+    "completionYear": 2026,
+    "currentStatus": "Construction",
+    "impactRadius": 3,
+    "coords": { "x": 80, "y": 30 },
+    "description": "Siêu dự án kết nối các tỉnh vệ tinh, làm giảm ùn tắc và đẩy nhanh tốc độ đô thị hóa vùng ven."
+  },
+  {
+    "id": "metro-2",
+    "name": "Metro Tuyến số 2 (Bến Thành - Tham Lương)",
+    "type": "Rail",
+    "completionYear": 2030,
+    "currentStatus": "Initial Works",
+    "impactRadius": 2,
+    "coords": { "x": 30, "y": 40 },
+    "description": "Kết nối trung tâm với phía Tây Bắc thành phố, tạo động lực phát triển cho Quận Tân Bình và Quận 12."
+  }
+]

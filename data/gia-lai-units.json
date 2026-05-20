@@ -1,0 +1,2901 @@
+{
+  "province": "Tỉnh Gia Lai",
+  "effectiveFrom": "2025-07-01",
+  "generatedAt": "2026-05-16T13:10:50.253Z",
+  "source": {
+    "title": "Báo điện tử Chính phủ - Danh sách 135 xã, phường của tỉnh Gia Lai mới",
+    "url": "https://xaydungchinhsach.chinhphu.vn/sap-xep-dvhc-danh-sach-135-xa-phuong-cua-tinh-gia-lai-moi-119250622192453143.htm"
+  },
+  "summary": {
+    "total": 135,
+    "wards": 25,
+    "communes": 110
+  },
+  "units": [
+    {
+      "order": 1,
+      "type": "xã",
+      "name": "An Nhơn Tây",
+      "label": "Xã An Nhơn Tây",
+      "oldText": "xã Nhơn Lộc và xã Nhơn Tân",
+      "aliases": [
+        "Nhơn Lộc và xã Nhơn Tân",
+        "Nhơn Lộc",
+        "Nhơn Tân",
+        "An Nhơn Tây"
+      ],
+      "searchText": "an nhon tay xa an nhon tay xa nhon loc va xa nhon tan nhon loc va xa nhon tan nhon loc nhon tan an nhon tay",
+      "center": [
+        13.822818,
+        109.004192
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa An Nhon Tay, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã An Nhơn Tây, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 2,
+      "type": "xã",
+      "name": "Phù Cát",
+      "label": "Xã Phù Cát",
+      "oldText": "thị trấn Ngô Mây, xã Cát Trinh và xã Cát Tân",
+      "aliases": [
+        "Ngô Mây",
+        "Cát Trinh và xã Cát Tân",
+        "xã Cát Trinh",
+        "Cát Tân",
+        "Phù Cát"
+      ],
+      "searchText": "phu cat xa phu cat thi tran ngo may xa cat trinh va xa cat tan ngo may cat trinh va xa cat tan xa cat trinh cat tan phu cat",
+      "center": [
+        14.000847,
+        109.063531
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Phu Cat, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Phù Cát, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 3,
+      "type": "xã",
+      "name": "Xuân An",
+      "label": "Xã Xuân An",
+      "oldText": "xã Cát Nhơn và xã Cát Tường",
+      "aliases": [
+        "Cát Nhơn và xã Cát Tường",
+        "Cát Nhơn",
+        "Cát Tường",
+        "Xuân An"
+      ],
+      "searchText": "xuan an xa xuan an xa cat nhon va xa cat tuong cat nhon va xa cat tuong cat nhon cat tuong xuan an",
+      "center": [
+        13.991543,
+        109.127826
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Xuan An, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Xuân An, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 4,
+      "type": "xã",
+      "name": "Ngô Mây",
+      "label": "Xã Ngô Mây",
+      "oldText": "các xã Cát Hưng, Cát Thắng và Cát Chánh",
+      "aliases": [
+        "Cát Hưng",
+        "xã Cát Hưng",
+        "Cát Thắng",
+        "Cát Chánh",
+        "Ngô Mây"
+      ],
+      "searchText": "ngo may xa ngo may cac xa cat hung cat thang va cat chanh cat hung xa cat hung cat thang cat chanh ngo may",
+      "center": [
+        13.968382,
+        109.191573
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ngo May, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ngô Mây, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 5,
+      "type": "xã",
+      "name": "Cát Tiến",
+      "label": "Xã Cát Tiến",
+      "oldText": "thị trấn Cát Tiến, xã Cát Thành và xã Cát Hải",
+      "aliases": [
+        "Cát Tiến",
+        "Cát Thành và xã Cát Hải",
+        "xã Cát Thành",
+        "Cát Hải"
+      ],
+      "searchText": "cat tien xa cat tien thi tran cat tien xa cat thanh va xa cat hai cat tien cat thanh va xa cat hai xa cat thanh cat hai",
+      "center": [
+        14.011931,
+        109.231331
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Cat Tien, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Cát Tiến, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 6,
+      "type": "xã",
+      "name": "Đề Gi",
+      "label": "Xã Đề Gi",
+      "oldText": "thị trấn Cát Khánh, xã Cát Minh và xã Cát Tài",
+      "aliases": [
+        "Cát Khánh",
+        "Cát Minh và xã Cát Tài",
+        "xã Cát Minh",
+        "Cát Tài",
+        "Đề Gi"
+      ],
+      "searchText": "de gi xa de gi thi tran cat khanh xa cat minh va xa cat tai cat khanh cat minh va xa cat tai xa cat minh cat tai de gi",
+      "center": [
+        14.103966,
+        109.14705
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa De Gi, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Đề Gi, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 7,
+      "type": "xã",
+      "name": "Hòa Hội",
+      "label": "Xã Hòa Hội",
+      "oldText": "xã Cát Hanh và xã Cát Hiệp",
+      "aliases": [
+        "Cát Hanh và xã Cát Hiệp",
+        "Cát Hanh",
+        "Cát Hiệp",
+        "Hòa Hội"
+      ],
+      "searchText": "hoa hoi xa hoa hoi xa cat hanh va xa cat hiep cat hanh va xa cat hiep cat hanh cat hiep hoa hoi",
+      "center": [
+        14.048862,
+        109.038198
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Hoa Hoi, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Hòa Hội, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 8,
+      "type": "xã",
+      "name": "Hội Sơn",
+      "label": "Xã Hội Sơn",
+      "oldText": "xã Cát Lâm và xã Cát Sơn",
+      "aliases": [
+        "Cát Lâm và xã Cát Sơn",
+        "Cát Lâm",
+        "Cát Sơn",
+        "Hội Sơn"
+      ],
+      "searchText": "hoi son xa hoi son xa cat lam va xa cat son cat lam va xa cat son cat lam cat son hoi son",
+      "center": [
+        14.126062,
+        108.947298
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Hoi Son, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Hội Sơn, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 9,
+      "type": "xã",
+      "name": "Phù Mỹ",
+      "label": "Xã Phù Mỹ",
+      "oldText": "thị trấn Phù Mỹ, xã Mỹ Quang và xã Mỹ Chánh Tây",
+      "aliases": [
+        "Phù Mỹ",
+        "Mỹ Quang và xã Mỹ Chánh Tây",
+        "xã Mỹ Quang",
+        "Mỹ Chánh Tây"
+      ],
+      "searchText": "phu my xa phu my thi tran phu my xa my quang va xa my chanh tay phu my my quang va xa my chanh tay xa my quang my chanh tay",
+      "center": [
+        14.171848,
+        109.048958
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Phu My, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Phù Mỹ, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 10,
+      "type": "xã",
+      "name": "An Lương",
+      "label": "Xã An Lương",
+      "oldText": "các xã Mỹ Chánh, Mỹ Thành và Mỹ Cát",
+      "aliases": [
+        "Mỹ Chánh",
+        "xã Mỹ Chánh",
+        "Mỹ Thành",
+        "Mỹ Cát",
+        "An Lương"
+      ],
+      "searchText": "an luong xa an luong cac xa my chanh my thanh va my cat my chanh xa my chanh my thanh my cat an luong",
+      "center": [
+        14.170907,
+        109.140771
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa An Luong, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã An Lương, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 11,
+      "type": "xã",
+      "name": "Bình Dương",
+      "label": "Xã Bình Dương",
+      "oldText": "thị trấn Bình Dương, xã Mỹ Lợi và xã Mỹ Phong",
+      "aliases": [
+        "Bình Dương",
+        "Mỹ Lợi và xã Mỹ Phong",
+        "xã Mỹ Lợi",
+        "Mỹ Phong"
+      ],
+      "searchText": "binh duong xa binh duong thi tran binh duong xa my loi va xa my phong binh duong my loi va xa my phong xa my loi my phong",
+      "center": [
+        14.265357,
+        109.093851
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Binh Duong, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Bình Dương, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 12,
+      "type": "xã",
+      "name": "Phù Mỹ Đông",
+      "label": "Xã Phù Mỹ Đông",
+      "oldText": "các xã Mỹ An, Mỹ Thọ và Mỹ Thắng",
+      "aliases": [
+        "Mỹ An",
+        "xã Mỹ An",
+        "Mỹ Thọ",
+        "Mỹ Thắng",
+        "Phù Mỹ Đông"
+      ],
+      "searchText": "phu my dong xa phu my dong cac xa my an my tho va my thang my an xa my an my tho my thang phu my dong",
+      "center": [
+        14.272557,
+        109.164594
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Phu My Dong, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Phù Mỹ Đông, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 13,
+      "type": "xã",
+      "name": "Phù Mỹ Tây",
+      "label": "Xã Phù Mỹ Tây",
+      "oldText": "xã Mỹ Trinh và xã Mỹ Hòa",
+      "aliases": [
+        "Mỹ Trinh và xã Mỹ Hòa",
+        "Mỹ Trinh",
+        "Mỹ Hòa",
+        "Phù Mỹ Tây"
+      ],
+      "searchText": "phu my tay xa phu my tay xa my trinh va xa my hoa my trinh va xa my hoa my trinh my hoa phu my tay",
+      "center": [
+        14.216245,
+        109.044346
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Phu My Tay, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Phù Mỹ Tây, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 14,
+      "type": "xã",
+      "name": "Phù Mỹ Nam",
+      "label": "Xã Phù Mỹ Nam",
+      "oldText": "xã Mỹ Tài và xã Mỹ Hiệp",
+      "aliases": [
+        "Mỹ Tài và xã Mỹ Hiệp",
+        "Mỹ Tài",
+        "Mỹ Hiệp",
+        "Phù Mỹ Nam"
+      ],
+      "searchText": "phu my nam xa phu my nam xa my tai va xa my hiep my tai va xa my hiep my tai my hiep phu my nam",
+      "center": [
+        14.120392,
+        109.043961
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Phu My Nam, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Phù Mỹ Nam, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 15,
+      "type": "xã",
+      "name": "Phù Mỹ Bắc",
+      "label": "Xã Phù Mỹ Bắc",
+      "oldText": "các xã Mỹ Đức, Mỹ Châu và Mỹ Lộc",
+      "aliases": [
+        "Mỹ Đức",
+        "xã Mỹ Đức",
+        "Mỹ Châu",
+        "Mỹ Lộc",
+        "Phù Mỹ Bắc"
+      ],
+      "searchText": "phu my bac xa phu my bac cac xa my duc my chau va my loc my duc xa my duc my chau my loc phu my bac",
+      "center": [
+        14.322754,
+        109.063133
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Phu My Bac, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Phù Mỹ Bắc, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 16,
+      "type": "xã",
+      "name": "Tuy Phước",
+      "label": "Xã Tuy Phước",
+      "oldText": "thị trấn Tuy Phước, thị trấn Diêu Trì và các xã Phước Thuận, Phước Nghĩa, Phước Lộc",
+      "aliases": [
+        "Tuy Phước",
+        "Diêu Trì và các xã Phước Thuận",
+        "thị trấn Diêu Trì",
+        "xã Phước Thuận",
+        "Phước Nghĩa",
+        "Phước Lộc"
+      ],
+      "searchText": "tuy phuoc xa tuy phuoc thi tran tuy phuoc thi tran dieu tri va cac xa phuoc thuan phuoc nghia phuoc loc tuy phuoc dieu tri va cac xa phuoc thuan thi tran dieu tri xa phuoc thuan phuoc nghia phuoc loc",
+      "center": [
+        13.826866,
+        109.166843
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Tuy Phuoc, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Tuy Phước, Tỉnh Gia Lai, 55200, Việt Nam"
+    },
+    {
+      "order": 17,
+      "type": "xã",
+      "name": "Tuy Phước Đông",
+      "label": "Xã Tuy Phước Đông",
+      "oldText": "các xã Phước Sơn, Phước Hòa và Phước Thắng",
+      "aliases": [
+        "Phước Sơn",
+        "xã Phước Sơn",
+        "Phước Hòa",
+        "Phước Thắng",
+        "Tuy Phước Đông"
+      ],
+      "searchText": "tuy phuoc dong xa tuy phuoc dong cac xa phuoc son phuoc hoa va phuoc thang phuoc son xa phuoc son phuoc hoa phuoc thang tuy phuoc dong",
+      "center": [
+        13.886413,
+        109.21911
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Tuy Phuoc Dong, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Tuy Phước Đông, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 18,
+      "type": "xã",
+      "name": "Tuy Phước Tây",
+      "label": "Xã Tuy Phước Tây",
+      "oldText": "xã Phước An và xã Phước Thành",
+      "aliases": [
+        "Phước An và xã Phước Thành",
+        "Phước An",
+        "Phước Thành",
+        "Tuy Phước Tây"
+      ],
+      "searchText": "tuy phuoc tay xa tuy phuoc tay xa phuoc an va xa phuoc thanh phuoc an va xa phuoc thanh phuoc an phuoc thanh tuy phuoc tay",
+      "center": [
+        13.812481,
+        109.119485
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Tuy Phuoc Tay, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Tuy Phước Tây, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 19,
+      "type": "xã",
+      "name": "Tuy Phước Bắc",
+      "label": "Xã Tuy Phước Bắc",
+      "oldText": "các xã Phước Hiệp, Phước Hưng và Phước Quang",
+      "aliases": [
+        "Phước Hiệp",
+        "xã Phước Hiệp",
+        "Phước Hưng",
+        "Phước Quang",
+        "Tuy Phước Bắc"
+      ],
+      "searchText": "tuy phuoc bac xa tuy phuoc bac cac xa phuoc hiep phuoc hung va phuoc quang phuoc hiep xa phuoc hiep phuoc hung phuoc quang tuy phuoc bac",
+      "center": [
+        13.889975,
+        109.146249
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Tuy Phuoc Bac, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Tuy Phước Bắc, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 20,
+      "type": "xã",
+      "name": "Tây Sơn",
+      "label": "Xã Tây Sơn",
+      "oldText": "thị trấn Phú Phong, xã Tây Xuân và xã Bình Nghi",
+      "aliases": [
+        "Phú Phong",
+        "Tây Xuân và xã Bình Nghi",
+        "xã Tây Xuân",
+        "Bình Nghi",
+        "Tây Sơn"
+      ],
+      "searchText": "tay son xa tay son thi tran phu phong xa tay xuan va xa binh nghi phu phong tay xuan va xa binh nghi xa tay xuan binh nghi tay son",
+      "center": [
+        13.909417,
+        108.918678
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Tay Son, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Tây Sơn, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 21,
+      "type": "xã",
+      "name": "Bình Khê",
+      "label": "Xã Bình Khê",
+      "oldText": "xã Tây Giang và xã Tây Thuận",
+      "aliases": [
+        "Tây Giang và xã Tây Thuận",
+        "Tây Giang",
+        "Tây Thuận",
+        "Bình Khê"
+      ],
+      "searchText": "binh khe xa binh khe xa tay giang va xa tay thuan tay giang va xa tay thuan tay giang tay thuan binh khe",
+      "center": [
+        13.978645,
+        108.814678
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Binh Khe, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Bình Khê, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 22,
+      "type": "xã",
+      "name": "Bình Phú",
+      "label": "Xã Bình Phú",
+      "oldText": "các xã Vĩnh An, Bình Tường và Tây Phú",
+      "aliases": [
+        "Vĩnh An",
+        "xã Vĩnh An",
+        "Bình Tường",
+        "Tây Phú",
+        "Bình Phú"
+      ],
+      "searchText": "binh phu xa binh phu cac xa vinh an binh tuong va tay phu vinh an xa vinh an binh tuong tay phu binh phu",
+      "center": [
+        13.852799,
+        108.849486
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Binh Phu, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Bình Phú, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 23,
+      "type": "xã",
+      "name": "Bình Hiệp",
+      "label": "Xã Bình Hiệp",
+      "oldText": "các xã Bình Thuận, Bình Tân và Tây An",
+      "aliases": [
+        "Bình Thuận",
+        "xã Bình Thuận",
+        "Bình Tân",
+        "Tây An",
+        "Bình Hiệp"
+      ],
+      "searchText": "binh hiep xa binh hiep cac xa binh thuan binh tan va tay an binh thuan xa binh thuan binh tan tay an binh hiep",
+      "center": [
+        14.03138,
+        108.895248
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Binh Hiep, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Bình Hiệp, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 24,
+      "type": "xã",
+      "name": "Bình An",
+      "label": "Xã Bình An",
+      "oldText": "toàn bộ diện tích tự nhiên, quy mô dân số của các xã Tây Vinh, Tây Bình, Bình Hòa và Bình Thành",
+      "aliases": [
+        "Tây Vinh",
+        "toàn bộ diện tích tự nhiên",
+        "quy mô dân số của các xã Tây Vinh",
+        "Tây Bình",
+        "Bình Hòa",
+        "Bình Thành",
+        "Bình An"
+      ],
+      "searchText": "binh an xa binh an toan bo dien tich tu nhien quy mo dan so cua cac xa tay vinh tay binh binh hoa va binh thanh tay vinh toan bo dien tich tu nhien quy mo dan so cua cac xa tay vinh tay binh binh hoa binh thanh binh an",
+      "center": [
+        13.953289,
+        108.90612
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Binh An, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Bình An, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 25,
+      "type": "xã",
+      "name": "Hoài Ân",
+      "label": "Xã Hoài Ân",
+      "oldText": "thị trấn Tăng Bạt Hổ và các xã Ân Phong, Ân Đức, Ân Tường Đông",
+      "aliases": [
+        "Tăng Bạt Hổ và các xã Ân Phong",
+        "Tăng Bạt Hổ",
+        "xã Ân Phong",
+        "Ân Đức",
+        "Ân Tường Đông",
+        "Hoài Ân"
+      ],
+      "searchText": "hoai an xa hoai an thi tran tang bat ho va cac xa an phong an duc an tuong dong tang bat ho va cac xa an phong tang bat ho xa an phong an duc an tuong dong hoai an",
+      "center": [
+        14.363474,
+        108.964897
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Hoai An, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Hoài Ân, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 26,
+      "type": "xã",
+      "name": "Ân Tường",
+      "label": "Xã Ân Tường",
+      "oldText": "các xã Ân Tường Tây, Ân Hữu và Đak Mang",
+      "aliases": [
+        "Ân Tường Tây",
+        "xã Ân Tường Tây",
+        "Ân Hữu",
+        "Đak Mang",
+        "Ân Tường"
+      ],
+      "searchText": "an tuong xa an tuong cac xa an tuong tay an huu va dak mang an tuong tay xa an tuong tay an huu dak mang an tuong",
+      "center": [
+        14.353114,
+        108.880287
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa An Tuong, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ân Tường, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 27,
+      "type": "xã",
+      "name": "Kim Sơn",
+      "label": "Xã Kim Sơn",
+      "oldText": "xã Ân Nghĩa và xã Bok Tới",
+      "aliases": [
+        "Ân Nghĩa và xã Bok Tới",
+        "Ân Nghĩa",
+        "Bok Tới",
+        "Kim Sơn"
+      ],
+      "searchText": "kim son xa kim son xa an nghia va xa bok toi an nghia va xa bok toi an nghia bok toi kim son",
+      "center": [
+        14.248233,
+        108.869957
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Kim Son, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Kim Sơn, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 28,
+      "type": "xã",
+      "name": "Vạn Đức",
+      "label": "Xã Vạn Đức",
+      "oldText": "các xã Ân Sơn, Ân Tín và Ân Thạnh",
+      "aliases": [
+        "Ân Sơn",
+        "xã Ân Sơn",
+        "Ân Tín",
+        "Ân Thạnh",
+        "Vạn Đức"
+      ],
+      "searchText": "van duc xa van duc cac xa an son an tin va an thanh an son xa an son an tin an thanh van duc",
+      "center": [
+        14.425047,
+        108.892129
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Van Duc, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Vạn Đức, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 29,
+      "type": "xã",
+      "name": "Ân Hảo",
+      "label": "Xã Ân Hảo",
+      "oldText": "các xã Ân Hảo Tây, Ân Hảo Đông và Ân Mỹ",
+      "aliases": [
+        "Ân Hảo Tây",
+        "xã Ân Hảo Tây",
+        "Ân Hảo Đông",
+        "Ân Mỹ",
+        "Ân Hảo"
+      ],
+      "searchText": "an hao xa an hao cac xa an hao tay an hao dong va an my an hao tay xa an hao tay an hao dong an my an hao",
+      "center": [
+        14.48193,
+        108.931063
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa An Hao, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ân Hảo, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 30,
+      "type": "xã",
+      "name": "Vân Canh",
+      "label": "Xã Vân Canh",
+      "oldText": "thị trấn Vân Canh, xã Canh Thuận, xã Canh Hòa và một phần diện tích tự nhiên, quy mô dân số của xã Canh Hiệp",
+      "aliases": [
+        "Vân Canh",
+        "Canh Thuận",
+        "Canh Hòa và một phần diện tích tự nhiên",
+        "Canh Hiệp",
+        "xã Canh Thuận",
+        "xã Canh Hòa",
+        "diện tích tự nhiên",
+        "quy mô dân số của xã Canh Hiệp"
+      ],
+      "searchText": "van canh xa van canh thi tran van canh xa canh thuan xa canh hoa va mot phan dien tich tu nhien quy mo dan so cua xa canh hiep van canh canh thuan canh hoa va mot phan dien tich tu nhien canh hiep xa canh thuan xa canh hoa dien tich tu nhien quy mo dan so cua xa canh hiep",
+      "center": [
+        13.592516,
+        108.985125
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Van Canh, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Vân Canh, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 31,
+      "type": "xã",
+      "name": "Canh Vinh",
+      "label": "Xã Canh Vinh",
+      "oldText": "xã Canh Vinh, xã Canh Hiển, một phần diện tích tự nhiên, quy mô dân số của xã Canh Liên và phần còn lại của xã Canh Hiệp sau khi sắp xếp theo quy định tại khoản 30 Điều này",
+      "aliases": [
+        "Canh Vinh",
+        "Canh Hiển",
+        "Canh Liên và phần còn lại của xã Canh Hiệp sau khi sắp xếp theo quy định tại khoản 30 Điều này",
+        "xã Canh Hiển",
+        "một phần diện tích tự nhiên",
+        "quy mô dân số của xã Canh Liên",
+        "của xã Canh Hiệp sau khi sắp xếp theo quy định tại khoản 30 Điều này"
+      ],
+      "searchText": "canh vinh xa canh vinh xa canh vinh xa canh hien mot phan dien tich tu nhien quy mo dan so cua xa canh lien va phan con lai cua xa canh hiep sau khi sap xep theo quy dinh tai khoan 30 dieu nay canh vinh canh hien canh lien va phan con lai cua xa canh hiep sau khi sap xep theo quy dinh tai khoan 30 dieu nay xa canh hien mot phan dien tich tu nhien quy mo dan so cua xa canh lien cua xa canh hiep sau khi sap xep theo quy dinh tai khoan 30 dieu nay",
+      "center": [
+        13.680588,
+        109.029066
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Canh Vinh, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Canh Vinh, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 32,
+      "type": "xã",
+      "name": "Canh Liên",
+      "label": "Xã Canh Liên",
+      "oldText": "xã Canh Liên sau khi sắp xếp theo quy định tại khoản 31 Điều này",
+      "aliases": [
+        "Canh Liên sau khi sắp xếp theo quy định tại khoản 31 Điều này",
+        "Canh Liên"
+      ],
+      "searchText": "canh lien xa canh lien xa canh lien sau khi sap xep theo quy dinh tai khoan 31 dieu nay canh lien sau khi sap xep theo quy dinh tai khoan 31 dieu nay canh lien",
+      "center": [
+        13.68215,
+        108.891354
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Canh Lien, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Canh Liên, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 33,
+      "type": "xã",
+      "name": "Vĩnh Thạnh",
+      "label": "Xã Vĩnh Thạnh",
+      "oldText": "thị trấn Vĩnh Thạnh và xã Vĩnh Hảo",
+      "aliases": [
+        "Vĩnh Thạnh và xã Vĩnh Hảo",
+        "Vĩnh Thạnh",
+        "Vĩnh Hảo"
+      ],
+      "searchText": "vinh thanh xa vinh thanh thi tran vinh thanh va xa vinh hao vinh thanh va xa vinh hao vinh thanh vinh hao",
+      "center": [
+        14.171608,
+        108.716145
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Vinh Thanh, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Vĩnh Thạnh, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 34,
+      "type": "xã",
+      "name": "Vĩnh Thịnh",
+      "label": "Xã Vĩnh Thịnh",
+      "oldText": "xã Vĩnh Hiệp và xã Vĩnh Thịnh",
+      "aliases": [
+        "Vĩnh Hiệp và xã Vĩnh Thịnh",
+        "Vĩnh Hiệp",
+        "Vĩnh Thịnh"
+      ],
+      "searchText": "vinh thinh xa vinh thinh xa vinh hiep va xa vinh thinh vinh hiep va xa vinh thinh vinh hiep vinh thinh",
+      "center": [
+        14.142319,
+        108.831072
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Vinh Thinh, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Vĩnh Thịnh, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 35,
+      "type": "xã",
+      "name": "Vĩnh Quang",
+      "label": "Xã Vĩnh Quang",
+      "oldText": "các xã Vĩnh Thuận, Vĩnh Hòa và Vĩnh Quang",
+      "aliases": [
+        "Vĩnh Thuận",
+        "xã Vĩnh Thuận",
+        "Vĩnh Hòa",
+        "Vĩnh Quang"
+      ],
+      "searchText": "vinh quang xa vinh quang cac xa vinh thuan vinh hoa va vinh quang vinh thuan xa vinh thuan vinh hoa vinh quang",
+      "center": [
+        14.068426,
+        108.756467
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Vinh Quang, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Vĩnh Quang, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 36,
+      "type": "xã",
+      "name": "Vĩnh Sơn",
+      "label": "Xã Vĩnh Sơn",
+      "oldText": "xã Vĩnh Kim và xã Vĩnh Sơn",
+      "aliases": [
+        "Vĩnh Kim và xã Vĩnh Sơn",
+        "Vĩnh Kim",
+        "Vĩnh Sơn"
+      ],
+      "searchText": "vinh son xa vinh son xa vinh kim va xa vinh son vinh kim va xa vinh son vinh kim vinh son",
+      "center": [
+        14.338102,
+        108.715906
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Vinh Son, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Vĩnh Sơn, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 37,
+      "type": "xã",
+      "name": "An Hòa",
+      "label": "Xã An Hòa",
+      "oldText": "xã An Hòa, xã An Quang và một phần diện tích tự nhiên của xã An Nghĩa",
+      "aliases": [
+        "An Hòa",
+        "An Quang và một phần diện tích tự nhiên của xã An Nghĩa",
+        "xã An Quang",
+        "diện tích tự nhiên của xã An Nghĩa"
+      ],
+      "searchText": "an hoa xa an hoa xa an hoa xa an quang va mot phan dien tich tu nhien cua xa an nghia an hoa an quang va mot phan dien tich tu nhien cua xa an nghia xa an quang dien tich tu nhien cua xa an nghia",
+      "center": [
+        14.538964,
+        108.852612
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa An Hoa, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã An Hòa, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 38,
+      "type": "xã",
+      "name": "An Lão",
+      "label": "Xã An Lão",
+      "oldText": "thị trấn An Lão, xã An Tân và xã An Hưng",
+      "aliases": [
+        "An Lão",
+        "An Tân và xã An Hưng",
+        "xã An Tân",
+        "An Hưng"
+      ],
+      "searchText": "an lao xa an lao thi tran an lao xa an tan va xa an hung an lao an tan va xa an hung xa an tan an hung",
+      "center": [
+        14.61486,
+        108.890934
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa An Lao, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã An Lão, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 39,
+      "type": "xã",
+      "name": "An Vinh",
+      "label": "Xã An Vinh",
+      "oldText": "các xã An Trung (huyện An Lão), An Dũng và An Vinh",
+      "aliases": [
+        "An Trung (huyện An Lão)",
+        "xã An Trung (huyện An Lão)",
+        "An Dũng",
+        "An Vinh"
+      ],
+      "searchText": "an vinh xa an vinh cac xa an trung huyen an lao an dung va an vinh an trung huyen an lao xa an trung huyen an lao an dung an vinh",
+      "center": [
+        14.612221,
+        108.812825
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa An Vinh, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã An Vinh, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 40,
+      "type": "xã",
+      "name": "An Toàn",
+      "label": "Xã An Toàn",
+      "oldText": "xã An Toàn và phần còn lại của xã An Nghĩa sau khi sắp xếp theo quy định tại khoản 37 Điều này",
+      "aliases": [
+        "An Toàn và phần còn lại của xã An Nghĩa sau khi sắp xếp theo quy định tại khoản 37 Điều này",
+        "An Toàn",
+        "của xã An Nghĩa sau khi sắp xếp theo quy định tại khoản 37 Điều này"
+      ],
+      "searchText": "an toan xa an toan xa an toan va phan con lai cua xa an nghia sau khi sap xep theo quy dinh tai khoan 37 dieu nay an toan va phan con lai cua xa an nghia sau khi sap xep theo quy dinh tai khoan 37 dieu nay an toan cua xa an nghia sau khi sap xep theo quy dinh tai khoan 37 dieu nay",
+      "center": [
+        14.488963,
+        108.707565
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa An Toan, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã An Toàn, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 41,
+      "type": "xã",
+      "name": "Biển Hồ",
+      "label": "Xã Biển Hồ",
+      "oldText": "các xã Nghĩa Hưng, Chư Đang Ya, Hà Bầu và Biển Hồ",
+      "aliases": [
+        "Nghĩa Hưng",
+        "xã Nghĩa Hưng",
+        "Chư Đang Ya",
+        "Hà Bầu",
+        "Biển Hồ"
+      ],
+      "searchText": "bien ho xa bien ho cac xa nghia hung chu dang ya ha bau va bien ho nghia hung xa nghia hung chu dang ya ha bau bien ho",
+      "center": [
+        14.089208,
+        108.037613
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Bien Ho, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Biển Hồ, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 42,
+      "type": "xã",
+      "name": "Gào",
+      "label": "Xã Gào",
+      "oldText": "các xã Ia Kênh, Ia Pếch và Gào",
+      "aliases": [
+        "Ia Kênh",
+        "xã Ia Kênh",
+        "Ia Pếch",
+        "Gào"
+      ],
+      "searchText": "gao xa gao cac xa ia kenh ia pech va gao ia kenh xa ia kenh ia pech gao",
+      "center": [
+        13.903947,
+        107.901858
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Gao, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Gào, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 43,
+      "type": "xã",
+      "name": "Ia Ly",
+      "label": "Xã Ia Ly",
+      "oldText": "thị trấn Ia Ly, xã Ia Mơ Nông và xã Ia Kreng",
+      "aliases": [
+        "Ia Ly",
+        "Ia Mơ Nông và xã Ia Kreng",
+        "xã Ia Mơ Nông",
+        "Ia Kreng"
+      ],
+      "searchText": "ia ly xa ia ly thi tran ia ly xa ia mo nong va xa ia kreng ia ly ia mo nong va xa ia kreng xa ia mo nong ia kreng",
+      "center": [
+        14.199426,
+        107.775444
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Ly, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Ly, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 44,
+      "type": "xã",
+      "name": "Chư Păh",
+      "label": "Xã Chư Păh",
+      "oldText": "thị trấn Phú Hòa, xã Nghĩa Hòa và xã Hòa Phú",
+      "aliases": [
+        "Phú Hòa",
+        "Nghĩa Hòa và xã Hòa Phú",
+        "xã Nghĩa Hòa",
+        "Hòa Phú",
+        "Chư Păh"
+      ],
+      "searchText": "chu pah xa chu pah thi tran phu hoa xa nghia hoa va xa hoa phu phu hoa nghia hoa va xa hoa phu xa nghia hoa hoa phu chu pah",
+      "center": [
+        14.137221,
+        107.965303
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Chu Pah, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Chư Păh, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 45,
+      "type": "xã",
+      "name": "Ia Khươl",
+      "label": "Xã Ia Khươl",
+      "oldText": "các xã Đăk Tơ Ver, Hà Tây và Ia Khươl",
+      "aliases": [
+        "Đăk Tơ Ver",
+        "xã Đăk Tơ Ver",
+        "Hà Tây",
+        "Ia Khươl"
+      ],
+      "searchText": "ia khuol xa ia khuol cac xa dak to ver ha tay va ia khuol dak to ver xa dak to ver ha tay ia khuol",
+      "center": [
+        14.2677,
+        108.135492
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Khuol, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Khươl, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 46,
+      "type": "xã",
+      "name": "Ia Phí",
+      "label": "Xã Ia Phí",
+      "oldText": "các xã Ia Ka, Ia Nhin và Ia Phí",
+      "aliases": [
+        "Ia Ka",
+        "xã Ia Ka",
+        "Ia Nhin",
+        "Ia Phí"
+      ],
+      "searchText": "ia phi xa ia phi cac xa ia ka ia nhin va ia phi ia ka xa ia ka ia nhin ia phi",
+      "center": [
+        14.177499,
+        107.907726
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Phi, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Phí, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 47,
+      "type": "xã",
+      "name": "Chư Prông",
+      "label": "Xã Chư Prông",
+      "oldText": "toàn bộ diện tích tự nhiên, quy mô dân số của thị trấn Chư Prông và các xã Ia Phìn, Ia Kly, Ia Drang",
+      "aliases": [
+        "Chư Prông và các xã Ia Phìn",
+        "toàn bộ diện tích tự nhiên",
+        "quy mô dân số của thị trấn Chư Prông",
+        "xã Ia Phìn",
+        "Ia Kly",
+        "Ia Drang",
+        "Chư Prông"
+      ],
+      "searchText": "chu prong xa chu prong toan bo dien tich tu nhien quy mo dan so cua thi tran chu prong va cac xa ia phin ia kly ia drang chu prong va cac xa ia phin toan bo dien tich tu nhien quy mo dan so cua thi tran chu prong xa ia phin ia kly ia drang chu prong",
+      "center": [
+        13.757196,
+        107.888254
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Chu Prong, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Chư Prông, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 48,
+      "type": "xã",
+      "name": "Bàu Cạn",
+      "label": "Xã Bàu Cạn",
+      "oldText": "các xã Thăng Hưng, Bình Giáo và Bàu Cạn",
+      "aliases": [
+        "Thăng Hưng",
+        "xã Thăng Hưng",
+        "Bình Giáo",
+        "Bàu Cạn"
+      ],
+      "searchText": "bau can xa bau can cac xa thang hung binh giao va bau can thang hung xa thang hung binh giao bau can",
+      "center": [
+        13.828226,
+        107.89048
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Bau Can, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Bàu Cạn, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 49,
+      "type": "xã",
+      "name": "Ia Boòng",
+      "label": "Xã Ia Boòng",
+      "oldText": "toàn bộ diện tích tự nhiên, quy mô dân số của các xã Ia O (huyện Chư Prông), Ia Me và Ia Boòng",
+      "aliases": [
+        "Ia O (huyện Chư Prông)",
+        "toàn bộ diện tích tự nhiên",
+        "quy mô dân số của các xã Ia O (huyện Chư Prông)",
+        "Ia Me",
+        "Ia Boòng"
+      ],
+      "searchText": "ia boong xa ia boong toan bo dien tich tu nhien quy mo dan so cua cac xa ia o huyen chu prong ia me va ia boong ia o huyen chu prong toan bo dien tich tu nhien quy mo dan so cua cac xa ia o huyen chu prong ia me ia boong",
+      "center": [
+        13.670768,
+        107.84264
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Boong, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Boòng, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 50,
+      "type": "xã",
+      "name": "Ia Lâu",
+      "label": "Xã Ia Lâu",
+      "oldText": "xã Ia Piơr và xã Ia Lâu",
+      "aliases": [
+        "Ia Piơr và xã Ia Lâu",
+        "Ia Piơr",
+        "Ia Lâu"
+      ],
+      "searchText": "ia lau xa ia lau xa ia pior va xa ia lau ia pior va xa ia lau ia pior ia lau",
+      "center": [
+        13.470372,
+        107.874724
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Lau, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Lâu, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 51,
+      "type": "xã",
+      "name": "Ia Pia",
+      "label": "Xã Ia Pia",
+      "oldText": "các xã Ia Ga, Ia Vê và Ia Pia",
+      "aliases": [
+        "Ia Ga",
+        "xã Ia Ga",
+        "Ia Vê",
+        "Ia Pia"
+      ],
+      "searchText": "ia pia xa ia pia cac xa ia ga ia ve va ia pia ia ga xa ia ga ia ve ia pia",
+      "center": [
+        13.599004,
+        107.892335
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Pia, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Pia, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 52,
+      "type": "xã",
+      "name": "Ia Tôr",
+      "label": "Xã Ia Tôr",
+      "oldText": "toàn bộ diện tích tự nhiên, quy mô dân số của các xã Ia Băng (huyện Chư Prông), Ia Bang và Ia Tôr",
+      "aliases": [
+        "Ia Băng (huyện Chư Prông)",
+        "toàn bộ diện tích tự nhiên",
+        "quy mô dân số của các xã Ia Băng (huyện Chư Prông)",
+        "Ia Bang",
+        "Ia Tôr"
+      ],
+      "searchText": "ia tor xa ia tor toan bo dien tich tu nhien quy mo dan so cua cac xa ia bang huyen chu prong ia bang va ia tor ia bang huyen chu prong toan bo dien tich tu nhien quy mo dan so cua cac xa ia bang huyen chu prong ia bang ia tor",
+      "center": [
+        13.778774,
+        107.984907
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Tor, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Tôr, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 53,
+      "type": "xã",
+      "name": "Chư Sê",
+      "label": "Xã Chư Sê",
+      "oldText": "thị trấn Chư Sê và các xã Dun, Ia Blang, Ia Pal, Ia Glai",
+      "aliases": [
+        "Chư Sê và các xã Dun",
+        "Chư Sê",
+        "xã Dun",
+        "Ia Blang",
+        "Ia Pal",
+        "Ia Glai"
+      ],
+      "searchText": "chu se xa chu se thi tran chu se va cac xa dun ia blang ia pal ia glai chu se va cac xa dun chu se xa dun ia blang ia pal ia glai",
+      "center": [
+        13.696502,
+        108.077088
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Chu Se, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Chư Sê, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 54,
+      "type": "xã",
+      "name": "Bờ Ngoong",
+      "label": "Xã Bờ Ngoong",
+      "oldText": "các xã Bar Măih, Ia Tiêm, Chư Pơng và Bờ Ngoong",
+      "aliases": [
+        "Bar Măih",
+        "xã Bar Măih",
+        "Ia Tiêm",
+        "Chư Pơng",
+        "Bờ Ngoong"
+      ],
+      "searchText": "bo ngoong xa bo ngoong cac xa bar maih ia tiem chu pong va bo ngoong bar maih xa bar maih ia tiem chu pong bo ngoong",
+      "center": [
+        13.804614,
+        108.091966
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Bo Ngoong, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Bờ Ngoong, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 55,
+      "type": "xã",
+      "name": "Ia Ko",
+      "label": "Xã Ia Ko",
+      "oldText": "các xã Ia Hlốp, Ia Hla và Ia Ko",
+      "aliases": [
+        "Ia Hlốp",
+        "xã Ia Hlốp",
+        "Ia Hla",
+        "Ia Ko"
+      ],
+      "searchText": "ia ko xa ia ko cac xa ia hlop ia hla va ia ko ia hlop xa ia hlop ia hla ia ko",
+      "center": [
+        13.595139,
+        108.014445
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Ko, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Ko, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 56,
+      "type": "xã",
+      "name": "Al Bá",
+      "label": "Xã Al Bá",
+      "oldText": "các xã Ayun (huyện Chư Sê), Kông Htok và Al Bá",
+      "aliases": [
+        "xã Ayun (huyện Chư Sê)",
+        "Kông Htok",
+        "Al Bá"
+      ],
+      "searchText": "al ba xa al ba cac xa ayun huyen chu se kong htok va al ba xa ayun huyen chu se kong htok al ba",
+      "center": [
+        13.702086,
+        108.146217
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Al Ba, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Al Bá, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 57,
+      "type": "xã",
+      "name": "Chư Pưh",
+      "label": "Xã Chư Pưh",
+      "oldText": "thị trấn Nhơn Hòa, xã Chư Don và xã Ia Phang",
+      "aliases": [
+        "Nhơn Hòa",
+        "Chư Don và xã Ia Phang",
+        "xã Chư Don",
+        "Ia Phang",
+        "Chư Pưh"
+      ],
+      "searchText": "chu puh xa chu puh thi tran nhon hoa xa chu don va xa ia phang nhon hoa chu don va xa ia phang xa chu don ia phang chu puh",
+      "center": [
+        13.514617,
+        108.130669
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Chu Puh, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Chư Pưh, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 58,
+      "type": "xã",
+      "name": "Ia Le",
+      "label": "Xã Ia Le",
+      "oldText": "xã Ia Blứ và xã Ia Le",
+      "aliases": [
+        "Ia Blứ và xã Ia Le",
+        "Ia Blứ",
+        "Ia Le"
+      ],
+      "searchText": "ia le xa ia le xa ia blu va xa ia le ia blu va xa ia le ia blu ia le",
+      "center": [
+        13.442445,
+        108.071747
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Le, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Le, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 59,
+      "type": "xã",
+      "name": "Ia Hrú",
+      "label": "Xã Ia Hrú",
+      "oldText": "các xã Ia Dreng, Ia Rong, HBông và Ia Hrú",
+      "aliases": [
+        "Ia Dreng",
+        "xã Ia Dreng",
+        "Ia Rong",
+        "HBông",
+        "Ia Hrú"
+      ],
+      "searchText": "ia hru xa ia hru cac xa ia dreng ia rong hbong va ia hru ia dreng xa ia dreng ia rong hbong ia hru",
+      "center": [
+        13.619612,
+        108.185218
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Hru, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Hrú, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 60,
+      "type": "xã",
+      "name": "Cửu An",
+      "label": "Xã Cửu An",
+      "oldText": "toàn bộ diện tích tự nhiên, quy mô dân số của các xã Tú An, Xuân An, Song An và Cửu An",
+      "aliases": [
+        "Tú An",
+        "toàn bộ diện tích tự nhiên",
+        "quy mô dân số của các xã Tú An",
+        "Xuân An",
+        "Song An",
+        "Cửu An"
+      ],
+      "searchText": "cuu an xa cuu an toan bo dien tich tu nhien quy mo dan so cua cac xa tu an xuan an song an va cuu an tu an toan bo dien tich tu nhien quy mo dan so cua cac xa tu an xuan an song an cuu an",
+      "center": [
+        14.022196,
+        108.732947
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Cuu An, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Cửu An, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 61,
+      "type": "xã",
+      "name": "Đak Pơ",
+      "label": "Xã Đak Pơ",
+      "oldText": "thị trấn Đak Pơ và các xã Hà Tam, An Thành, Yang Bắc",
+      "aliases": [
+        "Đak Pơ và các xã Hà Tam",
+        "Đak Pơ",
+        "xã Hà Tam",
+        "An Thành",
+        "Yang Bắc"
+      ],
+      "searchText": "dak po xa dak po thi tran dak po va cac xa ha tam an thanh yang bac dak po va cac xa ha tam dak po xa ha tam an thanh yang bac",
+      "center": [
+        13.973794,
+        108.495004
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Dak Po, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Đak Pơ, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 62,
+      "type": "xã",
+      "name": "Ya Hội",
+      "label": "Xã Ya Hội",
+      "oldText": "xã Phú An và xã Ya Hội",
+      "aliases": [
+        "Phú An và xã Ya Hội",
+        "Phú An",
+        "Ya Hội"
+      ],
+      "searchText": "ya hoi xa ya hoi xa phu an va xa ya hoi phu an va xa ya hoi phu an ya hoi",
+      "center": [
+        13.877426,
+        108.683962
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ya Hoi, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ya Hội, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 63,
+      "type": "xã",
+      "name": "Kbang",
+      "label": "Xã Kbang",
+      "oldText": "thị trấn Kbang, xã Lơ Ku và xã Đak Smar",
+      "aliases": [
+        "Kbang",
+        "Lơ Ku và xã Đak Smar",
+        "xã Lơ Ku",
+        "Đak Smar"
+      ],
+      "searchText": "kbang xa kbang thi tran kbang xa lo ku va xa dak smar kbang lo ku va xa dak smar xa lo ku dak smar",
+      "center": [
+        14.182242,
+        108.559165
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Kbang, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Kbang, Tỉnh Gia Lai, 62600, Việt Nam"
+    },
+    {
+      "order": 64,
+      "type": "xã",
+      "name": "Kông Bơ La",
+      "label": "Xã Kông Bơ La",
+      "oldText": "các xã Đông, Nghĩa An và Kông Bơ La",
+      "aliases": [
+        "Đông",
+        "xã Đông",
+        "Nghĩa An",
+        "Kông Bơ La"
+      ],
+      "searchText": "kong bo la xa kong bo la cac xa dong nghia an va kong bo la dong xa dong nghia an kong bo la",
+      "center": [
+        14.096241,
+        108.616915
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Kong Bo La, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Kông Bơ La, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 65,
+      "type": "xã",
+      "name": "Tơ Tung",
+      "label": "Xã Tơ Tung",
+      "oldText": "xã Kông Lơng Khơng và xã Tơ Tung",
+      "aliases": [
+        "Kông Lơng Khơng và xã Tơ Tung",
+        "Kông Lơng Khơng",
+        "Tơ Tung"
+      ],
+      "searchText": "to tung xa to tung xa kong long khong va xa to tung kong long khong va xa to tung kong long khong to tung",
+      "center": [
+        14.064684,
+        108.514358
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa To Tung, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Tơ Tung, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 66,
+      "type": "xã",
+      "name": "Sơn Lang",
+      "label": "Xã Sơn Lang",
+      "oldText": "xã Sơ Pai và xã Sơn Lang",
+      "aliases": [
+        "Sơ Pai và xã Sơn Lang",
+        "Sơ Pai",
+        "Sơn Lang"
+      ],
+      "searchText": "son lang xa son lang xa so pai va xa son lang so pai va xa son lang so pai son lang",
+      "center": [
+        14.410982,
+        108.563069
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Son Lang, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Sơn Lang, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 67,
+      "type": "xã",
+      "name": "Đak Rong",
+      "label": "Xã Đak Rong",
+      "oldText": "xã Kon Pne và xã Đak Rong",
+      "aliases": [
+        "Kon Pne và xã Đak Rong",
+        "Kon Pne",
+        "Đak Rong"
+      ],
+      "searchText": "dak rong xa dak rong xa kon pne va xa dak rong kon pne va xa dak rong kon pne dak rong",
+      "center": [
+        14.418711,
+        108.407715
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Dak Rong, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Đak Rong, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 68,
+      "type": "xã",
+      "name": "Kông Chro",
+      "label": "Xã Kông Chro",
+      "oldText": "thị trấn Kông Chro, xã Yang Trung và xã Yang Nam",
+      "aliases": [
+        "Kông Chro",
+        "Yang Trung và xã Yang Nam",
+        "xã Yang Trung",
+        "Yang Nam"
+      ],
+      "searchText": "kong chro xa kong chro thi tran kong chro xa yang trung va xa yang nam kong chro yang trung va xa yang nam xa yang trung yang nam",
+      "center": [
+        13.721413,
+        108.527245
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Kong Chro, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Kông Chro, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 69,
+      "type": "xã",
+      "name": "Ya Ma",
+      "label": "Xã Ya Ma",
+      "oldText": "các xã Đăk Tơ Pang, Kông Yang và Ya Ma",
+      "aliases": [
+        "Đăk Tơ Pang",
+        "xã Đăk Tơ Pang",
+        "Kông Yang",
+        "Ya Ma"
+      ],
+      "searchText": "ya ma xa ya ma cac xa dak to pang kong yang va ya ma dak to pang xa dak to pang kong yang ya ma",
+      "center": [
+        13.809205,
+        108.598179
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ya Ma, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ya Ma, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 70,
+      "type": "xã",
+      "name": "Chư Krey",
+      "label": "Xã Chư Krey",
+      "oldText": "xã An Trung (huyện Kông Chro) và xã Chư Krey",
+      "aliases": [
+        "An Trung (huyện Kông Chro) và xã Chư Krey",
+        "An Trung (huyện Kông Chro)",
+        "Chư Krey"
+      ],
+      "searchText": "chu krey xa chu krey xa an trung huyen kong chro va xa chu krey an trung huyen kong chro va xa chu krey an trung huyen kong chro chu krey",
+      "center": [
+        13.889667,
+        108.436711
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Chu Krey, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Chư Krey, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 71,
+      "type": "xã",
+      "name": "SRó",
+      "label": "Xã SRó",
+      "oldText": "xã Đăk Kơ Ning và xã SRó",
+      "aliases": [
+        "Đăk Kơ Ning và xã SRó",
+        "Đăk Kơ Ning",
+        "SRó"
+      ],
+      "searchText": "sro xa sro xa dak ko ning va xa sro dak ko ning va xa sro dak ko ning sro",
+      "center": [
+        13.714597,
+        108.641297
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa SRo, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã SRó, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 72,
+      "type": "xã",
+      "name": "Đăk Song",
+      "label": "Xã Đăk Song",
+      "oldText": "xã Đăk Pling và xã Đăk Song",
+      "aliases": [
+        "Đăk Pling và xã Đăk Song",
+        "Đăk Pling",
+        "Đăk Song"
+      ],
+      "searchText": "dak song xa dak song xa dak pling va xa dak song dak pling va xa dak song dak pling dak song",
+      "center": [
+        13.689135,
+        108.757459
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Dak Song, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Đăk Song, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 73,
+      "type": "xã",
+      "name": "Chơ Long",
+      "label": "Xã Chơ Long",
+      "oldText": "toàn bộ diện tích tự nhiên, quy mô dân số của xã Đăk Pơ Pho và xã Chơ GLong",
+      "aliases": [
+        "Đăk Pơ Pho và xã Chơ GLong",
+        "toàn bộ diện tích tự nhiên",
+        "quy mô dân số của xã Đăk Pơ Pho",
+        "Chơ GLong",
+        "Chơ Long"
+      ],
+      "searchText": "cho long xa cho long toan bo dien tich tu nhien quy mo dan so cua xa dak po pho va xa cho glong dak po pho va xa cho glong toan bo dien tich tu nhien quy mo dan so cua xa dak po pho cho glong cho long",
+      "center": [
+        13.748969,
+        108.418318
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Cho Long, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Chơ Long, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 74,
+      "type": "xã",
+      "name": "Ia Rbol",
+      "label": "Xã Ia Rbol",
+      "oldText": "toàn bộ diện tích tự nhiên, quy mô dân số của xã Chư Băh và xã Ia Rbol",
+      "aliases": [
+        "Chư Băh và xã Ia Rbol",
+        "toàn bộ diện tích tự nhiên",
+        "quy mô dân số của xã Chư Băh",
+        "Ia Rbol"
+      ],
+      "searchText": "ia rbol xa ia rbol toan bo dien tich tu nhien quy mo dan so cua xa chu bah va xa ia rbol chu bah va xa ia rbol toan bo dien tich tu nhien quy mo dan so cua xa chu bah ia rbol",
+      "center": [
+        13.33879,
+        108.390884
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Rbol, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Rbol, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 75,
+      "type": "xã",
+      "name": "Ia Sao",
+      "label": "Xã Ia Sao",
+      "oldText": "toàn bộ diện tích tự nhiên, quy mô dân số của xã Ia Sao (thị xã Ayun Pa) và xã Ia Rtô",
+      "aliases": [
+        "Ia Sao (thị xã Ayun Pa) và xã Ia Rtô",
+        "toàn bộ diện tích tự nhiên",
+        "quy mô dân số của xã Ia Sao (thị xã Ayun Pa)",
+        "Ia Rtô",
+        "Ia Sao"
+      ],
+      "searchText": "ia sao xa ia sao toan bo dien tich tu nhien quy mo dan so cua xa ia sao thi xa ayun pa va xa ia rto ia sao thi xa ayun pa va xa ia rto toan bo dien tich tu nhien quy mo dan so cua xa ia sao thi xa ayun pa ia rto ia sao",
+      "center": [
+        13.283267,
+        108.438473
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Sao, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Sao, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 76,
+      "type": "xã",
+      "name": "Phú Thiện",
+      "label": "Xã Phú Thiện",
+      "oldText": "thị trấn Phú Thiện và các xã Ia Sol, Ia Piar, Ia Yeng",
+      "aliases": [
+        "Phú Thiện và các xã Ia Sol",
+        "Phú Thiện",
+        "xã Ia Sol",
+        "Ia Piar",
+        "Ia Yeng"
+      ],
+      "searchText": "phu thien xa phu thien thi tran phu thien va cac xa ia sol ia piar ia yeng phu thien va cac xa ia sol phu thien xa ia sol ia piar ia yeng",
+      "center": [
+        13.489023,
+        108.339659
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Phu Thien, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Phú Thiện, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 77,
+      "type": "xã",
+      "name": "Chư A Thai",
+      "label": "Xã Chư A Thai",
+      "oldText": "các xã Ayun Hạ, Ia Ake và Chư A Thai",
+      "aliases": [
+        "Ayun Hạ",
+        "xã Ayun Hạ",
+        "Ia Ake",
+        "Chư A Thai"
+      ],
+      "searchText": "chu a thai xa chu a thai cac xa ayun ha ia ake va chu a thai ayun ha xa ayun ha ia ake chu a thai",
+      "center": [
+        13.570208,
+        108.276883
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Chu A Thai, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Chư A Thai, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 78,
+      "type": "xã",
+      "name": "Ia Hiao",
+      "label": "Xã Ia Hiao",
+      "oldText": "toàn bộ diện tích tự nhiên, quy mô dân số của các xã Chrôh Pơnan, Ia Peng và Ia Hiao",
+      "aliases": [
+        "Chrôh Pơnan",
+        "toàn bộ diện tích tự nhiên",
+        "quy mô dân số của các xã Chrôh Pơnan",
+        "Ia Peng",
+        "Ia Hiao"
+      ],
+      "searchText": "ia hiao xa ia hiao toan bo dien tich tu nhien quy mo dan so cua cac xa chroh ponan ia peng va ia hiao chroh ponan toan bo dien tich tu nhien quy mo dan so cua cac xa chroh ponan ia peng ia hiao",
+      "center": [
+        13.416797,
+        108.335477
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Hiao, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Hiao, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 79,
+      "type": "xã",
+      "name": "Pờ Tó",
+      "label": "Xã Pờ Tó",
+      "oldText": "xã Chư Răng và xã Pờ Tó",
+      "aliases": [
+        "Chư Răng và xã Pờ Tó",
+        "Chư Răng",
+        "Pờ Tó"
+      ],
+      "searchText": "po to xa po to xa chu rang va xa po to chu rang va xa po to chu rang po to",
+      "center": [
+        13.624549,
+        108.395737
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Po To, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Pờ Tó, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 80,
+      "type": "xã",
+      "name": "Ia Pa",
+      "label": "Xã Ia Pa",
+      "oldText": "toàn bộ diện tích tự nhiên, quy mô dân số của các xã Ia Mrơn, Kim Tân và Ia Trôk",
+      "aliases": [
+        "Ia Mrơn",
+        "toàn bộ diện tích tự nhiên",
+        "quy mô dân số của các xã Ia Mrơn",
+        "Kim Tân",
+        "Ia Trôk",
+        "Ia Pa"
+      ],
+      "searchText": "ia pa xa ia pa toan bo dien tich tu nhien quy mo dan so cua cac xa ia mron kim tan va ia trok ia mron toan bo dien tich tu nhien quy mo dan so cua cac xa ia mron kim tan ia trok ia pa",
+      "center": [
+        13.511713,
+        108.445598
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Pa, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Pa, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 81,
+      "type": "xã",
+      "name": "Ia Tul",
+      "label": "Xã Ia Tul",
+      "oldText": "các xã Chư Mố, Ia Broăi, Ia Kdăm và Ia Tul",
+      "aliases": [
+        "Chư Mố",
+        "xã Chư Mố",
+        "Ia Broăi",
+        "Ia Kdăm",
+        "Ia Tul"
+      ],
+      "searchText": "ia tul xa ia tul cac xa chu mo ia broai ia kdam va ia tul chu mo xa chu mo ia broai ia kdam ia tul",
+      "center": [
+        13.495082,
+        108.586455
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Tul, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Tul, Tỉnh Gia Lai, 62000, Việt Nam"
+    },
+    {
+      "order": 82,
+      "type": "xã",
+      "name": "Phú Túc",
+      "label": "Xã Phú Túc",
+      "oldText": "thị trấn Phú Túc và các xã Phú Cần, Chư Ngọc, Ia Mlah, Đất Bằng",
+      "aliases": [
+        "Phú Túc và các xã Phú Cần",
+        "Phú Túc",
+        "xã Phú Cần",
+        "Chư Ngọc",
+        "Ia Mlah",
+        "Đất Bằng"
+      ],
+      "searchText": "phu tuc xa phu tuc thi tran phu tuc va cac xa phu can chu ngoc ia mlah dat bang phu tuc va cac xa phu can phu tuc xa phu can chu ngoc ia mlah dat bang",
+      "center": [
+        13.257997,
+        108.782509
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Phu Tuc, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Phú Túc, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 83,
+      "type": "xã",
+      "name": "Ia Dreh",
+      "label": "Xã Ia Dreh",
+      "oldText": "các xã Ia Rmok, Krông Năng và Ia Dreh",
+      "aliases": [
+        "Ia Rmok",
+        "xã Ia Rmok",
+        "Krông Năng",
+        "Ia Dreh"
+      ],
+      "searchText": "ia dreh xa ia dreh cac xa ia rmok krong nang va ia dreh ia rmok xa ia rmok krong nang ia dreh",
+      "center": [
+        13.088102,
+        108.62713
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Dreh, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Dreh, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 84,
+      "type": "xã",
+      "name": "Ia Rsai",
+      "label": "Xã Ia Rsai",
+      "oldText": "các xã Chư RCăm, Chư Gu và Ia Rsai",
+      "aliases": [
+        "Chư RCăm",
+        "xã Chư RCăm",
+        "Chư Gu",
+        "Ia Rsai"
+      ],
+      "searchText": "ia rsai xa ia rsai cac xa chu rcam chu gu va ia rsai chu rcam xa chu rcam chu gu ia rsai",
+      "center": [
+        13.341655,
+        108.669143
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Rsai, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Rsai, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 85,
+      "type": "xã",
+      "name": "Uar",
+      "label": "Xã Uar",
+      "oldText": "các xã Ia Rsươm, Chư Drăng và Uar",
+      "aliases": [
+        "Ia Rsươm",
+        "xã Ia Rsươm",
+        "Chư Drăng",
+        "Uar"
+      ],
+      "searchText": "uar xa uar cac xa ia rsuom chu drang va uar ia rsuom xa ia rsuom chu drang uar",
+      "center": [
+        13.235627,
+        108.547831
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Uar, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Uar, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 86,
+      "type": "xã",
+      "name": "Đak Đoa",
+      "label": "Xã Đak Đoa",
+      "oldText": "thị trấn Đak Đoa, xã Tân Bình và xã Glar",
+      "aliases": [
+        "Đak Đoa",
+        "Glar",
+        "xã Tân Bình"
+      ],
+      "searchText": "dak doa xa dak doa thi tran dak doa xa tan binh va xa glar dak doa glar xa tan binh",
+      "center": [
+        13.962918,
+        108.137009
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Dak Doa, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Đak Đoa, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 87,
+      "type": "xã",
+      "name": "Kon Gang",
+      "label": "Xã Kon Gang",
+      "oldText": "các xã Đak Krong, Hneng, Nam Yang và Kon Gang",
+      "aliases": [
+        "Đak Krong",
+        "xã Đak Krong",
+        "Hneng",
+        "Nam Yang",
+        "Kon Gang"
+      ],
+      "searchText": "kon gang xa kon gang cac xa dak krong hneng nam yang va kon gang dak krong xa dak krong hneng nam yang kon gang",
+      "center": [
+        14.078854,
+        108.148927
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Kon Gang, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Kon Gang, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 88,
+      "type": "xã",
+      "name": "Ia Băng",
+      "label": "Xã Ia Băng",
+      "oldText": "các xã Ia Băng (huyện Đak Đoa), Adơk và Ia Pết",
+      "aliases": [
+        "xã Ia Băng (huyện Đak Đoa)",
+        "Adơk",
+        "Ia Pết",
+        "Ia Băng"
+      ],
+      "searchText": "ia bang xa ia bang cac xa ia bang huyen dak doa adok va ia pet xa ia bang huyen dak doa adok ia pet ia bang",
+      "center": [
+        13.915095,
+        108.081739
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Bang, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Băng, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 89,
+      "type": "xã",
+      "name": "KDang",
+      "label": "Xã KDang",
+      "oldText": "các xã Hnol, Trang và KDang",
+      "aliases": [
+        "Hnol",
+        "xã Hnol",
+        "Trang",
+        "KDang"
+      ],
+      "searchText": "kdang xa kdang cac xa hnol trang va kdang hnol xa hnol trang kdang",
+      "center": [
+        13.957733,
+        108.200253
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa KDang, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã KDang, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 90,
+      "type": "xã",
+      "name": "Đak Sơmei",
+      "label": "Xã Đak Sơmei",
+      "oldText": "xã Hà Đông và xã Đak Sơmei",
+      "aliases": [
+        "Hà Đông và xã Đak Sơmei",
+        "Hà Đông",
+        "Đak Sơmei"
+      ],
+      "searchText": "dak somei xa dak somei xa ha dong va xa dak somei ha dong va xa dak somei ha dong dak somei",
+      "center": [
+        14.265274,
+        108.266227
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Dak Somei, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Đak Sơmei, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 91,
+      "type": "xã",
+      "name": "Mang Yang",
+      "label": "Xã Mang Yang",
+      "oldText": "thị trấn Kon Dơng và các xã Đăk Yă, Đak Djrăng, Hải Yang",
+      "aliases": [
+        "Kon Dơng và các xã Đăk Yă",
+        "Kon Dơng",
+        "xã Đăk Yă",
+        "Đak Djrăng",
+        "Hải Yang",
+        "Mang Yang"
+      ],
+      "searchText": "mang yang xa mang yang thi tran kon dong va cac xa dak ya dak djrang hai yang kon dong va cac xa dak ya kon dong xa dak ya dak djrang hai yang mang yang",
+      "center": [
+        14.052214,
+        108.260267
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Mang Yang, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Mang Yang, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 92,
+      "type": "xã",
+      "name": "Lơ Pang",
+      "label": "Xã Lơ Pang",
+      "oldText": "các xã Đê Ar, Kon Thụp và Lơ Pang",
+      "aliases": [
+        "Đê Ar",
+        "xã Đê Ar",
+        "Kon Thụp",
+        "Lơ Pang"
+      ],
+      "searchText": "lo pang xa lo pang cac xa de ar kon thup va lo pang de ar xa de ar kon thup lo pang",
+      "center": [
+        13.878091,
+        108.299433
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Lo Pang, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Lơ Pang, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 93,
+      "type": "xã",
+      "name": "Kon Chiêng",
+      "label": "Xã Kon Chiêng",
+      "oldText": "xã Đak Trôi và xã Kon Chiêng",
+      "aliases": [
+        "Đak Trôi và xã Kon Chiêng",
+        "Đak Trôi",
+        "Kon Chiêng"
+      ],
+      "searchText": "kon chieng xa kon chieng xa dak troi va xa kon chieng dak troi va xa kon chieng dak troi kon chieng",
+      "center": [
+        13.771394,
+        108.299235
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Kon Chieng, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Kon Chiêng, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 94,
+      "type": "xã",
+      "name": "Hra",
+      "label": "Xã Hra",
+      "oldText": "xã Đak Ta Ley và xã Hra",
+      "aliases": [
+        "Đak Ta Ley và xã Hra",
+        "Đak Ta Ley",
+        "Hra"
+      ],
+      "searchText": "hra xa hra xa dak ta ley va xa hra dak ta ley va xa hra dak ta ley hra",
+      "center": [
+        14.052648,
+        108.400288
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Hra, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Hra, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 95,
+      "type": "xã",
+      "name": "Ayun",
+      "label": "Xã Ayun",
+      "oldText": "xã Đak Jơ Ta và xã Ayun (huyện Mang Yang)",
+      "aliases": [
+        "Đak Jơ Ta và xã Ayun (huyện Mang Yang)",
+        "Đak Jơ Ta",
+        "Ayun (huyện Mang Yang)",
+        "Ayun"
+      ],
+      "searchText": "ayun xa ayun xa dak jo ta va xa ayun huyen mang yang dak jo ta va xa ayun huyen mang yang dak jo ta ayun huyen mang yang ayun",
+      "center": [
+        14.142749,
+        108.309467
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ayun, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ayun, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 96,
+      "type": "xã",
+      "name": "Ia Grai",
+      "label": "Xã Ia Grai",
+      "oldText": "thị trấn Ia Kha, xã Ia Bă và xã Ia Grăng",
+      "aliases": [
+        "Ia Kha",
+        "Ia Bă và xã Ia Grăng",
+        "xã Ia Bă",
+        "Ia Grăng",
+        "Ia Grai"
+      ],
+      "searchText": "ia grai xa ia grai thi tran ia kha xa ia ba va xa ia grang ia kha ia ba va xa ia grang xa ia ba ia grang ia grai",
+      "center": [
+        14.009074,
+        107.77919
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Grai, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Grai, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 97,
+      "type": "xã",
+      "name": "Ia Krái",
+      "label": "Xã Ia Krái",
+      "oldText": "các xã Ia Tô, Ia Khai và Ia Krái",
+      "aliases": [
+        "Ia Tô",
+        "xã Ia Tô",
+        "Ia Khai",
+        "Ia Krái"
+      ],
+      "searchText": "ia krai xa ia krai cac xa ia to ia khai va ia krai ia to xa ia to ia khai ia krai",
+      "center": [
+        14.009214,
+        107.633533
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Krai, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Krái, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 98,
+      "type": "xã",
+      "name": "Ia Hrung",
+      "label": "Xã Ia Hrung",
+      "oldText": "các xã Ia Sao (huyện Ia Grai), Ia Yok, Ia Dêr và Ia Hrung",
+      "aliases": [
+        "Ia Sao (huyện Ia Grai)",
+        "xã Ia Sao (huyện Ia Grai)",
+        "Ia Yok",
+        "Ia Dêr",
+        "Ia Hrung"
+      ],
+      "searchText": "ia hrung xa ia hrung cac xa ia sao huyen ia grai ia yok ia der va ia hrung ia sao huyen ia grai xa ia sao huyen ia grai ia yok ia der ia hrung",
+      "center": [
+        14.022575,
+        107.907803
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Hrung, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Hrung, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 99,
+      "type": "xã",
+      "name": "Đức Cơ",
+      "label": "Xã Đức Cơ",
+      "oldText": "thị trấn Chư Ty và xã Ia Kriêng",
+      "aliases": [
+        "Chư Ty và xã Ia Kriêng",
+        "Chư Ty",
+        "Ia Kriêng",
+        "Đức Cơ"
+      ],
+      "searchText": "duc co xa duc co thi tran chu ty va xa ia krieng chu ty va xa ia krieng chu ty ia krieng duc co",
+      "center": [
+        13.750327,
+        107.724322
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Duc Co, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Đức Cơ, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 100,
+      "type": "xã",
+      "name": "Ia Dơk",
+      "label": "Xã Ia Dơk",
+      "oldText": "toàn bộ diện tích tự nhiên, quy mô dân số của xã Ia Kla và xã Ia Dơk",
+      "aliases": [
+        "Ia Kla và xã Ia Dơk",
+        "toàn bộ diện tích tự nhiên",
+        "quy mô dân số của xã Ia Kla",
+        "Ia Dơk"
+      ],
+      "searchText": "ia dok xa ia dok toan bo dien tich tu nhien quy mo dan so cua xa ia kla va xa ia dok ia kla va xa ia dok toan bo dien tich tu nhien quy mo dan so cua xa ia kla ia dok",
+      "center": [
+        13.855433,
+        107.697571
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Dok, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Dơk, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 101,
+      "type": "xã",
+      "name": "Ia Krêl",
+      "label": "Xã Ia Krêl",
+      "oldText": "các xã Ia Lang, Ia Din và Ia Krêl",
+      "aliases": [
+        "Ia Lang",
+        "xã Ia Lang",
+        "Ia Din",
+        "Ia Krêl"
+      ],
+      "searchText": "ia krel xa ia krel cac xa ia lang ia din va ia krel ia lang xa ia lang ia din ia krel",
+      "center": [
+        13.809037,
+        107.786175
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Krel, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Krêl, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 102,
+      "type": "phường",
+      "name": "Quy Nhơn",
+      "label": "Phường Quy Nhơn",
+      "oldText": "các phường Đống Đa (thành phố Quy Nhơn), Hải Cảng, Thị Nại và Trần Phú",
+      "aliases": [
+        "Đống Đa (thành phố Quy Nhơn)",
+        "phường Đống Đa (thành phố Quy Nhơn)",
+        "Hải Cảng",
+        "Thị Nại",
+        "Trần Phú",
+        "Quy Nhơn"
+      ],
+      "searchText": "quy nhon phuong quy nhon cac phuong dong da thanh pho quy nhon hai cang thi nai va tran phu dong da thanh pho quy nhon phuong dong da thanh pho quy nhon hai cang thi nai tran phu quy nhon",
+      "center": [
+        13.780184,
+        109.238274
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong Quy Nhon, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường Quy Nhơn, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 103,
+      "type": "phường",
+      "name": "Quy Nhơn Đông",
+      "label": "Phường Quy Nhơn Đông",
+      "oldText": "phường Nhơn Bình và các xã Nhơn Hội, Nhơn Lý, Nhơn Hải",
+      "aliases": [
+        "Nhơn Bình và các xã Nhơn Hội",
+        "Nhơn Bình",
+        "xã Nhơn Hội",
+        "Nhơn Lý",
+        "Nhơn Hải",
+        "Quy Nhơn Đông"
+      ],
+      "searchText": "quy nhon dong phuong quy nhon dong phuong nhon binh va cac xa nhon hoi nhon ly nhon hai nhon binh va cac xa nhon hoi nhon binh xa nhon hoi nhon ly nhon hai quy nhon dong",
+      "center": [
+        13.816952,
+        109.259454
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong Quy Nhon Dong, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường Quy Nhơn Đông, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 104,
+      "type": "phường",
+      "name": "Quy Nhơn Tây",
+      "label": "Phường Quy Nhơn Tây",
+      "oldText": "phường Bùi Thị Xuân và xã Phước Mỹ",
+      "aliases": [
+        "Bùi Thị Xuân và xã Phước Mỹ",
+        "Bùi Thị Xuân",
+        "Phước Mỹ",
+        "Quy Nhơn Tây"
+      ],
+      "searchText": "quy nhon tay phuong quy nhon tay phuong bui thi xuan va xa phuoc my bui thi xuan va xa phuoc my bui thi xuan phuoc my quy nhon tay",
+      "center": [
+        13.692054,
+        109.140223
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong Quy Nhon Tay, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường Quy Nhơn Tây, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 105,
+      "type": "phường",
+      "name": "Quy Nhơn Nam",
+      "label": "Phường Quy Nhơn Nam",
+      "oldText": "các phường Ngô Mây (thành phố Quy Nhơn), Nguyễn Văn Cừ, Quang Trung và Ghềnh Ráng",
+      "aliases": [
+        "Ngô Mây (thành phố Quy Nhơn)",
+        "phường Ngô Mây (thành phố Quy Nhơn)",
+        "Nguyễn Văn Cừ",
+        "Quang Trung",
+        "Ghềnh Ráng",
+        "Quy Nhơn Nam"
+      ],
+      "searchText": "quy nhon nam phuong quy nhon nam cac phuong ngo may thanh pho quy nhon nguyen van cu quang trung va ghenh rang ngo may thanh pho quy nhon phuong ngo may thanh pho quy nhon nguyen van cu quang trung ghenh rang quy nhon nam",
+      "center": [
+        13.75629,
+        109.212132
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong Quy Nhon Nam, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường Quy Nhơn Nam, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 106,
+      "type": "phường",
+      "name": "Quy Nhơn Bắc",
+      "label": "Phường Quy Nhơn Bắc",
+      "oldText": "phường Trần Quang Diệu và phường Nhơn Phú",
+      "aliases": [
+        "Trần Quang Diệu và phường Nhơn Phú",
+        "Trần Quang Diệu",
+        "phường Nhơn Phú",
+        "Quy Nhơn Bắc"
+      ],
+      "searchText": "quy nhon bac phuong quy nhon bac phuong tran quang dieu va phuong nhon phu tran quang dieu va phuong nhon phu tran quang dieu phuong nhon phu quy nhon bac",
+      "center": [
+        13.794508,
+        109.181695
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong Quy Nhon Bac, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường Quy Nhơn Bắc, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 107,
+      "type": "phường",
+      "name": "Bình Định",
+      "label": "Phường Bình Định",
+      "oldText": "phường Bình Định, xã Nhơn Khánh và xã Nhơn Phúc",
+      "aliases": [
+        "Bình Định",
+        "Nhơn Khánh và xã Nhơn Phúc",
+        "xã Nhơn Khánh",
+        "Nhơn Phúc"
+      ],
+      "searchText": "binh dinh phuong binh dinh phuong binh dinh xa nhon khanh va xa nhon phuc binh dinh nhon khanh va xa nhon phuc xa nhon khanh nhon phuc",
+      "center": [
+        13.886798,
+        109.109083
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong Binh Dinh, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường Bình Định, Tỉnh Gia Lai, 55400, Việt Nam"
+    },
+    {
+      "order": 108,
+      "type": "phường",
+      "name": "An Nhơn",
+      "label": "Phường An Nhơn",
+      "oldText": "phường Đập Đá, xã Nhơn Mỹ và xã Nhơn Hậu",
+      "aliases": [
+        "Đập Đá",
+        "Nhơn Mỹ và xã Nhơn Hậu",
+        "xã Nhơn Mỹ",
+        "Nhơn Hậu",
+        "An Nhơn"
+      ],
+      "searchText": "an nhon phuong an nhon phuong dap da xa nhon my va xa nhon hau dap da nhon my va xa nhon hau xa nhon my nhon hau an nhon",
+      "center": [
+        13.918489,
+        109.091401
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong An Nhon, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường An Nhơn, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 109,
+      "type": "phường",
+      "name": "An Nhơn Đông",
+      "label": "Phường An Nhơn Đông",
+      "oldText": "phường Nhơn Hưng và xã Nhơn An",
+      "aliases": [
+        "Nhơn Hưng và xã Nhơn An",
+        "Nhơn Hưng",
+        "Nhơn An",
+        "An Nhơn Đông"
+      ],
+      "searchText": "an nhon dong phuong an nhon dong phuong nhon hung va xa nhon an nhon hung va xa nhon an nhon hung nhon an an nhon dong",
+      "center": [
+        13.902107,
+        109.105273
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong An Nhon Dong, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường An Nhơn Đông, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 110,
+      "type": "phường",
+      "name": "An Nhơn Nam",
+      "label": "Phường An Nhơn Nam",
+      "oldText": "phường Nhơn Hòa và xã Nhơn Thọ",
+      "aliases": [
+        "Nhơn Hòa và xã Nhơn Thọ",
+        "Nhơn Hòa",
+        "Nhơn Thọ",
+        "An Nhơn Nam"
+      ],
+      "searchText": "an nhon nam phuong an nhon nam phuong nhon hoa va xa nhon tho nhon hoa va xa nhon tho nhon hoa nhon tho an nhon nam",
+      "center": [
+        13.863472,
+        109.098062
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong An Nhon Nam, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường An Nhơn Nam, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 111,
+      "type": "phường",
+      "name": "An Nhơn Bắc",
+      "label": "Phường An Nhơn Bắc",
+      "oldText": "phường Nhơn Thành, xã Nhơn Phong và xã Nhơn Hạnh",
+      "aliases": [
+        "Nhơn Thành",
+        "Nhơn Phong và xã Nhơn Hạnh",
+        "xã Nhơn Phong",
+        "Nhơn Hạnh",
+        "An Nhơn Bắc"
+      ],
+      "searchText": "an nhon bac phuong an nhon bac phuong nhon thanh xa nhon phong va xa nhon hanh nhon thanh nhon phong va xa nhon hanh xa nhon phong nhon hanh an nhon bac",
+      "center": [
+        13.932829,
+        109.135494
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong An Nhon Bac, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường An Nhơn Bắc, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 112,
+      "type": "phường",
+      "name": "Bồng Sơn",
+      "label": "Phường Bồng Sơn",
+      "oldText": "phường Hoài Đức và phường Bồng Sơn",
+      "aliases": [
+        "Hoài Đức và phường Bồng Sơn",
+        "Hoài Đức",
+        "Bồng Sơn"
+      ],
+      "searchText": "bong son phuong bong son phuong hoai duc va phuong bong son hoai duc va phuong bong son hoai duc bong son",
+      "center": [
+        14.429398,
+        109.015815
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong Bong Son, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường Bồng Sơn, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 113,
+      "type": "phường",
+      "name": "Hoài Nhơn",
+      "label": "Phường Hoài Nhơn",
+      "oldText": "các phường Hoài Thanh, Tam Quan Nam và Hoài Thanh Tây",
+      "aliases": [
+        "Hoài Thanh",
+        "phường Hoài Thanh",
+        "Tam Quan Nam",
+        "Hoài Thanh Tây",
+        "Hoài Nhơn"
+      ],
+      "searchText": "hoai nhon phuong hoai nhon cac phuong hoai thanh tam quan nam va hoai thanh tay hoai thanh phuong hoai thanh tam quan nam hoai thanh tay hoai nhon",
+      "center": [
+        14.501588,
+        109.034034
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong Hoai Nhon, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường Hoài Nhơn, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 114,
+      "type": "phường",
+      "name": "Tam Quan",
+      "label": "Phường Tam Quan",
+      "oldText": "phường Tam Quan và xã Hoài Châu",
+      "aliases": [
+        "Tam Quan và xã Hoài Châu",
+        "Tam Quan",
+        "Hoài Châu"
+      ],
+      "searchText": "tam quan phuong tam quan phuong tam quan va xa hoai chau tam quan va xa hoai chau tam quan hoai chau",
+      "center": [
+        14.548086,
+        109.04295
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong Tam Quan, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường Tam Quan, Tỉnh Gia Lai, 55100, Việt Nam"
+    },
+    {
+      "order": 115,
+      "type": "phường",
+      "name": "Hoài Nhơn Đông",
+      "label": "Phường Hoài Nhơn Đông",
+      "oldText": "phường Hoài Hương, xã Hoài Hải và xã Hoài Mỹ",
+      "aliases": [
+        "Hoài Hương",
+        "Hoài Hải và xã Hoài Mỹ",
+        "xã Hoài Hải",
+        "Hoài Mỹ",
+        "Hoài Nhơn Đông"
+      ],
+      "searchText": "hoai nhon dong phuong hoai nhon dong phuong hoai huong xa hoai hai va xa hoai my hoai huong hoai hai va xa hoai my xa hoai hai hoai my hoai nhon dong",
+      "center": [
+        14.486831,
+        109.085753
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong Hoai Nhon Dong, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường Hoài Nhơn Đông, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 116,
+      "type": "phường",
+      "name": "Hoài Nhơn Tây",
+      "label": "Phường Hoài Nhơn Tây",
+      "oldText": "phường Hoài Hảo và xã Hoài Phú",
+      "aliases": [
+        "Hoài Hảo và xã Hoài Phú",
+        "Hoài Hảo",
+        "Hoài Phú",
+        "Hoài Nhơn Tây"
+      ],
+      "searchText": "hoai nhon tay phuong hoai nhon tay phuong hoai hao va xa hoai phu hoai hao va xa hoai phu hoai hao hoai phu hoai nhon tay",
+      "center": [
+        14.530515,
+        109.022665
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong Hoai Nhon Tay, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường Hoài Nhơn Tây, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 117,
+      "type": "phường",
+      "name": "Hoài Nhơn Nam",
+      "label": "Phường Hoài Nhơn Nam",
+      "oldText": "phường Hoài Tân và phường Hoài Xuân",
+      "aliases": [
+        "Hoài Tân và phường Hoài Xuân",
+        "Hoài Tân",
+        "Hoài Xuân",
+        "Hoài Nhơn Nam"
+      ],
+      "searchText": "hoai nhon nam phuong hoai nhon nam phuong hoai tan va phuong hoai xuan hoai tan va phuong hoai xuan hoai tan hoai xuan hoai nhon nam",
+      "center": [
+        14.456665,
+        109.023566
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong Hoai Nhon Nam, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường Hoài Nhơn Nam, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 118,
+      "type": "phường",
+      "name": "Hoài Nhơn Bắc",
+      "label": "Phường Hoài Nhơn Bắc",
+      "oldText": "phường Tam Quan Bắc, xã Hoài Sơn và xã Hoài Châu Bắc",
+      "aliases": [
+        "Tam Quan Bắc",
+        "Hoài Sơn và xã Hoài Châu Bắc",
+        "xã Hoài Sơn",
+        "Hoài Châu Bắc",
+        "Hoài Nhơn Bắc"
+      ],
+      "searchText": "hoai nhon bac phuong hoai nhon bac phuong tam quan bac xa hoai son va xa hoai chau bac tam quan bac hoai son va xa hoai chau bac xa hoai son hoai chau bac hoai nhon bac",
+      "center": [
+        14.557997,
+        109.054172
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong Hoai Nhon Bac, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường Hoài Nhơn Bắc, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 119,
+      "type": "phường",
+      "name": "Pleiku",
+      "label": "Phường Pleiku",
+      "oldText": "các phường Tây Sơn (thành phố Pleiku), Hội Thương, Hoa Lư, Phù Đổng và xã Trà Đa",
+      "aliases": [
+        "Tây Sơn (thành phố Pleiku)",
+        "phường Tây Sơn (thành phố Pleiku)",
+        "Hội Thương",
+        "Hoa Lư",
+        "Phù Đổng",
+        "Trà Đa",
+        "Pleiku"
+      ],
+      "searchText": "pleiku phuong pleiku cac phuong tay son thanh pho pleiku hoi thuong hoa lu phu dong va xa tra da tay son thanh pho pleiku phuong tay son thanh pho pleiku hoi thuong hoa lu phu dong tra da pleiku",
+      "center": [
+        13.977343,
+        108.000203
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong Pleiku, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường Pleiku, Tỉnh Gia Lai, 61111, Việt Nam"
+    },
+    {
+      "order": 120,
+      "type": "phường",
+      "name": "Hội Phú",
+      "label": "Phường Hội Phú",
+      "oldText": "toàn bộ diện tích tự nhiên, quy mô dân số của các phường Trà Bá, Chi Lăng và Hội Phú",
+      "aliases": [
+        "Trà Bá",
+        "toàn bộ diện tích tự nhiên",
+        "quy mô dân số của các phường Trà Bá",
+        "Chi Lăng",
+        "Hội Phú"
+      ],
+      "searchText": "hoi phu phuong hoi phu toan bo dien tich tu nhien quy mo dan so cua cac phuong tra ba chi lang va hoi phu tra ba toan bo dien tich tu nhien quy mo dan so cua cac phuong tra ba chi lang hoi phu",
+      "center": [
+        13.957874,
+        108.032965
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong Hoi Phu, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường Hội Phú, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 121,
+      "type": "phường",
+      "name": "Thống Nhất",
+      "label": "Phường Thống Nhất",
+      "oldText": "toàn bộ diện tích tự nhiên, quy mô dân số của các phường Đống Đa (thành phố Pleiku), Yên Thế và Thống Nhất",
+      "aliases": [
+        "Đống Đa (thành phố Pleiku)",
+        "toàn bộ diện tích tự nhiên",
+        "quy mô dân số của các phường Đống Đa (thành phố Pleiku)",
+        "Yên Thế",
+        "Thống Nhất"
+      ],
+      "searchText": "thong nhat phuong thong nhat toan bo dien tich tu nhien quy mo dan so cua cac phuong dong da thanh pho pleiku yen the va thong nhat dong da thanh pho pleiku toan bo dien tich tu nhien quy mo dan so cua cac phuong dong da thanh pho pleiku yen the thong nhat",
+      "center": [
+        14.029823,
+        107.988823
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong Thong Nhat, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường Thống Nhất, Tỉnh Gia Lai, 60000, Việt Nam"
+    },
+    {
+      "order": 122,
+      "type": "phường",
+      "name": "Diên Hồng",
+      "label": "Phường Diên Hồng",
+      "oldText": "các phường Yên Đỗ, Ia Kring, Diên Hồng và xã Diên Phú",
+      "aliases": [
+        "Yên Đỗ",
+        "Diên Phú",
+        "phường Yên Đỗ",
+        "Ia Kring",
+        "Diên Hồng"
+      ],
+      "searchText": "dien hong phuong dien hong cac phuong yen do ia kring dien hong va xa dien phu yen do dien phu phuong yen do ia kring dien hong",
+      "center": [
+        13.97251,
+        107.996153
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong Dien Hong, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường Diên Hồng, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 123,
+      "type": "phường",
+      "name": "An Phú",
+      "label": "Phường An Phú",
+      "oldText": "toàn bộ diện tích tự nhiên, quy mô dân số của phường Thắng Lợi, xã Chư Á và xã An Phú",
+      "aliases": [
+        "Thắng Lợi",
+        "Chư Á và xã An Phú",
+        "toàn bộ diện tích tự nhiên",
+        "quy mô dân số của phường Thắng Lợi",
+        "xã Chư Á",
+        "An Phú"
+      ],
+      "searchText": "an phu phuong an phu toan bo dien tich tu nhien quy mo dan so cua phuong thang loi xa chu a va xa an phu thang loi chu a va xa an phu toan bo dien tich tu nhien quy mo dan so cua phuong thang loi xa chu a an phu",
+      "center": [
+        13.984485,
+        108.082007
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong An Phu, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường An Phú, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 124,
+      "type": "phường",
+      "name": "An Khê",
+      "label": "Phường An Khê",
+      "oldText": "phường Ngô Mây và phường Tây Sơn (thị xã An Khê), các phường An Phú, An Phước, An Tân và xã Thành An",
+      "aliases": [
+        "Ngô Mây và phường Tây Sơn (thị xã An Khê)",
+        "An Phú",
+        "Thành An",
+        "Ngô Mây",
+        "Tây Sơn (thị xã An Khê)",
+        "các phường An Phú",
+        "An Phước",
+        "An Tân",
+        "An Khê"
+      ],
+      "searchText": "an khe phuong an khe phuong ngo may va phuong tay son thi xa an khe cac phuong an phu an phuoc an tan va xa thanh an ngo may va phuong tay son thi xa an khe an phu thanh an ngo may tay son thi xa an khe cac phuong an phu an phuoc an tan an khe",
+      "center": [
+        13.953057,
+        108.656835
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong An Khe, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường An Khê, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 125,
+      "type": "phường",
+      "name": "An Bình",
+      "label": "Phường An Bình",
+      "oldText": "toàn bộ diện tích tự nhiên, quy mô dân số của phường An Bình, xã Tân An và xã Cư An",
+      "aliases": [
+        "An Bình",
+        "Tân An và xã Cư An",
+        "toàn bộ diện tích tự nhiên",
+        "quy mô dân số của phường An Bình",
+        "xã Tân An",
+        "Cư An"
+      ],
+      "searchText": "an binh phuong an binh toan bo dien tich tu nhien quy mo dan so cua phuong an binh xa tan an va xa cu an an binh tan an va xa cu an toan bo dien tich tu nhien quy mo dan so cua phuong an binh xa tan an cu an",
+      "center": [
+        13.96056,
+        108.638755
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong An Binh, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường An Bình, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 126,
+      "type": "phường",
+      "name": "Ayun Pa",
+      "label": "Phường Ayun Pa",
+      "oldText": "toàn bộ diện tích tự nhiên, quy mô dân số của các phường Đoàn Kết, Sông Bờ, Cheo Reo và Hòa Bình",
+      "aliases": [
+        "Đoàn Kết",
+        "toàn bộ diện tích tự nhiên",
+        "quy mô dân số của các phường Đoàn Kết",
+        "Sông Bờ",
+        "Cheo Reo",
+        "Hòa Bình",
+        "Ayun Pa"
+      ],
+      "searchText": "ayun pa phuong ayun pa toan bo dien tich tu nhien quy mo dan so cua cac phuong doan ket song bo cheo reo va hoa binh doan ket toan bo dien tich tu nhien quy mo dan so cua cac phuong doan ket song bo cheo reo hoa binh ayun pa",
+      "center": [
+        13.399728,
+        108.434793
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Phuong Ayun Pa, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Phường Ayun Pa, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 127,
+      "type": "xã",
+      "name": "Ia O",
+      "label": "Xã Ia O",
+      "oldText": "Không thực hiện sắp xếp; giữ nguyên xã Ia O.",
+      "aliases": [
+        "Ia O"
+      ],
+      "unchanged": true,
+      "searchText": "ia o xa ia o khong thuc hien sap xep giu nguyen xa ia o",
+      "center": [
+        13.95051,
+        107.540505
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia O, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia O, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 128,
+      "type": "xã",
+      "name": "Nhơn Châu",
+      "label": "Xã Nhơn Châu",
+      "oldText": "Không thực hiện sắp xếp; giữ nguyên xã Nhơn Châu.",
+      "aliases": [
+        "Nhơn Châu"
+      ],
+      "unchanged": true,
+      "searchText": "nhon chau xa nhon chau khong thuc hien sap xep giu nguyen xa nhon chau",
+      "center": [
+        13.620056,
+        109.346307
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Nhon Chau, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Nhơn Châu, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 129,
+      "type": "xã",
+      "name": "Ia Púch",
+      "label": "Xã Ia Púch",
+      "oldText": "Không thực hiện sắp xếp; giữ nguyên xã Ia Púch.",
+      "aliases": [
+        "Ia Púch"
+      ],
+      "unchanged": true,
+      "searchText": "ia puch xa ia puch khong thuc hien sap xep giu nguyen xa ia puch",
+      "center": [
+        13.623217,
+        107.700462
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Puch, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Púch, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 130,
+      "type": "xã",
+      "name": "Ia Mơ",
+      "label": "Xã Ia Mơ",
+      "oldText": "Không thực hiện sắp xếp; giữ nguyên xã Ia Mơ.",
+      "aliases": [
+        "Ia Mơ"
+      ],
+      "unchanged": true,
+      "searchText": "ia mo xa ia mo khong thuc hien sap xep giu nguyen xa ia mo",
+      "center": [
+        13.453764,
+        107.717214
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Mo, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Mơ, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 131,
+      "type": "xã",
+      "name": "Ia Pnôn",
+      "label": "Xã Ia Pnôn",
+      "oldText": "Không thực hiện sắp xếp; giữ nguyên xã Ia Pnôn.",
+      "aliases": [
+        "Ia Pnôn"
+      ],
+      "unchanged": true,
+      "searchText": "ia pnon xa ia pnon khong thuc hien sap xep giu nguyen xa ia pnon",
+      "center": [
+        13.709353,
+        107.644272
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Pnon, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Pnôn, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 132,
+      "type": "xã",
+      "name": "Ia Nan",
+      "label": "Xã Ia Nan",
+      "oldText": "Không thực hiện sắp xếp; giữ nguyên xã Ia Nan.",
+      "aliases": [
+        "Ia Nan"
+      ],
+      "unchanged": true,
+      "searchText": "ia nan xa ia nan khong thuc hien sap xep giu nguyen xa ia nan",
+      "center": [
+        13.726415,
+        107.576565
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Nan, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Nan, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 133,
+      "type": "xã",
+      "name": "Ia Dom",
+      "label": "Xã Ia Dom",
+      "oldText": "Không thực hiện sắp xếp; giữ nguyên xã Ia Dom.",
+      "aliases": [
+        "Ia Dom"
+      ],
+      "unchanged": true,
+      "searchText": "ia dom xa ia dom khong thuc hien sap xep giu nguyen xa ia dom",
+      "center": [
+        13.809335,
+        107.534461
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Dom, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Dom, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 134,
+      "type": "xã",
+      "name": "Ia Chia",
+      "label": "Xã Ia Chia",
+      "oldText": "Không thực hiện sắp xếp; giữ nguyên xã Ia Chia.",
+      "aliases": [
+        "Ia Chia"
+      ],
+      "unchanged": true,
+      "searchText": "ia chia xa ia chia khong thuc hien sap xep giu nguyen xa ia chia",
+      "center": [
+        13.890043,
+        107.581665
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Ia Chia, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Ia Chia, Tỉnh Gia Lai, Việt Nam"
+    },
+    {
+      "order": 135,
+      "type": "xã",
+      "name": "Krong",
+      "label": "Xã Krong",
+      "oldText": "Không thực hiện sắp xếp; giữ nguyên xã Krong.",
+      "aliases": [
+        "Krong"
+      ],
+      "unchanged": true,
+      "searchText": "krong xa krong khong thuc hien sap xep giu nguyen xa krong",
+      "center": [
+        14.268036,
+        108.439643
+      ],
+      "centerSource": "OpenStreetMap Nominatim",
+      "centerQuery": "Xa Krong, Tinh Gia Lai, Viet Nam",
+      "centerDisplayName": "Xã Krong, Tỉnh Gia Lai, Việt Nam"
+    }
+  ],
+  "centerSource": {
+    "provider": "OpenStreetMap Nominatim",
+    "url": "https://nominatim.openstreetmap.org/",
+    "note": "Centers are approximate map search results for UI navigation, not legal boundary coordinates."
+  }
+}

@@ -1,0 +1,191 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic:
+      - generic:
+        - button "21" [ref=e3] [cursor=pointer]:
+          - generic [ref=e5]: "21"
+        - button "19" [ref=e6] [cursor=pointer]:
+          - generic [ref=e8]: "19"
+        - button "20" [ref=e9] [cursor=pointer]:
+          - generic [ref=e11]: "20"
+        - button "41" [ref=e12] [cursor=pointer]:
+          - generic [ref=e14]: "41"
+    - generic:
+      - button "Layers" [ref=e16] [cursor=pointer]
+      - generic:
+        - generic [ref=e17]:
+          - button "Zoom in" [ref=e18] [cursor=pointer]: +
+          - button "Zoom out" [ref=e19] [cursor=pointer]: −
+        - generic [ref=e20]:
+          - link "Leaflet" [ref=e21] [cursor=pointer]:
+            - /url: https://leafletjs.com
+            - img [ref=e22]
+            - text: Leaflet
+          - text: "| © CARTO"
+  - generic [ref=e26]:
+    - generic [ref=e27]: 101 tin khớp trên bản đồ
+    - button "Xem vùng kết quả" [ref=e28] [cursor=pointer]
+  - navigation "Khu sàn giao dịch" [ref=e29]:
+    - button "Lọc thêm" [ref=e30] [cursor=pointer]
+    - button "Tối" [ref=e31] [cursor=pointer]
+    - link "Thành viên" [ref=e32] [cursor=pointer]:
+      - /url: /member.html
+    - link "Đăng tin" [ref=e33] [cursor=pointer]:
+      - /url: /submit.html
+    - link "Quản trị" [ref=e34] [cursor=pointer]:
+      - /url: /admin.html
+  - generic [ref=e35]:
+    - search [ref=e36]:
+      - searchbox "Nhập từ khóa, tên đường, khu vực..." [ref=e37]
+      - button "Tìm" [ref=e38] [cursor=pointer]
+    - combobox [ref=e39] [cursor=pointer]:
+      - option "Toàn tỉnh Gia Lai mới" [selected]
+      - option "Phường An Bình"
+      - option "Phường An Khê"
+      - option "Phường An Nhơn"
+      - option "Phường An Nhơn Bắc"
+      - option "Phường An Nhơn Đông"
+      - option "Phường An Nhơn Nam"
+      - option "Phường An Phú"
+      - option "Phường Ayun Pa"
+      - option "Phường Bình Định"
+      - option "Phường Bồng Sơn"
+      - option "Phường Diên Hồng"
+      - option "Phường Hoài Nhơn"
+      - option "Phường Hoài Nhơn Bắc"
+      - option "Phường Hoài Nhơn Đông"
+      - option "Phường Hoài Nhơn Nam"
+      - option "Phường Hoài Nhơn Tây"
+      - option "Phường Hội Phú"
+      - option "Phường Pleiku"
+      - option "Phường Quy Nhơn"
+      - option "Phường Quy Nhơn Bắc"
+      - option "Phường Quy Nhơn Đông"
+      - option "Phường Quy Nhơn Nam"
+      - option "Phường Quy Nhơn Tây"
+      - option "Phường Tam Quan"
+      - option "Phường Thống Nhất"
+      - option "Xã Al Bá"
+      - option "Xã An Hòa"
+      - option "Xã An Lão"
+      - option "Xã An Lương"
+      - option "Xã An Nhơn Tây"
+      - option "Xã An Toàn"
+      - option "Xã An Vinh"
+      - option "Xã Ayun"
+      - option "Xã Ân Hảo"
+      - option "Xã Ân Tường"
+      - option "Xã Bàu Cạn"
+      - option "Xã Biển Hồ"
+      - option "Xã Bình An"
+      - option "Xã Bình Dương"
+      - option "Xã Bình Hiệp"
+      - option "Xã Bình Khê"
+      - option "Xã Bình Phú"
+      - option "Xã Bờ Ngoong"
+      - option "Xã Canh Liên"
+      - option "Xã Canh Vinh"
+      - option "Xã Cát Tiến"
+      - option "Xã Chơ Long"
+      - option "Xã Chư A Thai"
+      - option "Xã Chư Krey"
+      - option "Xã Chư Păh"
+      - option "Xã Chư Prông"
+      - option "Xã Chư Pưh"
+      - option "Xã Chư Sê"
+      - option "Xã Cửu An"
+      - option "Xã Đak Đoa"
+      - option "Xã Đak Pơ"
+      - option "Xã Đak Rong"
+      - option "Xã Đak Sơmei"
+      - option "Xã Đăk Song"
+      - option "Xã Đề Gi"
+      - option "Xã Đức Cơ"
+      - option "Xã Gào"
+      - option "Xã Hòa Hội"
+      - option "Xã Hoài Ân"
+      - option "Xã Hội Sơn"
+      - option "Xã Hra"
+      - option "Xã Ia Băng"
+      - option "Xã Ia Boòng"
+      - option "Xã Ia Chia"
+      - option "Xã Ia Dom"
+      - option "Xã Ia Dơk"
+      - option "Xã Ia Dreh"
+      - option "Xã Ia Grai"
+      - option "Xã Ia Hiao"
+      - option "Xã Ia Hrú"
+      - option "Xã Ia Hrung"
+      - option "Xã Ia Khươl"
+      - option "Xã Ia Ko"
+      - option "Xã Ia Krái"
+      - option "Xã Ia Krêl"
+      - option "Xã Ia Lâu"
+      - option "Xã Ia Le"
+      - option "Xã Ia Ly"
+      - option "Xã Ia Mơ"
+      - option "Xã Ia Nan"
+      - option "Xã Ia O"
+      - option "Xã Ia Pa"
+      - option "Xã Ia Phí"
+      - option "Xã Ia Pia"
+      - option "Xã Ia Pnôn"
+      - option "Xã Ia Púch"
+      - option "Xã Ia Rbol"
+      - option "Xã Ia Rsai"
+      - option "Xã Ia Sao"
+      - option "Xã Ia Tôr"
+      - option "Xã Ia Tul"
+      - option "Xã Kbang"
+      - option "Xã KDang"
+      - option "Xã Kim Sơn"
+      - option "Xã Kon Chiêng"
+      - option "Xã Kon Gang"
+      - option "Xã Kông Bơ La"
+      - option "Xã Kông Chro"
+      - option "Xã Krong"
+      - option "Xã Lơ Pang"
+      - option "Xã Mang Yang"
+      - option "Xã Ngô Mây"
+      - option "Xã Nhơn Châu"
+      - option "Xã Phù Cát"
+      - option "Xã Phù Mỹ"
+      - option "Xã Phù Mỹ Bắc"
+      - option "Xã Phù Mỹ Đông"
+      - option "Xã Phù Mỹ Nam"
+      - option "Xã Phù Mỹ Tây"
+      - option "Xã Phú Thiện"
+      - option "Xã Phú Túc"
+      - option "Xã Pờ Tó"
+      - option "Xã Sơn Lang"
+      - option "Xã SRó"
+      - option "Xã Tây Sơn"
+      - option "Xã Tơ Tung"
+      - option "Xã Tuy Phước"
+      - option "Xã Tuy Phước Bắc"
+      - option "Xã Tuy Phước Đông"
+      - option "Xã Tuy Phước Tây"
+      - option "Xã Uar"
+      - option "Xã Vạn Đức"
+      - option "Xã Vân Canh"
+      - option "Xã Vĩnh Quang"
+      - option "Xã Vĩnh Sơn"
+      - option "Xã Vĩnh Thạnh"
+      - option "Xã Vĩnh Thịnh"
+      - option "Xã Xuân An"
+      - option "Xã Ya Hội"
+      - option "Xã Ya Ma"
+    - combobox [ref=e40] [cursor=pointer]:
+      - option "Loại nhà đất" [selected]
+      - option "Đất nền"
+      - option "Kho/xưởng"
+      - option "Biệt thự"
+      - option "Nhà phố"
+      - option "Nhà vườn"
+    - combobox [ref=e41] [cursor=pointer]:
+      - option "Mức giá" [selected]
+      - option "Dưới 5 tỷ"
+      - option "5 - 10 tỷ"
+      - option "10-20 tỷ"
+      - option "Trên 20 tỷ"
+  - text: 📍

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Nhà Đất Việt | Bản đồ bất động sản</title>
+    <meta name="description" content="Bản đồ nhà đất có tìm kiếm, bộ lọc, chia sẻ tin, tính dòng tiền vay mua nhà và form liên hệ khách hàng.">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Nha Dat Viet">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon-192.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" crossorigin="" />
+    <link rel="stylesheet" href="style.css?v=48">
+    <link rel="stylesheet" href="mobile-app.css?v=48">
+</head>
+<body>
+    
+    <!-- FULL SCREEN MAP CONTAINER -->
+    <div id="results-map" class="map-fullscreen"></div>
+    <div id="map-results-status" class="map-results-status" aria-live="polite">
+        <span id="map-results-count">Đang tải bản đồ...</span>
+        <button id="fit-results-button" type="button">Xem vùng kết quả</button>
+    </div>
+    <nav class="market-actions" aria-label="Khu sàn giao dịch">
+        <button id="open-advanced-panel" type="button">Lọc thêm</button>
+        <button id="market-dark-mode" type="button">Tối</button>
+        <a href="/member.html">Thành viên</a>
+        <a href="/submit.html">Đăng tin</a>
+        <a href="/admin.html">Quản trị</a>
+    </nav>
+
+    <!-- FLOATING UI TOP -->
+    <div class="floating-ui-wrap">
+        <header class="glass-header">
+            <div class="logo">
+                <span class="logo-icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="var(--color-primary)"><path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/></svg>
+                </span>
+                <span class="logo-text">GlobalEstate</span>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" id="filter-keyword" placeholder="Nhập tên đường, địa danh..." class="search-input">
+                <button class="search-button" id="run-search-button" type="button" aria-label="Tìm kiếm trên bản đồ">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </div>
+            <div class="quick-area-bar" aria-label="Khu vực Gia Lai">
+                <button type="button" data-area-keyword="Pleiku" data-area-label="Khu Pleiku" data-area-description="Nút nhanh này xem khu Pleiku rộng, còn dropdown bên dưới lọc từng phường/xã mới." data-admin-unit="all" data-lat="13.9773" data-lng="108.0002">Pleiku</button>
+                <button type="button" data-area-keyword="Quy Nhơn" data-area-label="Khu Quy Nhơn" data-area-description="Nút nhanh này xem khu Quy Nhơn rộng, không phải riêng Phường Quy Nhơn mới." data-admin-unit="all" data-lat="13.7708" data-lng="109.2260">Quy Nhơn</button>
+                <button type="button" data-area-keyword="Biển Hồ" data-area-label="Xã Biển Hồ" data-admin-unit="Biển Hồ" data-lat="14.0892" data-lng="108.0376">Biển Hồ</button>
+                <button type="button" data-area-keyword="An Khê" data-area-label="Khu An Khê" data-area-description="Nút nhanh này xem khu An Khê rộng, còn dropdown bên dưới lọc từng phường/xã mới." data-admin-unit="all" data-lat="13.9531" data-lng="108.6568">An Khê</button>
+                <button type="button" data-area-keyword="Ayun Pa" data-area-label="Khu Ayun Pa" data-area-description="Nút nhanh này xem khu Ayun Pa rộng, còn dropdown bên dưới lọc từng phường/xã mới." data-admin-unit="all" data-lat="13.3830" data-lng="108.4380">Ayun Pa</button>
+                <button type="button" data-area-keyword="Phù Cát" data-area-label="Khu Phù Cát" data-area-description="Nút nhanh này xem khu Phù Cát rộng, còn dropdown bên dưới lọc từng xã mới." data-admin-unit="all" data-lat="14.0008" data-lng="109.0635">Phù Cát</button>
+            </div>
+            
+            <div class="header-right">
+                <a href="#" class="nav-link nav-optional">Mua</a>
+                <a href="#" class="nav-link nav-optional">Thuê</a>
+                <button class="nav-link outline-btn install-btn hidden" id="install-app-button" type="button">Cài app</button>
+                <button class="nav-link outline-btn" id="toggle-filters" type="button" aria-expanded="false">⚙ Bộ lọc</button>
+                <button class="nav-link outline-btn" id="toggle-dark-mode" onclick="window.toggleDarkMode()">🌙 Giao diện</button>
+                <button class="nav-link outline-btn" id="toggle-list-view" onclick="window.toggleListView()">🗂️ Danh sách</button>
+                <a href="/member.html" class="nav-link outline-btn">Thành viên</a>
+                <a href="/submit.html" class="nav-link outline-btn" style="background:var(--color-primary);color:#fff;border-color:var(--color-primary)">Đăng tin</a>
+            </div>
+        </header>
+
+        <!-- FLOATING FILTER BAR -->
+        <div class="glass-filters hidden" id="advanced-filters">
+            <button id="toggle-zoning" class="filter-btn zoning-btn" title="Hiển thị Ranh mốc Quy hoạch">
+                🗺️ Bật Quy Hoạch
+            </button>
+            <div class="filter-divider"></div>
+            <div class="mobile-keyword-search" role="search">
+                <input id="filter-keyword-mobile" type="search" placeholder="Nhập từ khóa, tên đường, khu vực..." autocomplete="off" inputmode="search">
+                <button id="run-search-mobile-button" type="button">Tìm</button>
+            </div>
+            <select class="filter-btn admin-unit-select" id="filter-admin-unit">
+                <option value="all">Toàn tỉnh Gia Lai mới</option>
+            </select>
+            <select class="filter-btn" id="filter-type">
+                <option value="all">Loại nhà đất</option>
+                <option value="Căn hộ">Căn hộ</option>
+                <option value="Nhà phố">Nhà phố</option>
+                <option value="Đất nền">Đất nền</option>
+                <option value="Nhà vườn">Nhà vườn</option>
+            </select>
+            <select class="filter-btn" id="filter-price">
+                <option value="all">Mức giá</option>
+                <option value="under-5">Dưới 5 tỷ</option>
+                <option value="5-10">5 - 10 tỷ</option>
+                <option value="10-20">10-20 tỷ</option>
+                <option value="20-plus">Trên 20 tỷ</option>
+            </select>
+            <select class="filter-btn" id="filter-area">
+                <option value="all">Diện tích</option>
+                <option value="under-100">Dưới 100m2</option>
+                <option value="100-300">100 - 300m2</option>
+                <option value="300-1000">300 - 1.000m2</option>
+                <option value="1000-plus">Trên 1.000m2</option>
+            </select>
+            <select class="filter-btn" id="filter-direction">
+                <option value="all">Hướng</option>
+                <option value="Đông">Đông</option>
+                <option value="Tây">Tây</option>
+                <option value="Nam">Nam</option>
+                <option value="Bắc">Bắc</option>
+                <option value="Đông Nam">Đông Nam</option>
+                <option value="Đông Bắc">Đông Bắc</option>
+                <option value="Tây Nam">Tây Nam</option>
+                <option value="Tây Bắc">Tây Bắc</option>
+            </select>
+            <select class="filter-btn" id="filter-beds">
+                <option value="all">Phòng ngủ</option>
+                <option value="2">2+ PN</option>
+                <option value="3">3+ PN</option>
+            </select>
+            <select class="filter-btn" id="filter-baths">
+                <option value="all">Số phòng tắm</option>
+                <option value="2">2+ PT</option>
+                <option value="3">3+ PT</option>
+                <option value="4">4+ PT</option>
+            </select>
+            <select class="filter-btn" id="filter-legal">
+                <option value="all">Pháp lý</option>
+                <option value="Sổ">Có sổ</option>
+                <option value="Hoàn công">Hoàn công</option>
+                <option value="Hợp đồng">Hợp đồng</option>
+            </select>
+            <select class="filter-btn" id="sort-by">
+                <option value="recommended">Đề xuất</option>
+                <option value="price-asc">Giá thấp</option>
+                <option value="price-desc">Giá cao</option>
+                <option value="area-desc">Diện tích lớn</option>
+            </select>
+            <button id="show-favorites" class="filter-btn" type="button">Tin đã lưu</button>
+        </div>
+        <button id="clear-filters-button" class="clear-filters-button hidden" type="button" title="Xóa bộ lọc" aria-label="Xóa bộ lọc">×</button>
+        <div id="smart-search-hint" class="smart-search-hint hidden"></div>
+
+    </div>
+
+    <!-- SCROLLABLE LIST PROPERTY CARDS -->
+    <div id="side-list-panel" class="side-list-panel">
+        <div id="list-count-banner" class="list-count-banner">
+            <span id="list-count">Đang tải...</span>
+        </div>
+        <div id="property-list-container" class="property-list-container">
+            <!-- Javascript will populate cards here -->
+        </div>
+    </div>
+    <div id="mobile-listing-preview" class="mobile-listing-preview hidden"></div>
+    
+    <!-- EMPTY STATE TOAST -->
+    <div id="empty-state" class="empty-state-toast hidden">
+        Không tìm thấy khu vực khớp với tìm kiếm.
+    </div>
+
+    <!-- FULLSCREEN DETAIL MODAL (GLASSMORPHISM) -->
+    <div id="fullscreen-modal" class="fullscreen-modal hidden">
+        <div class="modal-backdrop" onclick="window.closeFullscreenModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close-btn" onclick="window.closeFullscreenModal()">✕ Đóng</button>
+            <div class="modal-layout">
+                <div class="modal-left">
+                    <div class="modal-gallery-actions">
+                        <button class="btn-gallery-tab active" id="tab-photos">Ảnh</button>
+                        <button class="btn-gallery-tab" id="tab-streetview">360°</button>
+                        <button class="btn-gallery-tab" id="tab-3d">VR</button>
+                    </div>
+                    <div id="modal-gallery" class="modal-gallery"></div>
+                    <button id="gallery-prev" class="gallery-nav-btn prev">❮</button>
+                    <button id="gallery-next" class="gallery-nav-btn next">❯</button>
+                    <div id="modal-streetview" class="modal-streetview hidden">
+                        <iframe id="iframe-streetview" src="" allowfullscreen></iframe>
+                        <div class="streetview-overlay">
+                            <div class="streetview-info">
+                                <span>🌍 Google Street View</span>
+                                <small>Kéo chuột để quay 360° • Cuộn để zoom</small>
+                            </div>
+                            <a id="streetview-open-google" href="#" target="_blank" rel="noopener" class="btn-open-google">Mở Google Maps ↗</a>
+                        </div>
+                    </div>
+                    <div id="modal-3d" class="modal-3d hidden">
+                        <iframe id="iframe-3d" src="" allowfullscreen allow="xr-spatial-tracking"></iframe>
+                    </div>
+                </div>
+                <div class="modal-right">
+                    <div class="modal-header">
+                        <span id="modal-type" class="map-popup-badge static"></span>
+                        <h2 id="modal-title" class="modal-title"></h2>
+                        <div id="modal-location" class="modal-location"></div>
+                        <div class="price-zestimate-row">
+                            <div id="modal-price" class="modal-price"></div>
+                            <div class="zestimate-box">
+                                <span class="z-icon">🤖 AI Định Giá</span>
+                                <span id="modal-zestimate-val" class="z-val">--</span>
+                                <span id="modal-zestimate-lbl" class="z-lbl">Đang phân tích...</span>
+                            </div>
+                        </div>
+
+                        <div class="modal-primary-actions">
+                            <a id="modal-sticky-call-link" href="tel:0900000000" class="btn-modern btn-call">Gọi ngay</a>
+                            <a id="modal-sticky-zalo-link" href="#" class="btn-modern btn-zalo">Chat Zalo</a>
+                        </div>
+                        
+                        <div class="social-action-bar">
+                            <div class="rating-group">
+                                <button class="action-btn btn-like" onclick="window.toggleLike(this)">❤️ Yêu thích</button>
+                                <button class="action-btn btn-dislike" onclick="window.toggleDislike(this)">👎 Bỏ qua</button>
+                            </div>
+                            <button class="action-btn btn-share" onclick="window.shareListing()">🔗 Chia sẻ</button>
+                            <button class="action-btn btn-compare" onclick="window.toggleCompareCurrent()">⚖ So sánh</button>
+                        </div>
+                    </div>
+                    
+                                <div class="modal-specs">
+                                    <div class="spec-box"><span id="modal-beds" class="spec-val"></span><span class="spec-lbl">Phòng ngủ</span></div>
+                                    <div class="spec-divider"></div>
+                                    <div class="spec-box"><span id="modal-baths" class="spec-val"></span><span class="spec-lbl">Phòng tắm</span></div>
+                                    <div class="spec-divider"></div>
+                                    <div class="spec-box"><span id="modal-area" class="spec-val"></span><span class="spec-lbl">Diện tích</span></div>
+                                </div>
+                                <div id="modal-real-facts" class="modal-real-facts"></div>
+                                
+                                <div class="modal-desc-section">
+                        <h3>Mô tả chi tiết</h3>
+                        <div id="modal-desc" class="modal-desc"></div>
+                    </div>
+
+                    <form id="lead-form" class="lead-capture-box">
+                        <div>
+                            <h3>Nhận tư vấn tin này</h3>
+                            <p>Để lại số, hệ thống lưu vào admin để gọi lại đúng nhu cầu.</p>
+                        </div>
+                        <div class="lead-grid">
+                            <input id="lead-name" name="name" type="text" placeholder="Tên khách" required>
+                            <input id="lead-phone" name="phone" type="tel" placeholder="Số điện thoại" required>
+                        </div>
+                        <textarea id="lead-need" name="need" rows="2" placeholder="Nhu cầu: xem nhà, hỏi pháp lý, thương lượng giá..."></textarea>
+                        <button class="btn-lead-submit" type="submit">Gửi yêu cầu</button>
+                        <p id="lead-message" class="lead-message"></p>
+                    </form>
+                    
+                    <div class="mortgage-calc-box">
+                        <h3>Dự toán Dòng tiền (Vay mua nhà)</h3>
+                        <div class="bank-select-wrap">
+                            <label>Tổ chức Tín dụng / Ngân hàng:</label>
+                            <select id="bank-selector" class="bank-dropdown">
+                                <option value="9">-- Tính toán cá nhân --</option>
+                                <option value="6.0">Vietcombank (Ưu đãi 6.0%)</option>
+                                <option value="6.5">BIDV (Cố định 6.5%)</option>
+                                <option value="7.0">Techcombank (7.0%)</option>
+                                <option value="8.0">Quỹ tư nhân (Thả nổi 8.0%)</option>
+                            </select>
+                        </div>
+                        <div class="slider-wrap">
+                            <label>Trả trước: <span id="dp-label">30%</span></label>
+                            <input type="range" id="dp-slider" min="10" max="100" value="30" step="5" class="modern-slider">
+                        </div>
+                        <div class="slider-wrap">
+                            <label>Lãi suất: <span id="ir-label">9.0%/năm</span></label>
+                            <input type="range" id="ir-slider" min="5" max="15" value="9" step="0.5" class="modern-slider">
+                        </div>
+                        <div class="mortgage-res">
+                            <div>Trả góp mỗi tháng (20 năm)</div>
+                            <div id="mortgage-monthly" class="monthly-val">--</div>
+                        </div>
+                    </div>
+                    
+                    <div class="esg-box">
+                        <h3>Môi trường Xung quanh (Hyper-Local)</h3>
+                        <div class="esg-grid">
+                            <div class="esg-item"><span class="e-icon">🚶</span> <span id="modal-walk-score" class="e-text"><strong>Walk Score: 95/100</strong> (Thiên đường đi bộ)</span></div>
+                            <div class="esg-item"><span class="e-icon">🎓</span> <span class="e-text">Trường học các cấp bán kính 1km</span></div>
+                            <div class="esg-item"><span class="e-icon">🌳</span> <span class="e-text">Chỉ số không khí (AQI): Mức Tốt</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="comments-section">
+                        <h3>💬 Bình luận đánh giá</h3>
+                        <div class="comments-list" id="comments-list">
+                            <div class="comment-item">
+                                <div class="c-avatar">A</div>
+                                <div class="c-body">
+                                    <div class="c-name">Anh Tú <span class="c-time">Mới đây</span></div>
+                                    <div class="c-text">Đã đi xem thực tế, nhà rất vuông vắn, sổ sách chuẩn chỉnh. Đáng cân nhắc cho ai mua ở thực!</div>
+                                </div>
+                            </div>
+                            <div class="comment-item">
+                                <div class="c-avatar">L</div>
+                                <div class="c-body">
+                                    <div class="c-name">Linh Đan <span class="c-time">1 giờ trước</span></div>
+                                    <div class="c-text">Khu vực này an ninh rất tốt, hàng xóm tri thức, hơi xa đại siêu thị một xíu thôi.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-input-box">
+                            <input type="text" id="new-comment" placeholder="Viết đánh giá của bạn (Enter để gửi)..." onkeypress="if(event.key === 'Enter') window.postComment()">
+                            <button onclick="window.postComment()" class="btn-send-cmt">GỬI</button>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer-actions">
+                        <a id="modal-call-link" href="tel:0900000000" class="btn-modern btn-call">📞 GỌI ĐIỆN NGAY</a>
+                        <a id="modal-zalo-link" href="#" class="btn-modern btn-zalo">💬 CHAT ZALO</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMPARE FAB -->
+    <div id="compare-fab" class="compare-fab" onclick="window.openCompareModal()">
+        <span>⚖️ So sánh (0)</span>
+    </div>
+
+    <!-- COMPARE MODAL -->
+    <div id="compare-modal-backdrop" class="compare-modal-backdrop" onclick="if(event.target===this) window.closeCompareModal()">
+        <div class="compare-modal">
+            <div class="compare-header">
+                <h2>So sánh Bất động sản</h2>
+                <button class="modal-close-btn" onclick="window.closeCompareModal()" style="position:relative; top:0; right:0; box-shadow:none;">✕ Đóng</button>
+            </div>
+            <div class="compare-body" id="compare-body">
+                <!-- Javascript will populate compare cols here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js" crossorigin=""></script>
+    <script src="mobile-app.js?v=48"></script>
+    <script src="app.js?v=48"></script>
+</body>
+</html>

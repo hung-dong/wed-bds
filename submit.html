@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Đăng tin chờ duyệt | Nhà Đất Việt</title>
+    <meta name="description" content="Thành viên gửi tin bất động sản để quản trị Nhà Đất Việt kiểm duyệt trước khi đăng công khai.">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Nha Dat Viet">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon-192.png">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+    <link rel="stylesheet" href="submit.css?v=48">
+    <link rel="stylesheet" href="mobile-app.css?v=48">
+</head>
+<body>
+    <main class="submit-shell">
+        <header class="submit-header">
+            <div class="submit-nav">
+                <a href="/" class="back-link">← Về bản đồ</a>
+                <a href="/member.html" class="back-link">Khu thành viên</a>
+            </div>
+            <div>
+                <p class="eyebrow">Thành viên đăng tin</p>
+                <h1>Gửi tin bất động sản để kiểm duyệt</h1>
+                <p>Tin của anh/chị sẽ vào hàng chờ. Quản trị duyệt xong mới hiện công khai trên website.</p>
+            </div>
+        </header>
+
+        <form id="submission-form" class="submit-form">
+            <section class="quality-advisor" aria-live="polite">
+                <div>
+                    <p class="eyebrow">Trợ lý đăng tin</p>
+                    <h2>Điểm chất lượng tin: <span id="quality-score">0</span>/100</h2>
+                    <p id="quality-level">Nhập thông tin, hệ thống sẽ gợi ý phần còn thiếu để tin dễ được duyệt và dễ có khách hỏi.</p>
+                </div>
+                <ul id="quality-suggestions"></ul>
+            </section>
+
+            <section class="form-band">
+                <h2>Thông tin người đăng</h2>
+                <div class="grid">
+                    <label>
+                        <span>Họ tên</span>
+                        <input name="contactName" type="text" autocomplete="name" required>
+                    </label>
+                    <label>
+                        <span>Số điện thoại</span>
+                        <input name="contactPhone" type="tel" autocomplete="tel" required>
+                    </label>
+                    <label class="full">
+                        <span>Ghi chú cho quản trị</span>
+                        <textarea name="contactNote" rows="3" placeholder="Ví dụ: chính chủ, môi giới, cần hỗ trợ sửa nội dung..."></textarea>
+                    </label>
+                </div>
+            </section>
+
+            <section class="form-band">
+                <h2>Thông tin tài sản</h2>
+                <div class="grid">
+                    <label class="full">
+                        <span>Tiêu đề tin</span>
+                        <input name="title" type="text" placeholder="Ví dụ: Nhà phố 2 mặt tiền trung tâm Pleiku" required>
+                    </label>
+                    <label>
+                        <span>Khu vực</span>
+                        <input name="location" type="text" list="gia-lai-areas" placeholder="Phường Pleiku, Gia Lai" required>
+                        <datalist id="gia-lai-areas">
+                            <option value="Phường Hội Phú, Pleiku, Gia Lai"></option>
+                            <option value="Phường Diên Hồng, Pleiku, Gia Lai"></option>
+                            <option value="Phường Thống Nhất, Pleiku, Gia Lai"></option>
+                            <option value="Phường Hoa Lư, Pleiku, Gia Lai"></option>
+                            <option value="Xã Biển Hồ, Pleiku, Gia Lai"></option>
+                            <option value="Đak Đoa, Gia Lai"></option>
+                            <option value="Chư Păh, Gia Lai"></option>
+                            <option value="Chư Sê, Gia Lai"></option>
+                        </datalist>
+                    </label>
+                    <label>
+                        <span>Loại hình</span>
+                        <select name="type" required>
+                            <option value="">Chọn loại hình</option>
+                            <option>Đất nền</option>
+                            <option>Nhà phố</option>
+                            <option>Căn hộ</option>
+                            <option>Biệt thự</option>
+                            <option>Kho/xưởng</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span>Giá bán (tỷ)</span>
+                        <input name="price" type="number" min="0" step="0.1" required>
+                    </label>
+                    <label>
+                        <span>Diện tích (m2)</span>
+                        <input name="area" type="number" min="1" step="1" required>
+                    </label>
+                    <label>
+                        <span>Ngang (m)</span>
+                        <input name="frontage" type="number" min="0" step="0.1" placeholder="5">
+                    </label>
+                    <label>
+                        <span>Dài (m)</span>
+                        <input name="depth" type="number" min="0" step="0.1" placeholder="25">
+                    </label>
+                    <label>
+                        <span>Đường trước nhà (m)</span>
+                        <input name="roadWidth" type="number" min="0" step="0.1" placeholder="6">
+                    </label>
+                    <label>
+                        <span>Hướng</span>
+                        <select name="direction">
+                            <option value="">Chưa rõ</option>
+                            <option>Đông</option>
+                            <option>Tây</option>
+                            <option>Nam</option>
+                            <option>Bắc</option>
+                            <option>Đông Nam</option>
+                            <option>Đông Bắc</option>
+                            <option>Tây Nam</option>
+                            <option>Tây Bắc</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span>Phòng ngủ</span>
+                        <input name="beds" type="number" min="0" step="1" value="0" required>
+                    </label>
+                    <label>
+                        <span>Phòng tắm</span>
+                        <input name="baths" type="number" min="0" step="1" value="0" required>
+                    </label>
+                    <label class="full">
+                        <span>Pháp lý</span>
+                        <input name="legal" type="text" placeholder="Sổ đỏ, sổ hồng, hợp đồng mua bán..." required>
+                    </label>
+                    <label>
+                        <span>Thổ cư</span>
+                        <input name="landUse" type="text" placeholder="Ví dụ: 100m2 thổ cư">
+                    </label>
+                    <label>
+                        <span>Vay ngân hàng</span>
+                        <input name="bankLoan" type="text" placeholder="Có/không, ngân hàng đang vay...">
+                    </label>
+                    <label class="full">
+                        <span>Quy hoạch/lộ giới</span>
+                        <input name="planningStatus" type="text" placeholder="Không quy hoạch, dính lộ giới, cần kiểm tra...">
+                    </label>
+                    <label class="full">
+                        <span>Mô tả</span>
+                        <textarea name="description" rows="5" placeholder="Vị trí, đường, pháp lý, hiện trạng, điểm mạnh, điều kiện giao dịch..." required></textarea>
+                    </label>
+                </div>
+            </section>
+
+            <section class="form-band">
+                <h2>Hình ảnh và tọa độ</h2>
+                <div class="grid">
+                    <div class="full">
+                        <span class="field-label">Kéo thả hoặc click để thêm ảnh</span>
+                        <div id="submit-dropzone" class="submit-dropzone">
+                            <div class="dropzone-placeholder">
+                                <span class="dropzone-icon">📷</span>
+                                <p>Kéo ảnh vào đây hoặc <strong>click để chọn</strong></p>
+                                <small>JPG, PNG, WebP — Tối đa 6 ảnh, tự nén trước khi gửi</small>
+                            </div>
+                            <button class="attach-image-button" type="button">+ Thêm ảnh</button>
+                            <input name="imageFiles" type="file" accept="image/*" multiple style="display:none;">
+                        </div>
+                        <div id="submit-preview-grid" class="submit-preview-grid"></div>
+                    </div>
+                    <label class="full">
+                        <span>Ảnh bổ sung (link URL)</span>
+                        <textarea name="imagesText" rows="3" placeholder="Mỗi dòng một link ảnh"></textarea>
+                    </label>
+                    <input name="image" type="hidden">
+                    <label>
+                        <span>Vĩ độ</span>
+                        <input name="latitude" type="hidden">
+                    </label>
+                    <label>
+                        <span>Kinh độ</span>
+                        <input name="longitude" type="hidden">
+                    </label>
+                    <div class="full location-tools">
+                        <button id="use-area-location" type="button">Ghim theo khu vực</button>
+                        <button id="use-current-location" type="button">📍 Lấy vị trí hiện tại</button>
+                        <button id="toggle-submit-satellite" type="button">Vệ tinh</button>
+                        <small class="hint">Dùng khi đang đứng tại tài sản.</small>
+                    </div>
+                    <div class="full location-picker">
+                        <div class="location-picker-head">
+                            <div>
+                                <span class="field-label">Vị trí trên bản đồ</span>
+                                <small class="hint">Không cần nhập kinh độ/vĩ độ. Bấm lấy vị trí, ghim theo khu vực, hoặc chạm bản đồ một lần.</small>
+                            </div>
+                        </div>
+                        <div id="submit-map" class="submit-map"></div>
+                        <p id="location-status" class="location-status">Chưa có vị trí. Hãy bấm lấy vị trí hoặc chạm bản đồ.</p>
+                    </div>
+                    <label class="full">
+                        <span>Video YouTube hoặc video đã tải lên</span>
+                        <input name="video" type="text" placeholder="Dán link YouTube hoặc tải video tự quay bên dưới">
+                    </label>
+                    <div class="full video-upload-box">
+                        <span class="field-label">Video tự quay</span>
+                        <div id="video-dropzone" class="video-dropzone">
+                            <input name="videoFile" type="file" accept="video/mp4,video/webm,video/quicktime,.mp4,.webm,.mov,.m4v" style="display:none;">
+                            <button id="choose-video-file" type="button">+ Thêm video</button>
+                            <small>MP4/WebM/MOV, tối đa 25MB. Nên quay ngang hoặc dọc rõ sáng, 30-90 giây.</small>
+                        </div>
+                        <div id="video-preview-box" class="video-preview-box" hidden></div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="submit-actions">
+                <button type="submit">Gửi tin chờ duyệt</button>
+                <p id="submission-message"></p>
+            </div>
+        </form>
+    </main>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script src="mobile-app.js?v=48"></script>
+    <script src="submit.js?v=48"></script>
+</body>
+</html>
