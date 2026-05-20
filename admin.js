@@ -4,6 +4,7 @@
     submissions: [],
     analytics: null,
     site: null,
+    staticMode: sessionStorage.getItem("ndv_admin_static_session") === "1",
     selectedId: null,
     adminMap: null,
     adminMarker: null,
@@ -13,6 +14,8 @@
 };
 
 const nativeConfirm = window.confirm.bind(window);
+const STATIC_ADMIN_USERNAME = "admin";
+const STATIC_ADMIN_PASSWORD = "Admin@123456";
 
 const elements = {
     loginView: document.getElementById("login-view"),
@@ -147,6 +150,9 @@ function bindEvents() {
 }
 
 async function request(url, options = {}, _retried = false) {
+    if (state.staticMode && options.method && options.method !== "GET") {
+        throw new Error("Bản Vercel hiện chạy chế độ tĩnh: xem quản trị được, nhưng muốn lưu/sửa/xóa cần bật backend Node.");
+    }
     const headers = {
         "Content-Type": "application/json",
         ...(options.headers || {})
@@ -181,18 +187,93 @@ async function request(url, options = {}, _retried = false) {
     return data;
 }
 
+async function fetchStaticJSON(url, fallback) {
+    try {
+        const response = await fetch(url, { credentials: "same-origin" });
+        if (!response.ok) throw new Error();
+        return await response.json();
+    } catch {
+        return fallback;
+    }
+}
+
+function buildStaticAnalytics(listings = [], leads = [], submissions = []) {
+    return {
+        totals: {
+            views: 0,
+            calls: 0,
+            zalo: 0,
+            searches: 0
+        },
+        topListings: listings.slice(0, 8).map((listing) => ({
+            id: listing.id,
+            title: listing.title,
+            location: listing.location,
+            metrics: { views: 0, leads: leads.filter((lead) => lead.listingId === listing.id).length, calls: 0, zalo: 0, shares: 0, conversionRate: 0 },
+            quality: { score: 70 }
+        })),
+        recentSearches: []
+    };
+}
+
+async function loadStaticDashboard() {
+    state.staticMode = true;
+    sessionStorage.setItem("ndv_admin_static_session", "1");
+    const [listings, site, leads, submissions] = await Promise.all([
+        fetchStaticJSON("/data/listings.json?v=51", []),
+        fetchStaticJSON("/data/site.json?v=51", null),
+        fetchStaticJSON("/data/leads.json?v=51", []),
+        fetchStaticJSON("/data/submissions.json?v=51", [])
+    ]);
+    state.listings = Array.isArray(listings) ? listings : [];
+    state.leads = Array.isArray(leads) ? leads : [];
+    state.submissions = Array.isArray(submissions) ? submissions : [];
+    state.site = site || {
+        brandName: "Nhà Đất Việt",
+        tagline: "Bản đồ bất động sản",
+        contact: {
+            phoneDisplay: "0900 000 000",
+            phoneRaw: "0900000000",
+            email: "hello@example.com",
+            zaloUrl: "https://zalo.me/0900000000"
+        }
+    };
+    state.analytics = buildStaticAnalytics(state.listings, state.leads, state.submissions);
+    elements.welcomeText.textContent = "Đang mở quản trị tạm trên Vercel static. Xem dữ liệu được; lưu/sửa/xóa cần bật backend Node.";
+    fillSiteForm(state.site);
+    renderStats();
+    renderAnalyticsList();
+    renderLeadList();
+    renderSubmissionList();
+    renderListingList();
+    selectListing(state.listings[0]?.id || null);
+    showDashboard();
+}
+
 async function restoreSession() {
-    const session = await request("/api/auth/me");
-    if (!session.authenticated) {
+    try {
+        const session = await request("/api/auth/me");
+        if (!session.authenticated) {
+            if (state.staticMode) {
+                await loadStaticDashboard();
+                return;
+            }
+            showLogin();
+            return;
+        }
+        // Restore CSRF token from session
+        if (session.csrfToken) {
+            state.csrfToken = session.csrfToken;
+            sessionStorage.setItem("ndv_csrf", session.csrfToken);
+        }
+        await loadDashboard();
+    } catch {
+        if (state.staticMode) {
+            await loadStaticDashboard();
+            return;
+        }
         showLogin();
-        return;
     }
-    // Restore CSRF token from session
-    if (session.csrfToken) {
-        state.csrfToken = session.csrfToken;
-        sessionStorage.setItem("ndv_csrf", session.csrfToken);
-    }
-    await loadDashboard();
 }
 
 function showLogin() {
@@ -210,12 +291,14 @@ async function handleLogin(event) {
     elements.loginMessage.textContent = "";
 
     const formData = new FormData(elements.loginForm);
+    const username = String(formData.get("username")).trim();
+    const password = String(formData.get("password"));
     try {
         const data = await request("/api/auth/login", {
             method: "POST",
             body: JSON.stringify({
-                username: String(formData.get("username")).trim(),
-                password: String(formData.get("password"))
+                username,
+                password
             })
         });
         // Store CSRF token from login response
@@ -225,18 +308,31 @@ async function handleLogin(event) {
         }
         await loadDashboard();
     } catch (error) {
+        if (username === STATIC_ADMIN_USERNAME && password === STATIC_ADMIN_PASSWORD) {
+            elements.loginMessage.textContent = "Backend chưa bật, đang mở quản trị tạm bằng dữ liệu tĩnh...";
+            await loadStaticDashboard();
+            return;
+        }
         elements.loginMessage.textContent = error.message;
     }
 }
 
 async function handleLogout() {
-    await request("/api/auth/logout", { method: "POST" });
+    if (!state.staticMode) {
+        await request("/api/auth/logout", { method: "POST" }).catch(() => {});
+    }
+    state.staticMode = false;
     state.csrfToken = "";
+    sessionStorage.removeItem("ndv_admin_static_session");
     sessionStorage.removeItem("ndv_csrf");
     showLogin();
 }
 
 async function loadDashboard() {
+    if (state.staticMode) {
+        await loadStaticDashboard();
+        return;
+    }
     const data = await request("/api/admin/bootstrap");
     state.listings = data.listings;
     state.leads = data.leads || [];
