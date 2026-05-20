@@ -92,20 +92,23 @@ svg {
         display: none !important;
     }
 
-    .mobile-keyword-search {
+    .mobile-keyword-search,
+    .manual-place-search {
         grid-column: 1 / -1;
         height: 34px;
         border-radius: 999px;
     }
 
-    .mobile-keyword-search input {
+    .mobile-keyword-search input,
+    .manual-place-search input {
         height: 34px;
         padding: 0 10px;
         font-size: 16px;
         font-weight: 800;
     }
 
-    .mobile-keyword-search button {
+    .mobile-keyword-search button,
+    .manual-place-search button {
         min-width: 50px;
         padding: 0 10px;
         font-size: 0.68rem;
@@ -599,7 +602,8 @@ svg {
         padding: 5px;
     }
 
-    .mobile-keyword-search {
+    .mobile-keyword-search,
+    .manual-place-search {
         height: 34px;
     }
 

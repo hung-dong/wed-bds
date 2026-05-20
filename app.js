@@ -133,6 +133,8 @@ const el = {
     searchButton: document.getElementById("run-search-button"),
     mobileKeywordInput: document.getElementById("filter-keyword-mobile"),
     mobileSearchButton: document.getElementById("run-search-mobile-button"),
+    manualPlaceInput: document.getElementById("manual-place-input"),
+    manualPlaceButton: document.getElementById("manual-place-button"),
     filterType: document.getElementById("filter-type"),
     filterPrice: document.getElementById("filter-price"),
     filterArea: document.getElementById("filter-area"),
@@ -387,13 +389,15 @@ function getActiveFilterSummary() {
 function getKeywordValue() {
     const mobileValue = el.mobileKeywordInput?.value || "";
     const desktopValue = el.keywordInput?.value || "";
-    return (mobileValue || desktopValue).trim();
+    const manualValue = el.manualPlaceInput?.value || "";
+    return (manualValue || mobileValue || desktopValue).trim();
 }
 
 function setKeywordValue(value) {
     const next = String(value || "");
     if (el.keywordInput && el.keywordInput.value !== next) el.keywordInput.value = next;
     if (el.mobileKeywordInput && el.mobileKeywordInput.value !== next) el.mobileKeywordInput.value = next;
+    if (el.manualPlaceInput && el.manualPlaceInput.value !== next) el.manualPlaceInput.value = next;
 }
 
 function clearQuickAreaSelection() {
@@ -444,6 +448,7 @@ function bindEvents() {
     };
     bindKeywordInput(el.keywordInput, true);
     bindKeywordInput(el.mobileKeywordInput, true);
+    bindKeywordInput(el.manualPlaceInput, true);
     if (el.searchButton) {
         el.searchButton.addEventListener("click", () => {
             clearQuickAreaSelection();
@@ -455,6 +460,13 @@ function bindEvents() {
         el.mobileSearchButton.addEventListener("click", () => {
             clearQuickAreaSelection();
             setKeywordValue(el.mobileKeywordInput?.value || "");
+            applyFilters();
+        });
+    }
+    if (el.manualPlaceButton) {
+        el.manualPlaceButton.addEventListener("click", () => {
+            clearQuickAreaSelection();
+            setKeywordValue(el.manualPlaceInput?.value || "");
             applyFilters();
         });
     }
