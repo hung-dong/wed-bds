@@ -14,8 +14,8 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon-192.png">
-    <link rel="stylesheet" href="member.css?v=48">
-    <link rel="stylesheet" href="mobile-app.css?v=48">
+    <link rel="stylesheet" href="member.css?v=51">
+    <link rel="stylesheet" href="mobile-app.css?v=51">
 </head>
 <body>
     <main class="member-shell">
@@ -23,7 +23,6 @@
             <nav class="top-links">
                 <a href="/">Bản đồ</a>
                 <a href="/submit.html">Đăng tin mới</a>
-                <a href="/admin">Quản trị</a>
             </nav>
             <div class="header-grid">
                 <div>
@@ -47,6 +46,23 @@
         </header>
 
         <section id="member-dashboard" class="member-dashboard hidden">
+            <div class="member-account-bar">
+                <div>
+                    <span>Thành viên</span>
+                    <strong id="member-summary">Đang tải...</strong>
+                </div>
+                <div class="member-account-actions">
+                    <select id="member-status-filter" aria-label="Lọc trạng thái hồ sơ">
+                        <option value="all">Tất cả hồ sơ</option>
+                        <option value="PENDING">Chờ duyệt</option>
+                        <option value="APPROVED">Đã lên sàn</option>
+                        <option value="REJECTED">Từ chối</option>
+                    </select>
+                    <button id="member-refresh" type="button">Tải lại</button>
+                    <button id="member-clear-session" type="button">Thoát thông tin</button>
+                </div>
+            </div>
+
             <div class="kpi-grid">
                 <article>
                     <span>Tổng hồ sơ</span>
@@ -131,7 +147,7 @@
         </form>
     </template>
 
-    <script src="mobile-app.js?v=48"></script>
-    <script src="member.js?v=48"></script>
+    <script src="mobile-app.js?v=51"></script>
+    <script src="member.js?v=51"></script>
 </body>
 </html>

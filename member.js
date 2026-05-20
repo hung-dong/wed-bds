@@ -1,6 +1,8 @@
 const state = {
     phone: "",
     code: "",
+    member: null,
+    statusFilter: "all",
     submissions: [],
     leads: []
 };
@@ -19,7 +21,11 @@ const el = {
     kpiLeads: document.getElementById("kpi-leads"),
     kpiViews: document.getElementById("kpi-views"),
     kpiContact: document.getElementById("kpi-contact"),
-    editTemplate: document.getElementById("edit-template")
+    editTemplate: document.getElementById("edit-template"),
+    summary: document.getElementById("member-summary"),
+    statusFilter: document.getElementById("member-status-filter"),
+    refresh: document.getElementById("member-refresh"),
+    clearSession: document.getElementById("member-clear-session")
 };
 
 const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=600&q=80";
@@ -30,6 +36,10 @@ function escapeHTML(value) {
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;");
+}
+
+function escapeAttr(value) {
+    return escapeHTML(value).replace(/'/g, "&#39;");
 }
 
 function statusLabel(status) {
@@ -71,12 +81,19 @@ async function loadMember() {
     state.phone = el.phone.value.trim();
     state.code = el.code.value.trim();
     el.message.className = "";
+    if (!state.phone && !state.code) {
+        el.dashboard.classList.add("hidden");
+        el.message.className = "error";
+        el.message.textContent = "Anh nhập số điện thoại đã đăng tin hoặc mã hồ sơ để vào khu thành viên.";
+        return;
+    }
     el.message.textContent = "Đang tải dữ liệu thành viên...";
 
     const params = new URLSearchParams();
     if (state.phone) params.set("phone", state.phone);
     if (state.code) params.set("code", state.code);
     const data = await request(`/api/member/submissions?${params.toString()}`);
+    state.member = data.member || null;
     state.submissions = data.submissions || [];
     state.leads = data.leads || [];
     localStorage.setItem("ndv_member_phone", state.phone);
@@ -102,18 +119,33 @@ function renderDashboard() {
     }, { views: 0, contact: 0 });
     if (el.kpiViews) el.kpiViews.textContent = totals.views;
     if (el.kpiContact) el.kpiContact.textContent = totals.contact;
+    renderMemberSummary();
     renderSubmissions();
     renderLeads();
 }
 
+function renderMemberSummary() {
+    if (!el.summary) return;
+    const phone = state.phone || state.member?.phone || "Chưa có số";
+    const code = state.code ? ` • Mã ${state.code}` : "";
+    el.summary.textContent = `${phone}${code} • ${state.submissions.length} hồ sơ • ${state.leads.length} khách hỏi tin`;
+}
+
 function renderSubmissions() {
     el.submissions.innerHTML = "";
+    const visibleSubmissions = state.statusFilter === "all"
+        ? state.submissions
+        : state.submissions.filter((item) => item.status === state.statusFilter);
     if (!state.submissions.length) {
         el.submissions.innerHTML = '<p>Chưa có tin nào. Anh có thể bấm “Đăng thêm tin” để gửi hồ sơ mới.</p>';
         return;
     }
+    if (!visibleSubmissions.length) {
+        el.submissions.innerHTML = '<p>Không có hồ sơ nào trong trạng thái đang lọc.</p>';
+        return;
+    }
 
-    state.submissions.forEach((submission) => {
+    visibleSubmissions.forEach((submission) => {
         const listing = submission.listing || {};
         const cover = listing.image || listing.images?.[0] || FALLBACK_IMAGE;
         const created = submission.createdAt ? new Date(submission.createdAt).toLocaleString("vi-VN") : "";
@@ -128,7 +160,7 @@ function renderSubmissions() {
         card.className = "member-card";
         card.dataset.submissionId = submission.id;
         card.innerHTML = `
-            <img class="member-thumb" src="${cover}" alt="">
+            <img class="member-thumb" src="${escapeAttr(cover)}" alt="${escapeAttr(listing.title || "Tin nhà đất")}">
             <div>
                 <div class="card-top">
                     <span class="status ${statusClass(submission.status)}">${statusLabel(submission.status)}</span>
@@ -154,6 +186,29 @@ function renderSubmissions() {
         `;
         const editButton = card.querySelector('[data-action="edit"]');
         if (editButton) editButton.addEventListener("click", () => showEditForm(card, submission));
+        const actions = card.querySelector(".card-actions");
+        if (actions) {
+            const copyButton = document.createElement("button");
+            copyButton.type = "button";
+            copyButton.textContent = "Sao chép mã hồ sơ";
+            copyButton.addEventListener("click", async () => {
+                const code = submission.trackingCode || submission.id;
+                try {
+                    await navigator.clipboard.writeText(code);
+                    copyButton.textContent = "Đã sao chép";
+                } catch {
+                    window.prompt("Mã hồ sơ", code);
+                }
+            });
+            actions.appendChild(copyButton);
+
+            if (submission.contact?.phone) {
+                const phoneLink = document.createElement("a");
+                phoneLink.href = `tel:${submission.contact.phone}`;
+                phoneLink.textContent = "Gọi người đăng";
+                actions.appendChild(phoneLink);
+            }
+        }
         el.submissions.appendChild(card);
     });
 }
@@ -316,6 +371,36 @@ async function saveSubmissionEdit(event, submission, form) {
 function init() {
     el.phone.value = localStorage.getItem("ndv_member_phone") || "";
     el.code.value = localStorage.getItem("ndv_member_code") || "";
+    if (el.statusFilter) {
+        el.statusFilter.addEventListener("change", () => {
+            state.statusFilter = el.statusFilter.value;
+            renderSubmissions();
+        });
+    }
+    if (el.refresh) {
+        el.refresh.addEventListener("click", () => {
+            loadMember().catch((error) => {
+                el.message.className = "error";
+                el.message.textContent = error.message;
+            });
+        });
+    }
+    if (el.clearSession) {
+        el.clearSession.addEventListener("click", () => {
+            localStorage.removeItem("ndv_member_phone");
+            localStorage.removeItem("ndv_member_code");
+            state.phone = "";
+            state.code = "";
+            state.member = null;
+            state.submissions = [];
+            state.leads = [];
+            el.phone.value = "";
+            el.code.value = "";
+            el.dashboard.classList.add("hidden");
+            el.message.className = "";
+            el.message.textContent = "Đã thoát thông tin thành viên trên máy này.";
+        });
+    }
     el.form.addEventListener("submit", async (event) => {
         event.preventDefault();
         try {
