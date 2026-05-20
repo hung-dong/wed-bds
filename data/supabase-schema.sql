@@ -77,6 +77,8 @@ create table if not exists public.road_prices (
   updated_at timestamptz not null default now()
 );
 
+create unique index if not exists road_prices_name_area_uidx on public.road_prices (name, area);
+
 alter table public.listings enable row level security;
 alter table public.submissions enable row level security;
 alter table public.leads enable row level security;

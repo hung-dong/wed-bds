@@ -6,6 +6,8 @@
   "scripts": {
     "build": "node -e \"console.log('Static site ready')\"",
     "vercel-build": "node -e \"console.log('Static site ready')\"",
-    "start": "node server.js"
+    "start": "node server.js",
+    "supabase:seed": "node scripts/generate-supabase-seed.mjs",
+    "supabase:import": "node scripts/import-supabase.mjs"
   }
 }

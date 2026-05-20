@@ -22,6 +22,7 @@ const APP_SHELL = [
   "/data/road-prices.csv",
   "/data/supabase-config.json",
   "/data/supabase-schema.sql",
+  "/data/supabase-seed.sql",
   "/data/gia-lai-units.json",
   "/manifest.webmanifest",
   "/icon.svg",
