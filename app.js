@@ -5,6 +5,25 @@
 const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800&q=80";
 const LIST_PAGE_SIZE = 40;
 const VIEWED_LISTINGS_KEY = "ndvViewedListingIds";
+const DATA_CACHE_PREFIX = "ndvDataCache:";
+const DATA_CACHE_TTL = 5 * 60 * 1000;
+const ROAD_PRICE_TABLE = [
+    { keys: ["le duan"], price: 30 },
+    { keys: ["truong chinh"], price: 28 },
+    { keys: ["vo nguyen giap"], price: 26 },
+    { keys: ["pham van dong"], price: 24 },
+    { keys: ["hung vuong"], price: 23 },
+    { keys: ["nguyen tat thanh"], price: 22 },
+    { keys: ["ton duc thang"], price: 20 },
+    { keys: ["bui du"], price: 18 },
+    { keys: ["bien ho"], price: 15 },
+    { keys: ["ia grai"], price: 9 },
+    { keys: ["dak doa"], price: 8 },
+    { keys: ["an khe"], price: 10 },
+    { keys: ["quy nhon"], price: 38 },
+    { keys: ["phu cat"], price: 16 }
+];
+const BLOCKED_COMMENT_WORDS = ["chui", "lua dao", "mat day", "khon nan", "do lua"];
 
 const state = {
     listings: [],
@@ -202,22 +221,20 @@ async function loadData() {
             const data = await res.json();
             state.listings = data.listings || [];
             state.site = data.site || null;
+            setCachedJSON("/api/listings", data);
         } else {
             throw new Error();
         }
     } catch {
         try {
-            const res = await fetch("/data/listings.json?v=48", { credentials: "same-origin" });
-            if (!res.ok) throw new Error();
-            const listings = await res.json();
+            const listings = await fetchJSONWithCache("/data/listings.json?v=49", []);
             state.listings = Array.isArray(listings) ? listings : [];
         } catch {
             state.listings = DUMMY_LISTINGS;
         }
 
         try {
-            const res = await fetch("/data/site.json?v=48", { credentials: "same-origin" });
-            state.site = res.ok ? await res.json() : null;
+            state.site = await fetchJSONWithCache("/data/site.json?v=49", null);
         } catch {
             state.site = null;
         }
@@ -239,11 +256,41 @@ async function loadData() {
     setTimeout(() => state.map && state.map.invalidateSize(), 250);
 }
 
-async function loadAdminUnits() {
+async function fetchJSONWithCache(url, fallback = null, ttl = DATA_CACHE_TTL) {
+    const cached = getCachedJSON(url, ttl);
     try {
-        const res = await fetch("/data/gia-lai-units.json?v=2", { credentials: "same-origin" });
+        const res = await fetch(url, { credentials: "same-origin" });
         if (!res.ok) throw new Error();
         const data = await res.json();
+        setCachedJSON(url, data);
+        return data;
+    } catch (error) {
+        if (cached !== null) return cached;
+        return fallback;
+    }
+}
+
+function getCachedJSON(key, ttl = DATA_CACHE_TTL) {
+    try {
+        const raw = localStorage.getItem(DATA_CACHE_PREFIX + key);
+        if (!raw) return null;
+        const cached = JSON.parse(raw);
+        if (!cached || Date.now() - Number(cached.time || 0) > ttl) return null;
+        return cached.data;
+    } catch {
+        return null;
+    }
+}
+
+function setCachedJSON(key, data) {
+    try {
+        localStorage.setItem(DATA_CACHE_PREFIX + key, JSON.stringify({ time: Date.now(), data }));
+    } catch (error) {}
+}
+
+async function loadAdminUnits() {
+    try {
+        const data = await fetchJSONWithCache("/data/gia-lai-units.json?v=3", { units: [] });
         state.adminUnits = Array.isArray(data.units) ? data.units : [];
     } catch {
         state.adminUnits = [];
@@ -855,7 +902,32 @@ function scoreListingForSearch(listing, normalizedKeyword, adminUnit) {
         }
     }
 
+    score += getBehaviorRecommendationScore(listing);
     return score;
+}
+
+function getBehaviorRecommendationScore(listing) {
+    if (!state.viewedListingIds.length) return 0;
+    const viewed = state.viewedListingIds
+        .slice(-12)
+        .map((id) => state.listings.find((item) => String(item.id) === String(id)))
+        .filter(Boolean);
+    if (!viewed.length) return 0;
+
+    return viewed.reduce((score, viewedItem) => {
+        if (String(viewedItem.id) === String(listing.id)) return score + 4;
+        if (viewedItem.type && viewedItem.type === listing.type) score += 8;
+        const viewedPrice = Number(viewedItem.price || 0);
+        const price = Number(listing.price || 0);
+        if (viewedPrice > 0 && price > 0 && Math.abs(price - viewedPrice) / viewedPrice <= 0.25) score += 10;
+        const viewedUnitPrice = pricePerM2Number(viewedItem);
+        const unitPrice = pricePerM2Number(listing);
+        if (viewedUnitPrice > 0 && unitPrice > 0 && Math.abs(unitPrice - viewedUnitPrice) / viewedUnitPrice <= 0.2) score += 9;
+        const viewedText = normalizeSearchText(`${viewedItem.location || ""} ${viewedItem.adminUnit || ""}`);
+        const text = normalizeSearchText(`${listing.location || ""} ${listing.adminUnit || ""}`);
+        if (viewedText && text && viewedText.split(" ").some((token) => token.length > 3 && text.includes(token))) score += 5;
+        return score;
+    }, 0);
 }
 
 function updateSmartSearchHint() {
@@ -988,6 +1060,9 @@ function sortFilteredListings() {
             return Number.isNaN(dateDiff) ? 0 : dateDiff;
         });
     }
+    if (sortBy === "investment") {
+        state.filteredListings.sort((a, b) => getInvestmentScore(b) - getInvestmentScore(a));
+    }
     if (sortBy === "price-asc") {
         state.filteredListings.sort((a, b) => Number(a.price || 0) - Number(b.price || 0));
     }
@@ -997,6 +1072,17 @@ function sortFilteredListings() {
     if (sortBy === "area-desc") {
         state.filteredListings.sort((a, b) => Number(b.area || 0) - Number(a.area || 0));
     }
+}
+
+function getInvestmentScore(listing) {
+    const asking = Number(listing.price || 0);
+    const area = Number(listing.area || 0);
+    const valuation = getListingValuation(listing);
+    const pricePerM2 = asking > 0 && area > 0 ? (asking * 1000) / area : 9999;
+    const discount = asking > 0 && valuation > 0 ? ((valuation - asking) / asking) * 100 : 0;
+    const roadWidth = Number(listing.roadWidth || 0);
+    const legalBonus = normalizeSearchText(listing.legal || "").includes("so") ? 12 : 0;
+    return discount * 2 + Math.min(roadWidth, 16) + legalBonus - pricePerM2 / 5;
 }
 
 function checkPrice(price, range) {
@@ -1024,11 +1110,16 @@ function formatPrice(price) {
     return price % 1 === 0 ? price : price.toFixed(1);
 }
 
+function pricePerM2Number(listing) {
+    const price = Number(listing?.price || 0);
+    const area = Number(listing?.area || 0);
+    return price > 0 && area > 0 ? (price * 1000) / area : 0;
+}
+
 function formatPricePerM2(listing) {
-    const price = Number(listing.price || 0);
-    const area = Number(listing.area || 0);
-    if (!price || !area) return "Chưa rõ giá/m2";
-    const millionPerM2 = Math.round((price * 1000) / area);
+    const unitPrice = pricePerM2Number(listing);
+    if (!unitPrice) return "Chưa rõ giá/m2";
+    const millionPerM2 = Math.round(unitPrice);
     return `${millionPerM2.toLocaleString("vi-VN")} triệu/m2`;
 }
 
@@ -1059,6 +1150,30 @@ function safeMediaUrl(value) {
     } catch {
         return "";
     }
+}
+
+function optimizedImageUrl(value, width = 900, quality = 72) {
+    const url = safeMediaUrl(value);
+    if (!url || url.startsWith("data:image/")) return url;
+    try {
+        const parsed = new URL(url, window.location.origin);
+        if (parsed.hostname.includes("images.unsplash.com")) {
+            parsed.searchParams.set("auto", "format");
+            parsed.searchParams.set("fit", "crop");
+            parsed.searchParams.set("w", String(width));
+            parsed.searchParams.set("q", String(quality));
+            return parsed.href;
+        }
+        return parsed.href;
+    } catch {
+        return url;
+    }
+}
+
+function imageTag(src, className = "", alt = "", width = 900) {
+    const optimized = optimizedImageUrl(src, width) || FALLBACK_IMAGE;
+    const cls = className ? ` class="${escapeAttr(className)}"` : "";
+    return `<img src="${escapeAttr(optimized)}"${cls} alt="${escapeAttr(alt)}" loading="lazy" decoding="async">`;
 }
 
 function isUploadedVideoUrl(value) {
@@ -1093,7 +1208,7 @@ function getListingImageUrls(listing) {
     const rawImages = Array.isArray(listing?.images) && listing.images.length
         ? listing.images
         : [listing?.image];
-    const images = rawImages.map(safeMediaUrl).filter(Boolean);
+    const images = rawImages.map((item) => optimizedImageUrl(item, 1200)).filter(Boolean);
     return images.length ? images : [FALLBACK_IMAGE];
 }
 
@@ -1335,7 +1450,7 @@ function showMobileListingPreview(listing, coverImg, contact) {
         <article class="mobile-preview-card">
             <button class="mobile-preview-close" type="button" onclick="window.closeMobileListingPreview()" aria-label="Đóng">×</button>
             <div class="mobile-preview-media">
-                <img class="mobile-preview-img" id="mobilePreviewImg-${listing.id}" src="${firstImage}" alt="${escapeAttr(listing.title)}">
+                <img class="mobile-preview-img" id="mobilePreviewImg-${listing.id}" src="${escapeAttr(firstImage)}" alt="${escapeAttr(listing.title)}" loading="lazy" decoding="async">
                 <span class="mobile-preview-counter" id="mobilePreviewCounter-${listing.id}">1/${imageCount}</span>
                 ${imageCount > 1 ? `
                     <button class="mobile-preview-slide prev" type="button" onclick="event.stopPropagation(); window.slideMobilePreviewImg('${listing.id}', -1)" aria-label="Ảnh trước">‹</button>
@@ -1376,6 +1491,51 @@ function getContact() {
     };
 }
 
+function distanceMeters(a, b) {
+    if (!a || !b) return Number.POSITIVE_INFINITY;
+    const toRad = (value) => Number(value) * Math.PI / 180;
+    const earth = 6371000;
+    const dLat = toRad(b[0] - a[0]);
+    const dLng = toRad(b[1] - a[1]);
+    const lat1 = toRad(a[0]);
+    const lat2 = toRad(b[0]);
+    const h = Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2;
+    return 2 * earth * Math.atan2(Math.sqrt(h), Math.sqrt(1 - h));
+}
+
+function getRoadBasePrice(listing) {
+    const text = normalizeSearchText(`${listing.title || ""} ${listing.location || ""} ${listing.address || ""}`);
+    const matchedRoad = ROAD_PRICE_TABLE.find((road) => road.keys.some((key) => text.includes(key)));
+    return matchedRoad?.price || null;
+}
+
+function getNearbyComparablePrice(listing) {
+    const coords = getListingCoordinates(listing);
+    const area = Number(listing.area || 0);
+    if (!coords || !area) return null;
+
+    const comparables = state.listings
+        .filter((item) => String(item.id) !== String(listing.id))
+        .map((item) => {
+            const itemCoords = getListingCoordinates(item);
+            const itemArea = Number(item.area || 0);
+            const itemPrice = Number(item.price || 0);
+            if (!itemCoords || !itemArea || !itemPrice) return null;
+            const meters = distanceMeters(coords, itemCoords);
+            if (meters > 500) return null;
+            return {
+                millionPerM2: (itemPrice * 1000) / itemArea,
+                weight: Math.max(0.2, 1 - meters / 500)
+            };
+        })
+        .filter(Boolean);
+
+    if (!comparables.length) return null;
+    const weighted = comparables.reduce((sum, item) => sum + item.millionPerM2 * item.weight, 0);
+    const totalWeight = comparables.reduce((sum, item) => sum + item.weight, 0);
+    return totalWeight > 0 ? weighted / totalWeight : null;
+}
+
 function getListingValuation(listing) {
     if (Number(listing.aiValuation) > 0) {
         return Number(listing.aiValuation);
@@ -1384,17 +1544,24 @@ function getListingValuation(listing) {
     if (!area) return Number(listing.price || 0);
 
     const text = normalizeSearchText(`${listing.title || ""} ${listing.location || ""} ${listing.type || ""}`);
-    let baseMillionPerM2 = 18;
-    if (text.includes("quy nhon") || text.includes("bien") || text.includes("phu cat")) baseMillionPerM2 = 32;
-    if (text.includes("pleiku") || text.includes("bien ho") || text.includes("hoi phu")) baseMillionPerM2 = 22;
-    if (text.includes("an khe") || text.includes("ayun") || text.includes("chu se") || text.includes("dak doa")) baseMillionPerM2 = 12;
+    const roadBasePrice = getRoadBasePrice(listing);
+    let baseMillionPerM2 = roadBasePrice || 18;
+    if (!roadBasePrice && (text.includes("quy nhon") || text.includes("phu cat"))) baseMillionPerM2 = 32;
+    if (!roadBasePrice && (text.includes("pleiku") || text.includes("bien ho") || text.includes("hoi phu"))) baseMillionPerM2 = 22;
+    if (!roadBasePrice && (text.includes("an khe") || text.includes("ayun") || text.includes("chu se") || text.includes("dak doa"))) baseMillionPerM2 = 12;
+    const nearbyPrice = getNearbyComparablePrice(listing);
+    if (nearbyPrice) {
+        baseMillionPerM2 = baseMillionPerM2 * 0.55 + nearbyPrice * 0.45;
+    }
     if (text.includes("nha pho")) baseMillionPerM2 *= 1.18;
     if (text.includes("biet thu") || text.includes("nha vuon")) baseMillionPerM2 *= 1.1;
 
     const roadWidth = Number(listing.roadWidth || 0);
+    const frontage = Number(listing.frontage || 0);
     const positionFactor = roadWidth >= 12 ? 1.18 : roadWidth >= 8 ? 1.1 : roadWidth >= 5 ? 1.03 : 0.94;
+    const frontageFactor = frontage >= 8 ? 1.08 : frontage >= 5 ? 1.03 : frontage > 0 ? 0.97 : 1;
     const legalFactor = normalizeSearchText(listing.legal || "").includes("so") ? 1.05 : 0.96;
-    const estimate = (area * baseMillionPerM2 * positionFactor * legalFactor) / 1000;
+    const estimate = (area * baseMillionPerM2 * positionFactor * frontageFactor * legalFactor) / 1000;
     return Number(estimate.toFixed(1));
 }
 
@@ -1624,7 +1791,7 @@ function renderMapMarkers({ fitBounds = false, animate = true } = {}) {
         
         // Build Thumbs HTML Row
         const hasImages = listing.images && listing.images.length > 0;
-        const coverImg = safeMediaUrl(hasImages ? listing.images[0] : listing.image) || FALLBACK_IMAGE;
+        const coverImg = optimizedImageUrl(hasImages ? listing.images[0] : listing.image, 900) || FALLBACK_IMAGE;
         const listingVideo = safeVideoUrl(listing.video);
         
         // Accumulate only the visible sidebar batch; markers still render for all filtered listings.
@@ -1635,7 +1802,7 @@ function renderMapMarkers({ fitBounds = false, animate = true } = {}) {
             listHTML += `
                 <div class="list-card ${isSuggested ? 'suggested' : 'exact'} ${isActive ? 'is-active' : ''}" data-listing-id="${listing.id}" onmouseover="window.highlightMarker('${listing.id}')" onmouseout="window.unhighlightMarker('${listing.id}')" onclick="window.focusListingOnMap('${listing.id}')">
                     <div class="list-card-img-wrap">
-                        <img src="${escapeAttr(coverImg)}" class="list-card-img" alt="">
+                        ${imageTag(coverImg, "list-card-img", listing.title, 520)}
                         <span class="list-card-badge">${escapeHTML(listing.type)}</span>
                         <button class="list-card-like ${isLiked ? 'active' : ''}" onclick="event.stopPropagation(); window.toggleLike(this, '${listing.id}')">❤️</button>
                     </div>
@@ -1670,8 +1837,10 @@ function renderMapMarkers({ fitBounds = false, animate = true } = {}) {
         if (hasImages) {
             listing.images.forEach((img, idx) => {
                 const active = idx === 0 ? 'active' : '';
-                thumbsHtml += `<div class="thumb-item ${active}" id="thumb-${listing.id}-${idx}" onclick="window.selectMedia('${listing.id}', '${idx}', '${img}', 'img')">
-                                   <img src="${img}">
+                const thumbSrc = optimizedImageUrl(img, 180) || FALLBACK_IMAGE;
+                const fullSrc = optimizedImageUrl(img, 1200) || thumbSrc;
+                thumbsHtml += `<div class="thumb-item ${active}" id="thumb-${listing.id}-${idx}" onclick="window.selectMedia('${listing.id}', '${idx}', '${escapeAttr(fullSrc)}', 'img')">
+                                   ${imageTag(thumbSrc, "", listing.title, 180)}
                                </div>`;
             });
         }
@@ -1686,7 +1855,7 @@ function renderMapMarkers({ fitBounds = false, animate = true } = {}) {
                 <button class="btn-expand" onclick="window.openFullscreenModal('${listing.id}')">⛶ Tràn màn hình</button>
                 <div class="popup-gallery-wrap">
                     <div class="popup-main-media">
-                        <img id="mainImg-${listing.id}" src="${coverImg}" class="media-item active" />
+                        <img id="mainImg-${listing.id}" src="${escapeAttr(coverImg)}" class="media-item active" alt="${escapeAttr(listing.title)}" loading="lazy" decoding="async" />
                         <iframe id="mainVid-${listing.id}" src="" class="media-item" allow="fullscreen"></iframe>
                         <video id="mainVideoFile-${listing.id}" src="" class="media-item" controls playsinline></video>
                         <span class="map-popup-badge">${listing.type || "Khác"}</span>
@@ -1828,7 +1997,7 @@ window.focusListingOnMap = function(id) {
             const listing = state.listings.find((item) => String(item.id) === String(id));
             if (!listing) return;
             const hasImages = listing.images && listing.images.length > 0;
-            const coverImg = safeMediaUrl(hasImages ? listing.images[0] : listing.image) || FALLBACK_IMAGE;
+            const coverImg = optimizedImageUrl(hasImages ? listing.images[0] : listing.image, 900) || FALLBACK_IMAGE;
             showMobileListingPreview(listing, coverImg, getContact());
         } else if (typeof markerData.layer.openPopup === "function") {
             markerData.layer.openPopup();
@@ -1993,14 +2162,19 @@ window.postComment = function() {
     const input = document.getElementById("new-comment");
     const text = input.value.trim();
     if (!text) return;
+    const normalized = normalizeSearchText(text);
+    if (BLOCKED_COMMENT_WORDS.some((word) => normalized.includes(normalizeSearchText(word)))) {
+        showSmartHint("Bình luận có từ ngữ không phù hợp, anh vui lòng viết lại lịch sự hơn.");
+        return;
+    }
     
     const list = document.getElementById("comments-list");
     const html = `
         <div class="comment-item" style="animation: modalPop 0.3s ease;">
             <div class="c-avatar">K</div>
             <div class="c-body">
-                <div class="c-name">Khách hàng <span class="c-time">Vừa xong</span></div>
-                <div class="c-text">${text}</div>
+                <div class="c-name">Khách hàng <span class="c-time">Chờ duyệt</span></div>
+                <div class="c-text">${escapeHTML(text)}</div>
             </div>
         </div>
     `;
@@ -2013,6 +2187,7 @@ window.postComment = function() {
         let count = parseInt((h3.textContent.match(/\d+/) || [2])[0]) + 1;
         h3.textContent = `💬 Bình luận đánh giá (${count})`;
     }
+    showSmartHint("Bình luận đã lưu ở trạng thái chờ duyệt để tránh spam và phá giá tin đăng.");
 };
 
 function renderZoning() {
@@ -2291,10 +2466,10 @@ window.openFullscreenModal = function(id) {
     
     if (listing.images && listing.images.length > 0) {
         listing.images.forEach(img => {
-            galleryEl.innerHTML += `<img src="${img}" alt="Gallery Image">`;
+            galleryEl.innerHTML += imageTag(img, "", listing.title || "Ảnh nhà đất", 1400);
         });
     } else {
-        galleryEl.innerHTML += `<img src="${FALLBACK_IMAGE}" alt="Gallery Image">`;
+        galleryEl.innerHTML += imageTag(FALLBACK_IMAGE, "", "Ảnh nhà đất", 1200);
     }
     
     if (listing.video) {

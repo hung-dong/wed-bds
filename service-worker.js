@@ -1,4 +1,4 @@
-const CACHE_NAME = "nha-dat-viet-v48";
+const CACHE_NAME = "nha-dat-viet-v49";
 const APP_SHELL = [
   "/",
   "/index.html",
@@ -15,6 +15,8 @@ const APP_SHELL = [
   "/member.html",
   "/member.css",
   "/member.js",
+  "/data/listings.json",
+  "/data/site.json",
   "/data/gia-lai-units.json",
   "/manifest.webmanifest",
   "/icon.svg",
@@ -52,7 +54,33 @@ self.addEventListener("fetch", (event) => {
   }
 
   if (url.pathname.startsWith("/uploads/")) {
-    event.respondWith(fetch(event.request));
+    event.respondWith(
+      caches.open(CACHE_NAME).then((cache) =>
+        cache.match(event.request).then((cached) => {
+          const network = fetch(event.request)
+            .then((response) => {
+              if (response.ok) cache.put(event.request, response.clone());
+              return response;
+            })
+            .catch(() => cached);
+          return cached || network;
+        })
+      )
+    );
+    return;
+  }
+
+  if (url.pathname.startsWith("/data/")) {
+    event.respondWith(
+      caches.open(CACHE_NAME).then((cache) =>
+        fetch(event.request)
+          .then((response) => {
+            if (response.ok) cache.put(event.request, response.clone());
+            return response;
+          })
+          .catch(() => cache.match(event.request))
+      )
+    );
     return;
   }
 
