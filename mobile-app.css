@@ -281,7 +281,7 @@ svg {
 
     .modal-close-btn {
         position: absolute;
-        top: calc(10px + var(--safe-top));
+        top: 8px;
         right: max(10px, var(--safe-right));
         z-index: 10050;
         min-height: 38px;
@@ -291,7 +291,7 @@ svg {
     }
 
     .modal-gallery-actions {
-        top: calc(10px + var(--safe-top));
+        top: 8px;
         left: max(10px, var(--safe-left));
         right: calc(74px + var(--safe-right));
         z-index: 90;
