@@ -1,2 +1,4 @@
 server.log
 node_modules/
+.playwright-cli/
+output/
