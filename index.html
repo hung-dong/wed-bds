@@ -48,7 +48,7 @@
             </div>
             
             <div class="search-container">
-                <input type="text" id="filter-keyword" placeholder="Nhập tên đường, địa danh..." class="search-input">
+                <input type="text" id="filter-keyword" placeholder="Nhập tên đường, địa danh..." class="search-input" list="search-suggestions">
                 <button class="search-button" id="run-search-button" type="button" aria-label="Tìm kiếm trên bản đồ">
                     <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 </button>
@@ -81,7 +81,7 @@
             </button>
             <div class="filter-divider"></div>
             <div class="mobile-keyword-search" role="search">
-                <input id="filter-keyword-mobile" type="search" placeholder="Nhập từ khóa, tên đường, khu vực..." autocomplete="off" inputmode="search">
+                <input id="filter-keyword-mobile" type="search" placeholder="Nhập từ khóa, tên đường, khu vực..." autocomplete="off" inputmode="search" list="search-suggestions">
                 <button id="run-search-mobile-button" type="button">Tìm</button>
             </div>
             <select class="filter-btn admin-unit-select" id="filter-admin-unit">
@@ -96,10 +96,12 @@
             </select>
             <select class="filter-btn" id="filter-price">
                 <option value="all">Mức giá</option>
-                <option value="under-5">Dưới 5 tỷ</option>
+                <option value="under-1">Dưới 1 tỷ</option>
+                <option value="1-2">1 - 2 tỷ</option>
+                <option value="2-3">2 - 3 tỷ</option>
+                <option value="3-5">3 - 5 tỷ</option>
                 <option value="5-10">5 - 10 tỷ</option>
-                <option value="10-20">10-20 tỷ</option>
-                <option value="20-plus">Trên 20 tỷ</option>
+                <option value="10-plus">Trên 10 tỷ</option>
             </select>
             <select class="filter-btn" id="filter-area">
                 <option value="all">Diện tích</option>
@@ -164,6 +166,7 @@
     <div id="empty-state" class="empty-state-toast hidden">
         Không tìm thấy khu vực khớp với tìm kiếm.
     </div>
+    <datalist id="search-suggestions"></datalist>
 
     <!-- FULLSCREEN DETAIL MODAL (GLASSMORPHISM) -->
     <div id="fullscreen-modal" class="fullscreen-modal hidden">
@@ -280,7 +283,7 @@
                     <div class="esg-box">
                         <h3>Môi trường Xung quanh (Hyper-Local)</h3>
                         <div class="esg-grid">
-                            <div class="esg-item"><span class="e-icon">🚶</span> <span id="modal-walk-score" class="e-text"><strong>Walk Score: 95/100</strong> (Thiên đường đi bộ)</span></div>
+                            <div class="esg-item"><span class="e-icon">📍</span> <span id="modal-walk-score" class="e-text"><strong>Khoảng cách tiện ích</strong> Đang tính...</span></div>
                             <div class="esg-item"><span class="e-icon">🎓</span> <span class="e-text">Trường học các cấp bán kính 1km</span></div>
                             <div class="esg-item"><span class="e-icon">🌳</span> <span class="e-text">Chỉ số không khí (AQI): Mức Tốt</span></div>
                         </div>

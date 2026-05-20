@@ -231,8 +231,10 @@ async function loadData() {
     applySiteSettings();
     updateStructuredData();
     populateFilters();
+    populateSearchSuggestions();
     renderMapMarkers({ fitBounds: true, animate: false });
     openListingFromHash();
+    setTimeout(() => state.map && state.map.invalidateSize(), 250);
 }
 
 async function loadAdminUnits() {
@@ -313,6 +315,31 @@ function populateFilters() {
     el.filterType.value = types.includes(selected) ? selected : "all";
     populateAdminUnits();
     syncPrimaryFilterState();
+}
+
+function populateSearchSuggestions() {
+    const datalist = document.getElementById("search-suggestions");
+    if (!datalist) return;
+
+    const commonRoads = [
+        "Trường Chinh", "Võ Nguyên Giáp", "Lê Duẩn", "Phạm Văn Đồng", "Nguyễn Tất Thành",
+        "Hùng Vương", "Cách Mạng Tháng Tám", "Nguyễn Văn Cừ", "Tôn Đức Thắng",
+        "Bùi Dự", "Biển Hồ", "Ia Grai", "Đak Đoa", "Chư Sê", "Quy Nhơn", "An Khê"
+    ];
+    const fromListings = state.listings.flatMap((listing) => [
+        listing.location,
+        listing.address,
+        listing.title,
+        listing.type
+    ]);
+    const fromUnits = state.adminUnits.flatMap((unit) => [unit.label, unit.name]);
+    const suggestions = [...new Set([...commonRoads, ...fromUnits, ...fromListings]
+        .map((item) => String(item || "").trim())
+        .filter((item) => item.length >= 3))]
+        .sort((a, b) => a.localeCompare(b, "vi"))
+        .slice(0, 160);
+
+    datalist.innerHTML = suggestions.map((item) => `<option value="${escapeAttr(item)}"></option>`).join("");
 }
 
 function populateAdminUnits() {
@@ -567,25 +594,14 @@ function bindEvents() {
     
     if (tabStreetview) {
         tabStreetview.addEventListener("click", () => {
-            activateGalleryTab(tabStreetview, modalStreetview);
-            // Load Google Street View based on listing coordinates
             const listing = state.listings.find(l => l.id === state.currentListingId);
-            if (listing && iframeStreetview) {
-                const coords = getListingCoordinates(listing);
-                if (coords) {
-                    const [lat, lng] = coords;
-                    // Use Google Maps Embed with Street View layer
-                    const svUrl = `https://maps.google.com/maps?layer=c&cbll=${lat},${lng}&cbp=11,0,0,0,0&output=svembed&z=18`;
-                    if (iframeStreetview.src !== svUrl) {
-                        iframeStreetview.src = svUrl;
-                    }
-                    // Update "Open in Google Maps" link
-                    const openLink = document.getElementById("streetview-open-google");
-                    if (openLink) {
-                        openLink.href = `https://www.google.com/maps/@${lat},${lng},3a,75y,0h,90t/data=!3m6!1e1!3m4!1s!2e0!7i16384!8i8192`;
-                    }
-                }
+            if (!listing || !hasStreetViewCandidate(listing)) {
+                activateGalleryTab(tabPhotos, modalGallery);
+                showSmartHint("Khu vực này chưa có dữ liệu 360° ổn định, đã chuyển về ảnh thường.");
+                return;
             }
+            activateGalleryTab(tabStreetview, modalStreetview);
+            loadStreetView(listing);
         });
     }
     
@@ -622,8 +638,8 @@ function bindEvents() {
             irLabel.textContent = parseFloat(irSlider.value).toFixed(1) + "%/năm";
             
             if (bankSelector) {
-                let match = Array.from(bankSelector.options).find(opt => opt.value === irSlider.value);
-                if (match) bankSelector.value = irSlider.value;
+                let match = Array.from(bankSelector.options).find(opt => Number(opt.value) === Number(irSlider.value));
+                if (match) bankSelector.value = match.value;
                 else bankSelector.value = "9"; // Custom
             }
             
@@ -636,10 +652,8 @@ function bindEvents() {
     
     if (bankSelector && irSlider) {
         bankSelector.addEventListener("change", (e) => {
-            if (e.target.value !== "9") {
-                irSlider.value = e.target.value;
-                updateMortgage();
-            }
+            irSlider.value = e.target.value;
+            updateMortgage();
         });
     }
     
@@ -868,6 +882,16 @@ function updateSmartSearchHint() {
     el.smartSearchHint.classList.remove("hidden");
 }
 
+function showSmartHint(message, timeout = 4200) {
+    if (!el.smartSearchHint) return;
+    el.smartSearchHint.textContent = message;
+    el.smartSearchHint.classList.remove("hidden");
+    window.clearTimeout(showSmartHint._timer);
+    showSmartHint._timer = window.setTimeout(() => {
+        updateSmartSearchHint();
+    }, timeout);
+}
+
 function applyFilters() {
     const typ = el.filterType.value;
     const prc = el.filterPrice.value;
@@ -964,9 +988,14 @@ function sortFilteredListings() {
 }
 
 function checkPrice(price, range) {
+    if (range === "under-1") return price > 0 && price < 1;
+    if (range === "1-2") return price >= 1 && price <= 2;
+    if (range === "2-3") return price > 2 && price <= 3;
+    if (range === "3-5") return price > 3 && price <= 5;
     if (range === "under-5") return price < 5;
     if (range === "5-10") return price >= 5 && price <= 10;
     if (range === "10-20") return price > 10 && price <= 20;
+    if (range === "10-plus") return price > 10;
     if (range === "20-plus") return price > 20;
     return true;
 }
@@ -1064,6 +1093,51 @@ function getListingCoordinates(listing) {
     // Chỉ chấp nhận tọa độ nằm trong lãnh thổ Việt Nam (mở rộng)
     if (lat < 7 || lat > 24 || lng < 100 || lng > 115) return null;
     return [lat, lng];
+}
+
+function hasStreetViewCandidate(listing) {
+    if (listing?.streetView === false || listing?.hasStreetView === false) return false;
+    return Boolean(listing?.streetViewUrl || getListingCoordinates(listing));
+}
+
+function loadStreetView(listing) {
+    const iframeStreetview = document.getElementById("iframe-streetview");
+    if (!iframeStreetview) return false;
+
+    try {
+        const directUrl = safeMediaUrl(listing.streetViewUrl || "");
+        const coords = getListingCoordinates(listing);
+        if (!directUrl && !coords) return false;
+
+        const svUrl = directUrl || `https://maps.google.com/maps?layer=c&cbll=${coords[0]},${coords[1]}&cbp=11,0,0,0,0&output=svembed&z=18`;
+        iframeStreetview.dataset.loaded = "0";
+        iframeStreetview.onload = () => {
+            iframeStreetview.dataset.loaded = "1";
+        };
+        iframeStreetview.onerror = () => fallbackToPhotoTab("Không tải được Google Street View cho vị trí này.");
+        if (iframeStreetview.src !== svUrl) iframeStreetview.src = svUrl;
+
+        const openLink = document.getElementById("streetview-open-google");
+        if (openLink && coords) {
+            openLink.href = `https://www.google.com/maps/@${coords[0]},${coords[1]},3a,75y,0h,90t/data=!3m6!1e1!3m4!1s!2e0!7i16384!8i8192`;
+        }
+
+        window.clearTimeout(loadStreetView._timer);
+        loadStreetView._timer = window.setTimeout(() => {
+            if (iframeStreetview.dataset.loaded !== "1") {
+                fallbackToPhotoTab("Street View có thể chưa có ở khu vực này, đã chuyển về ảnh thường.");
+            }
+        }, 4500);
+        return true;
+    } catch {
+        fallbackToPhotoTab("Không tải được Street View, đã chuyển về ảnh thường.");
+        return false;
+    }
+}
+
+function fallbackToPhotoTab(message) {
+    document.getElementById("tab-photos")?.click();
+    showSmartHint(message);
 }
 
 function getAdminUnitCenter(unit) {
@@ -1294,18 +1368,68 @@ function getListingValuation(listing) {
     if (Number(listing.aiValuation) > 0) {
         return Number(listing.aiValuation);
     }
-    const base = Number(listing.price || 0);
-    if (!base) return 0;
-    const locationWeight = String(listing.location || "").toLowerCase().includes("thủ đức") ? 1.04 : 1.02;
-    const areaWeight = Number(listing.area || 0) >= 100 ? 1.03 : 0.98;
-    return Number((base * locationWeight * areaWeight).toFixed(1));
+    const area = Number(listing.area || 0);
+    if (!area) return Number(listing.price || 0);
+
+    const text = normalizeSearchText(`${listing.title || ""} ${listing.location || ""} ${listing.type || ""}`);
+    let baseMillionPerM2 = 18;
+    if (text.includes("quy nhon") || text.includes("bien") || text.includes("phu cat")) baseMillionPerM2 = 32;
+    if (text.includes("pleiku") || text.includes("bien ho") || text.includes("hoi phu")) baseMillionPerM2 = 22;
+    if (text.includes("an khe") || text.includes("ayun") || text.includes("chu se") || text.includes("dak doa")) baseMillionPerM2 = 12;
+    if (text.includes("nha pho")) baseMillionPerM2 *= 1.18;
+    if (text.includes("biet thu") || text.includes("nha vuon")) baseMillionPerM2 *= 1.1;
+
+    const roadWidth = Number(listing.roadWidth || 0);
+    const positionFactor = roadWidth >= 12 ? 1.18 : roadWidth >= 8 ? 1.1 : roadWidth >= 5 ? 1.03 : 0.94;
+    const legalFactor = normalizeSearchText(listing.legal || "").includes("so") ? 1.05 : 0.96;
+    const estimate = (area * baseMillionPerM2 * positionFactor * legalFactor) / 1000;
+    return Number(estimate.toFixed(1));
 }
 
-function walkScoreLabel(score) {
-    if (score >= 90) return "Rất thuận tiện đi bộ";
-    if (score >= 70) return "Tiện ích gần, đi lại tốt";
-    if (score >= 50) return "Cần xe máy/ô tô cho vài tiện ích";
-    return "Phụ thuộc phương tiện cá nhân";
+function getUtilityDistance(listing) {
+    if (Number(listing.utilityDistance) > 0) return Number(listing.utilityDistance);
+    const text = normalizeSearchText(`${listing.location || ""} ${listing.title || ""}`);
+    if (text.includes("pleiku") || text.includes("quy nhon")) return 450;
+    if (text.includes("bien ho") || text.includes("hoi phu") || text.includes("thong nhat")) return 700;
+    if (text.includes("an khe") || text.includes("ayun")) return 950;
+    return 1300;
+}
+
+function utilityDistanceLabel(distance) {
+    if (distance <= 500) return "trường/chợ/dịch vụ trong bán kính đi bộ gần";
+    if (distance <= 1000) return "tiện ích chính cách khoảng vài phút đi xe";
+    if (distance <= 2000) return "cần xe máy/ô tô để tới tiện ích chính";
+    return "vị trí yên tĩnh, tiện ích xa hơn";
+}
+
+function renderRuleBasedValuation(listing) {
+    const zbox = document.querySelector(".zestimate-box");
+    const zValueNode = document.getElementById("modal-zestimate-val");
+    const zLabelNode = document.getElementById("modal-zestimate-lbl");
+    if (!zbox || !zValueNode || !zLabelNode) return;
+
+    zbox.classList.remove("overpriced");
+    zValueNode.textContent = "...";
+    zLabelNode.textContent = "Đang phân tích dữ liệu khu vực...";
+
+    window.clearTimeout(renderRuleBasedValuation._timer);
+    renderRuleBasedValuation._timer = window.setTimeout(() => {
+        const zPrice = getListingValuation(listing);
+        if (!zPrice) {
+            zValueNode.textContent = "--";
+            zLabelNode.textContent = "Chưa đủ dữ liệu diện tích/giá";
+            return;
+        }
+
+        const askingPrice = Number(listing.price || 0);
+        const deltaPercent = askingPrice > 0 ? Math.round(Math.abs(zPrice - askingPrice) / askingPrice * 100) : 0;
+        const isCheaper = zPrice >= askingPrice;
+        zValueNode.textContent = formatPrice(zPrice) + " Tỷ";
+        zLabelNode.textContent = askingPrice > 0
+            ? (isCheaper ? `Thấp hơn ước tính ${deltaPercent}%` : `Cao hơn ước tính ${deltaPercent}%`)
+            : "Ước tính theo diện tích và vị trí";
+        zbox.classList.toggle("overpriced", !isCheaper);
+    }, 1500);
 }
 
 function trackEvent(type, details = {}) {
@@ -1362,11 +1486,15 @@ function calculateMortgage(dpPercent, interestRate = 9) {
 
 // ================== MAP ==================
 function initMap() {
-    if (typeof L === "undefined") return;
+    if (typeof L === "undefined") {
+        if (el.mapResultsCount) el.mapResultsCount.textContent = "Không tải được thư viện bản đồ. Vui lòng tải lại trang.";
+        return;
+    }
     state.map = L.map(el.mapContainer, { zoomControl: false, maxZoom: 18 }).setView([13.9833, 108.0], 13);
     
     const streetTiles = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", { attribution: '&copy; CARTO' });
     const satelliteTiles = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", { attribution: 'Tiles &copy; Esri' });
+    streetTiles.on("tileerror", () => showSmartHint("Bản đồ nền đang tải chậm. Hệ thống sẽ thử làm mới khung bản đồ."));
     
     streetTiles.addTo(state.map);
     L.control.layers({"🗺️ Bản đồ gốc": streetTiles, "🛰️ Vệ tinh": satelliteTiles}, null, { position: 'topright' }).addTo(state.map);
@@ -1383,6 +1511,11 @@ function initMap() {
         });
         state.map.addLayer(state.markerClusterGroup);
     }
+
+    window.addEventListener("load", () => {
+        setTimeout(() => state.map && state.map.invalidateSize(), 250);
+        setTimeout(() => state.map && state.map.invalidateSize(), 900);
+    });
 }
 
 function clearAdminUnitLayer() {
@@ -1874,11 +2007,21 @@ function renderZoning() {
     clearZoning();
     if (!state.map) return;
     
-    // Fake zoning polygons for each exact match (or all if no filters)
-    const targets = state.filteredListings;
+    // Không tải KML/GeoJSON lớn trên mobile. Chỉ dựng lớp mô phỏng cho tin trong khung nhìn hiện tại.
+    const bounds = state.map.getBounds();
+    const targets = state.filteredListings
+        .filter((listing) => {
+            const coords = getListingCoordinates(listing);
+            return coords && bounds.pad(0.25).contains(coords);
+        })
+        .slice(0, 80);
+    if (state.filteredListings.length > targets.length) {
+        showSmartHint("Quy hoạch demo chỉ tải phần đang nhìn để tránh treo máy. Phóng to khu vực cần xem để tải chính xác hơn.");
+    }
     targets.forEach(listing => {
-        if (!listing.coordinates) return;
-        const [lat, lng] = listing.coordinates;
+        const coords = getListingCoordinates(listing);
+        if (!coords) return;
+        const [lat, lng] = coords;
         // Generate a polygon around the point to simulate land boundary
         // Increased size vastly to make it highly visible even at zoom 12!
         const offsetLat = 0.003;
@@ -2012,6 +2155,11 @@ window.openFullscreenModal = function(id) {
     }
     
     currentListingPrice = listing.price;
+    const streetViewTab = document.getElementById("tab-streetview");
+    if (streetViewTab) {
+        streetViewTab.hidden = !hasStreetViewCandidate(listing);
+        streetViewTab.title = streetViewTab.hidden ? "Khu vực này chưa có dữ liệu 360° ổn định" : "";
+    }
     
     const contact = getContact();
     const callLinks = [
@@ -2042,25 +2190,13 @@ window.openFullscreenModal = function(id) {
         el.leadMessage.textContent = "";
     }
 
-    // AI valuation uses admin data first, then deterministic local estimate.
-    const zbox = document.querySelector(".zestimate-box");
-    const zPrice = getListingValuation(listing);
-    const deltaPercent = listing.price > 0 ? Math.round(Math.abs(zPrice - listing.price) / listing.price * 100) : 0;
-    const isCheaper = zPrice >= listing.price;
-    
-    document.getElementById("modal-zestimate-val").textContent = formatPrice(zPrice) + " Tỷ";
-    if (isCheaper) {
-        document.getElementById("modal-zestimate-lbl").textContent = "Thấp hơn ước tính " + deltaPercent + "%";
-        zbox.classList.remove("overpriced");
-    } else {
-        document.getElementById("modal-zestimate-lbl").textContent = "Cao hơn ước tính " + deltaPercent + "%";
-        zbox.classList.add("overpriced");
-    }
+    // AI định giá chạy local rule-based: không gọi API, không phát sinh chi phí.
+    renderRuleBasedValuation(listing);
 
-    const walkScore = Number(listing.walkScore || 75);
+    const utilityDistance = getUtilityDistance(listing);
     const walkNode = document.getElementById("modal-walk-score");
     if (walkNode) {
-        walkNode.innerHTML = `<strong>Walk Score: ${walkScore}/100</strong> (${walkScoreLabel(walkScore)})`;
+        walkNode.innerHTML = `<strong>Khoảng cách tiện ích: ~${utilityDistance.toLocaleString("vi-VN")}m</strong> (${utilityDistanceLabel(utilityDistance)})`;
     }
     
     // Reset Slider
