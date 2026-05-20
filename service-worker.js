@@ -1,4 +1,4 @@
-const CACHE_NAME = "nha-dat-viet-v49";
+const CACHE_NAME = "nha-dat-viet-v50";
 const APP_SHELL = [
   "/",
   "/index.html",
@@ -17,6 +17,8 @@ const APP_SHELL = [
   "/member.js",
   "/data/listings.json",
   "/data/site.json",
+  "/data/road-prices.json",
+  "/data/road-prices.csv",
   "/data/gia-lai-units.json",
   "/manifest.webmanifest",
   "/icon.svg",

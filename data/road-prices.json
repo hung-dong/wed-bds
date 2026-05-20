@@ -1,0 +1,142 @@
+{
+  "version": 1,
+  "unit": "million_vnd_per_m2",
+  "note": "Bang gia san duong cho thuat toan AVM. Anh Hung chi can sua priceMillionPerM2 theo gia thuc te.",
+  "roads": [
+    {
+      "name": "Le Duan",
+      "displayName": "Le Duan",
+      "area": "Pleiku",
+      "priceMillionPerM2": 30,
+      "aliases": ["Le Duan Pleiku"],
+      "position1Factor": 1,
+      "alleyFactor": 0.68
+    },
+    {
+      "name": "Truong Chinh",
+      "displayName": "Truong Chinh",
+      "area": "Pleiku",
+      "priceMillionPerM2": 28,
+      "aliases": ["Duong Truong Chinh", "Truong Chinh Pleiku"],
+      "position1Factor": 1,
+      "alleyFactor": 0.7
+    },
+    {
+      "name": "Ly Thai To",
+      "displayName": "Ly Thai To",
+      "area": "Pleiku",
+      "priceMillionPerM2": 25,
+      "aliases": ["Duong Ly Thai To", "Ly Thai To Pleiku"],
+      "position1Factor": 1,
+      "alleyFactor": 0.7
+    },
+    {
+      "name": "Vo Nguyen Giap",
+      "displayName": "Vo Nguyen Giap",
+      "area": "Pleiku",
+      "priceMillionPerM2": 26,
+      "aliases": ["Duong Vo Nguyen Giap"],
+      "position1Factor": 1,
+      "alleyFactor": 0.65
+    },
+    {
+      "name": "Pham Van Dong",
+      "displayName": "Pham Van Dong",
+      "area": "Pleiku",
+      "priceMillionPerM2": 24,
+      "aliases": ["Duong Pham Van Dong"],
+      "position1Factor": 1,
+      "alleyFactor": 0.68
+    },
+    {
+      "name": "Hung Vuong",
+      "displayName": "Hung Vuong",
+      "area": "Pleiku",
+      "priceMillionPerM2": 23,
+      "aliases": ["Duong Hung Vuong"],
+      "position1Factor": 1,
+      "alleyFactor": 0.7
+    },
+    {
+      "name": "Nguyen Tat Thanh",
+      "displayName": "Nguyen Tat Thanh",
+      "area": "Pleiku",
+      "priceMillionPerM2": 22,
+      "aliases": ["Duong Nguyen Tat Thanh"],
+      "position1Factor": 1,
+      "alleyFactor": 0.68
+    },
+    {
+      "name": "Ton Duc Thang",
+      "displayName": "Ton Duc Thang",
+      "area": "Pleiku",
+      "priceMillionPerM2": 20,
+      "aliases": ["Duong Ton Duc Thang"],
+      "position1Factor": 1,
+      "alleyFactor": 0.68
+    },
+    {
+      "name": "Bui Du",
+      "displayName": "Bui Du",
+      "area": "Pleiku",
+      "priceMillionPerM2": 18,
+      "aliases": ["Duong Bui Du", "Hoa Lu cu"],
+      "position1Factor": 1,
+      "alleyFactor": 0.72
+    },
+    {
+      "name": "Bien Ho",
+      "displayName": "Bien Ho",
+      "area": "Pleiku",
+      "priceMillionPerM2": 15,
+      "aliases": ["Xa Bien Ho", "Phuong Bien Ho"],
+      "position1Factor": 1,
+      "alleyFactor": 0.65
+    },
+    {
+      "name": "Ia Grai",
+      "displayName": "Ia Grai",
+      "area": "Gia Lai",
+      "priceMillionPerM2": 9,
+      "aliases": ["Huyen Ia Grai"],
+      "position1Factor": 1,
+      "alleyFactor": 0.6
+    },
+    {
+      "name": "Dak Doa",
+      "displayName": "Dak Doa",
+      "area": "Gia Lai",
+      "priceMillionPerM2": 8,
+      "aliases": ["Dak Doa Gia Lai"],
+      "position1Factor": 1,
+      "alleyFactor": 0.6
+    },
+    {
+      "name": "An Khe",
+      "displayName": "An Khe",
+      "area": "Gia Lai",
+      "priceMillionPerM2": 10,
+      "aliases": ["Thi xa An Khe"],
+      "position1Factor": 1,
+      "alleyFactor": 0.62
+    },
+    {
+      "name": "Quy Nhon",
+      "displayName": "Quy Nhon",
+      "area": "Binh Dinh",
+      "priceMillionPerM2": 38,
+      "aliases": ["Thanh pho Quy Nhon"],
+      "position1Factor": 1,
+      "alleyFactor": 0.72
+    },
+    {
+      "name": "Phu Cat",
+      "displayName": "Phu Cat",
+      "area": "Binh Dinh",
+      "priceMillionPerM2": 16,
+      "aliases": ["Huyen Phu Cat"],
+      "position1Factor": 1,
+      "alleyFactor": 0.62
+    }
+  ]
+}

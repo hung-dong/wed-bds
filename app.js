@@ -7,9 +7,10 @@ const LIST_PAGE_SIZE = 40;
 const VIEWED_LISTINGS_KEY = "ndvViewedListingIds";
 const DATA_CACHE_PREFIX = "ndvDataCache:";
 const DATA_CACHE_TTL = 5 * 60 * 1000;
-const ROAD_PRICE_TABLE = [
+const DEFAULT_ROAD_PRICE_TABLE = [
     { keys: ["le duan"], price: 30 },
     { keys: ["truong chinh"], price: 28 },
+    { keys: ["ly thai to"], price: 25 },
     { keys: ["vo nguyen giap"], price: 26 },
     { keys: ["pham van dong"], price: 24 },
     { keys: ["hung vuong"], price: 23 },
@@ -36,6 +37,7 @@ const state = {
     selectedAdminUnit: null,
     selectedAreaCenter: null,
     searchScores: new Map(),
+    roadPriceTable: DEFAULT_ROAD_PRICE_TABLE,
     map: null,
     markers: [],
     adminUnitLayer: null,
@@ -44,7 +46,8 @@ const state = {
     zoningLayers: [],
     visibleListCount: LIST_PAGE_SIZE,
     compareIds: [],
-    viewedListingIds: []
+    viewedListingIds: [],
+    mapRenderToken: 0
 };
 
 let currentListingPrice = 0; // State cho Modal 2026
@@ -241,6 +244,7 @@ async function loadData() {
     }
 
     await loadAdminUnits();
+    await loadRoadPriceTable();
     
     state.exactMatches = [...state.listings];
     state.suggestedMatches = [];
@@ -294,6 +298,26 @@ async function loadAdminUnits() {
         state.adminUnits = Array.isArray(data.units) ? data.units : [];
     } catch {
         state.adminUnits = [];
+    }
+}
+
+async function loadRoadPriceTable() {
+    try {
+        const data = await fetchJSONWithCache("/data/road-prices.json?v=1", { roads: DEFAULT_ROAD_PRICE_TABLE });
+        const roads = Array.isArray(data?.roads) ? data.roads : [];
+        state.roadPriceTable = roads
+            .map((road) => ({
+                name: String(road.name || road.road || "").trim(),
+                area: String(road.area || "").trim(),
+                price: Number(road.priceMillionPerM2 || road.price || 0),
+                keys: Array.isArray(road.keys)
+                    ? road.keys.map(normalizeSearchText).filter(Boolean)
+                    : [road.name, road.road, ...(road.aliases || [])].map(normalizeSearchText).filter(Boolean)
+            }))
+            .filter((road) => road.price > 0 && road.keys.length > 0);
+        if (!state.roadPriceTable.length) state.roadPriceTable = DEFAULT_ROAD_PRICE_TABLE;
+    } catch {
+        state.roadPriceTable = DEFAULT_ROAD_PRICE_TABLE;
     }
 }
 
@@ -1505,7 +1529,7 @@ function distanceMeters(a, b) {
 
 function getRoadBasePrice(listing) {
     const text = normalizeSearchText(`${listing.title || ""} ${listing.location || ""} ${listing.address || ""}`);
-    const matchedRoad = ROAD_PRICE_TABLE.find((road) => road.keys.some((key) => text.includes(key)));
+    const matchedRoad = state.roadPriceTable.find((road) => road.keys.some((key) => text.includes(key)));
     return matchedRoad?.price || null;
 }
 
@@ -1750,6 +1774,7 @@ function renderQuickAreaCenter(area) {
 
 function renderMapMarkers({ fitBounds = false, animate = true } = {}) {
     if (!state.map) return;
+    const renderToken = ++state.mapRenderToken;
     
     closeMobileListingPreview();
     clearAdminUnitLayer();
@@ -1966,6 +1991,7 @@ function renderMapMarkers({ fitBounds = false, animate = true } = {}) {
     updateMapResultStatus(bounds.length);
     
     setTimeout(() => {
+        if (renderToken !== state.mapRenderToken) return;
         state.map.invalidateSize();
         if (fitBounds) fitMapToFilteredResults({ animate });
     }, 100);
