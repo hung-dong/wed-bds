@@ -1,4 +1,4 @@
-const CACHE_NAME = "nha-dat-viet-v52";
+const CACHE_NAME = "nha-dat-viet-v53";
 const APP_SHELL = [
   "/",
   "/index.html",
@@ -6,6 +6,7 @@ const APP_SHELL = [
   "/mobile-app.css",
   "/mobile-app.js",
   "/app.js",
+  "/supabase-client.js",
   "/admin.html",
   "/admin.css",
   "/admin.js",
@@ -19,6 +20,8 @@ const APP_SHELL = [
   "/data/site.json",
   "/data/road-prices.json",
   "/data/road-prices.csv",
+  "/data/supabase-config.json",
+  "/data/supabase-schema.sql",
   "/data/gia-lai-units.json",
   "/manifest.webmanifest",
   "/icon.svg",

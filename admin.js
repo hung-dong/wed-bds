@@ -150,6 +150,9 @@ function bindEvents() {
 }
 
 async function request(url, options = {}, _retried = false) {
+    if (state.staticMode && window.NDV_SUPABASE && await window.NDV_SUPABASE.init()) {
+        return window.NDV_SUPABASE.handleAdminRequest(url, options);
+    }
     if (state.staticMode && options.method && options.method !== "GET") {
         throw new Error("Bản Vercel hiện chạy chế độ tĩnh: xem quản trị được, nhưng muốn lưu/sửa/xóa cần bật backend Node.");
     }
@@ -219,6 +222,24 @@ function buildStaticAnalytics(listings = [], leads = [], submissions = []) {
 async function loadStaticDashboard() {
     state.staticMode = true;
     sessionStorage.setItem("ndv_admin_static_session", "1");
+    if (window.NDV_SUPABASE && await window.NDV_SUPABASE.init()) {
+        const data = await window.NDV_SUPABASE.adminBootstrap();
+        state.listings = data.listings || [];
+        state.leads = data.leads || [];
+        state.submissions = data.submissions || [];
+        state.site = data.site || null;
+        state.analytics = data.analytics || null;
+        elements.welcomeText.textContent = "Đang dùng Supabase: admin có thể lưu/sửa/xóa dữ liệu thật.";
+        fillSiteForm(state.site || {});
+        renderStats();
+        renderAnalyticsList();
+        renderLeadList();
+        renderSubmissionList();
+        renderListingList();
+        selectListing(state.listings[0]?.id || null);
+        showDashboard();
+        return;
+    }
     const [listings, site, leads, submissions] = await Promise.all([
         fetchStaticJSON("/data/listings.json?v=51", []),
         fetchStaticJSON("/data/site.json?v=51", null),

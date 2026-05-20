@@ -67,6 +67,17 @@ function leadStatusLabel(status) {
 }
 
 async function request(url, options = {}) {
+    if (window.NDV_SUPABASE && await window.NDV_SUPABASE.init()) {
+        const method = options.method || "GET";
+        if (url.startsWith("/api/member/submissions?") && method === "GET") {
+            const params = new URLSearchParams(url.split("?")[1] || "");
+            return window.NDV_SUPABASE.memberSubmissions(params.get("phone") || "", params.get("code") || "");
+        }
+        const update = url.match(/^\/api\/member\/submissions\/([^/]+)$/);
+        if (update && method === "PUT") {
+            return window.NDV_SUPABASE.updateSubmission(decodeURIComponent(update[1]), JSON.parse(options.body || "{}"));
+        }
+    }
     const response = await fetch(url, {
         headers: { "Content-Type": "application/json" },
         credentials: "same-origin",

@@ -1,0 +1,7 @@
+{
+  "enabled": false,
+  "url": "",
+  "anonKey": "",
+  "schema": "public",
+  "note": "Dien Supabase Project URL va anon public key, doi enabled=true de bat database that tren Vercel static."
+}

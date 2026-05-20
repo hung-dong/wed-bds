@@ -496,14 +496,19 @@ form.addEventListener("submit", async (event) => {
         };
 
         message.textContent = "Đang gửi tin...";
+        let data;
+        if (window.NDV_SUPABASE && await window.NDV_SUPABASE.init()) {
+            data = await window.NDV_SUPABASE.createSubmission(payload);
+        } else {
         const response = await fetch("/api/submissions", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
         });
-        const data = await response.json().catch(() => ({}));
+        data = await response.json().catch(() => ({}));
         if (!response.ok) {
             throw new Error(data.error || "Không gửi được tin.");
+        }
         }
         form.reset();
         clearUploadedVideoPreview();

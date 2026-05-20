@@ -219,6 +219,11 @@ window.toggleDarkMode = function() {
 
 async function loadData() {
     try {
+        if (window.NDV_SUPABASE && await window.NDV_SUPABASE.init()) {
+            state.listings = await window.NDV_SUPABASE.getListings();
+            state.site = await window.NDV_SUPABASE.getSite();
+            return await finishLoadData();
+        }
         const res = await fetch("/api/listings", {credentials: "same-origin"});
         if (res.ok) {
             const data = await res.json();
@@ -243,6 +248,10 @@ async function loadData() {
         }
     }
 
+    await finishLoadData();
+}
+
+async function finishLoadData() {
     await loadAdminUnits();
     await loadRoadPriceTable();
     
