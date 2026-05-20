@@ -3,12 +3,13 @@ import { Input } from "@/components/ui/input";
 import { Table, Td, Th } from "@/components/ui/table";
 import { formatDate, formatMoney, labelTransactionType } from "@/lib/format";
 import { prisma } from "@/lib/prisma";
+import { demoTransactions } from "@/lib/demo-data";
 import { createTransaction } from "../actions";
 
 export const dynamic = "force-dynamic";
 
 export default async function Finance() {
-  const transactions = await prisma.transaction.findMany({ orderBy: { date: "desc" } });
+  const transactions = await prisma.transaction.findMany({ orderBy: { date: "desc" } }).catch(() => demoTransactions);
   const income = transactions
     .filter((item) => item.type === "INCOME")
     .reduce((sum, item) => sum + item.amount, 0);

@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Table, Td, Th } from "@/components/ui/table";
 import { prisma } from "@/lib/prisma";
+import { demoUsers } from "@/lib/demo-data";
 
 export const dynamic = "force-dynamic";
 
@@ -8,7 +9,7 @@ export default async function Users() {
   const users = await prisma.user.findMany({
     orderBy: { role: "asc" },
     select: { id: true, name: true, email: true, role: true },
-  });
+  }).catch(() => demoUsers);
 
   return (
     <div className="space-y-6">

@@ -3,12 +3,13 @@ import { Input } from "@/components/ui/input";
 import { Table, Td, Th } from "@/components/ui/table";
 import { formatMoney, labelPropertyStatus } from "@/lib/format";
 import { prisma } from "@/lib/prisma";
+import { demoProperties } from "@/lib/demo-data";
 import { createProperty } from "../actions";
 
 export const dynamic = "force-dynamic";
 
 export default async function Assets() {
-  const assets = await prisma.property.findMany({ orderBy: { value: "desc" } });
+  const assets = await prisma.property.findMany({ orderBy: { value: "desc" } }).catch(() => demoProperties);
   const totalValue = assets.reduce((sum, item) => sum + item.value, 0);
 
   return (

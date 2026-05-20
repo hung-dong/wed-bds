@@ -1,11 +1,12 @@
 import { Card } from "@/components/ui/card";
 import { rankTasks } from "@/lib/copilot/heuristics";
 import { prisma } from "@/lib/prisma";
+import { demoTasks } from "@/lib/demo-data";
 
 export const dynamic = "force-dynamic";
 
 export default async function Copilot() {
-  const tasks = await prisma.task.findMany({ where: { isDone: false } });
+  const tasks = await prisma.task.findMany({ where: { isDone: false } }).catch(() => demoTasks);
   const prioritized = rankTasks(tasks);
   const topTask = prioritized[0];
 

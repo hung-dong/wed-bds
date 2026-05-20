@@ -2,15 +2,16 @@ import { Card } from "@/components/ui/card";
 import { formatMoney, labelLeadStatus, labelPropertyStatus } from "@/lib/format";
 import { rankTasks } from "@/lib/copilot/heuristics";
 import { prisma } from "@/lib/prisma";
+import { demoLeads, demoProperties, demoTasks, demoTransactions } from "@/lib/demo-data";
 
 export const dynamic = "force-dynamic";
 
 export default async function Dashboard() {
   const [properties, leads, tasks, transactions] = await Promise.all([
-    prisma.property.findMany({ orderBy: { value: "desc" } }),
-    prisma.lead.findMany({ orderBy: { name: "asc" } }),
-    prisma.task.findMany({ where: { isDone: false } }),
-    prisma.transaction.findMany(),
+    prisma.property.findMany({ orderBy: { value: "desc" } }).catch(() => demoProperties),
+    prisma.lead.findMany({ orderBy: { name: "asc" } }).catch(() => demoLeads),
+    prisma.task.findMany({ where: { isDone: false } }).catch(() => demoTasks),
+    prisma.transaction.findMany().catch(() => demoTransactions),
   ]);
 
   const propertyValue = properties.reduce((sum, item) => sum + item.value, 0);

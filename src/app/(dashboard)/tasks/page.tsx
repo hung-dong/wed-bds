@@ -3,12 +3,13 @@ import { Input } from "@/components/ui/input";
 import { Table, Td, Th } from "@/components/ui/table";
 import { rankTasks } from "@/lib/copilot/heuristics";
 import { prisma } from "@/lib/prisma";
+import { demoTasks } from "@/lib/demo-data";
 import { createTask, toggleTask } from "../actions";
 
 export const dynamic = "force-dynamic";
 
 export default async function Tasks() {
-  const tasks = await prisma.task.findMany({ orderBy: [{ isDone: "asc" }, { urgency: "desc" }] });
+  const tasks = await prisma.task.findMany({ orderBy: [{ isDone: "asc" }, { urgency: "desc" }] }).catch(() => demoTasks);
   const openTasks = tasks.filter((task) => !task.isDone);
   const rankedOpenTasks = rankTasks(openTasks);
 

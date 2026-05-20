@@ -3,12 +3,13 @@ import { Input } from "@/components/ui/input";
 import { Table, Td, Th } from "@/components/ui/table";
 import { labelLeadStatus } from "@/lib/format";
 import { prisma } from "@/lib/prisma";
+import { demoLeads } from "@/lib/demo-data";
 import { createLead } from "../actions";
 
 export const dynamic = "force-dynamic";
 
 export default async function CRM() {
-  const leads = await prisma.lead.findMany({ orderBy: { name: "asc" } });
+  const leads = await prisma.lead.findMany({ orderBy: { name: "asc" } }).catch(() => demoLeads);
   const activeLeads = leads.filter((lead) => !["WON", "LOST"].includes(lead.status)).length;
 
   return (
