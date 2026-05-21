@@ -182,6 +182,7 @@ const el = {
 
 el.filterLegal = document.getElementById("filter-legal");
 el.filterStatus = document.getElementById("filter-status");
+el.filterPlanning = document.getElementById("filter-planning");
 el.filterAdminUnit = document.getElementById("filter-admin-unit");
 el.sortBy = document.getElementById("sort-by");
 el.showFavorites = document.getElementById("show-favorites");
@@ -470,7 +471,7 @@ function getTypeFilterText() {
 function getActiveFilterSummary() {
     const parts = [];
     if (state.selectedAdminUnit?.label) parts.push(state.selectedAdminUnit.label);
-    [el.filterType, el.filterPrice, el.filterLegal, el.filterStatus, el.filterArea, el.filterDirection, el.filterBeds, el.filterBaths]
+    [el.filterType, el.filterPrice, el.filterArea, el.filterLegal, el.filterStatus, el.filterPlanning, el.filterDirection, el.filterBeds, el.filterBaths]
         .filter(Boolean)
         .forEach((select) => {
             if (select.value !== "all") parts.push(getSelectText(select));
@@ -558,9 +559,21 @@ function inferAreaFromDimensions(raw, chips) {
 }
 
 function inferLegalFromQuery(normalized) {
-    if (/\b(so do|so hong|co so|so rieng|phap ly ro)\b/.test(normalized)) return "Sổ";
-    if (/\b(hoan cong)\b/.test(normalized)) return "Hoàn công";
-    if (/\b(hop dong|giay tay)\b/.test(normalized)) return "Hợp đồng";
+    if (/\b(so rieng|so do rieng|so hong rieng)\b/.test(normalized)) return "Sổ riêng";
+    if (/\b(so chung|dong so)\b/.test(normalized)) return "Sổ chung";
+    if (/\b(dang tach|tach thua)\b/.test(normalized)) return "Đang tách";
+    if (/\b(giay tay|giay viet tay)\b/.test(normalized)) return "Giấy tay";
+    if (/\b(so do|so hong|co so|phap ly ro)\b/.test(normalized)) return "Sổ";
+    if (/\b(hop dong)\b/.test(normalized)) return "Hợp đồng";
+    return "";
+}
+
+function inferPlanningFromQuery(normalized) {
+    if (/\b(khong dinh quy hoach|khong quy hoach|quy hoach sach|khong bi quy hoach)\b/.test(normalized)) return "clear";
+    if (/\b(dinh quy hoach|bi quy hoach|co quy hoach)\b/.test(normalized)) return "affected";
+    if (/\b(can xac minh|kiem tra lai|xac minh lai)\b/.test(normalized)) return "recheck";
+    if (/\b(da kiem tra quy hoach|da check quy hoach)\b/.test(normalized)) return "checked";
+    if (/\b(chua kiem tra quy hoach|chua check quy hoach)\b/.test(normalized)) return "unchecked";
     return "";
 }
 
@@ -596,7 +609,8 @@ function buildEffectiveKeyword(raw) {
         /\b(duoi|tren|hon|tu|tam|khoang|khong qua|toi da|nho hon)\s*\d+(?:[.,]\d+)?\s*(ty|ti|tr|trieu)\b/g,
         /\b\d+(?:[.,]\d+)?\s*(ty|ti|tr|trieu)\b/g,
         /\b\d+(?:[.,]\d+)?\s*x\s*\d+(?:[.,]\d+)?\b/g,
-        /\b(co so|so do|so hong|so rieng|phap ly ro|hoan cong|hop dong|giay tay)\b/g,
+        /\b(co so|so do|so hong|so rieng|so chung|dang tach|tach thua|phap ly ro|hoan cong|hop dong|giay tay)\b/g,
+        /\b(khong dinh quy hoach|khong quy hoach|quy hoach sach|khong bi quy hoach|dinh quy hoach|bi quy hoach|co quy hoach|can xac minh|kiem tra lai|xac minh lai|da kiem tra quy hoach|da check quy hoach|chua kiem tra quy hoach|chua check quy hoach)\b/g,
         /\b(moi dang|tin moi|gia tot|can ban gap|ngop|dau tu|xac minh|da xac minh|chinh chu|thoa thuan|thuong luong|bot loc)\b/g,
         /\b(gan cho|gan truong|truong hoc|gan benh vien|benh vien|gan bien|hem oto|hem o to|oto|o to)\b/g
     ];
@@ -613,6 +627,7 @@ function parseNaturalSearch(raw) {
         type: inferTypeFromQuery(normalized),
         price: inferPriceFromQuery(normalized),
         legal: inferLegalFromQuery(normalized),
+        planning: inferPlanningFromQuery(normalized),
         status: inferStatusFromQuery(normalized),
         areaLabel: inferAreaLabelFromQuery(raw),
         amenity: inferAmenityFromQuery(normalized),
@@ -632,6 +647,10 @@ function parseNaturalSearch(raw) {
         if (text) chips.push(text);
     }
     if (parsed.legal) chips.push(parsed.legal === "Sổ" ? "Có sổ" : parsed.legal);
+    if (parsed.planning && el.filterPlanning) {
+        const text = [...el.filterPlanning.options].find((option) => option.value === parsed.planning)?.textContent;
+        if (text) chips.push(text);
+    }
     if (parsed.status && el.filterStatus) {
         const text = [...el.filterStatus.options].find((option) => option.value === parsed.status)?.textContent;
         if (text) chips.push(text);
@@ -651,6 +670,8 @@ function applyNaturalSearchToControls(raw, resetMissing = false) {
     else if (resetMissing && el.filterPrice) el.filterPrice.value = "all";
     if (parsed.legal) setSelectValueIfExists(el.filterLegal, parsed.legal);
     else if (resetMissing && el.filterLegal) el.filterLegal.value = "all";
+    if (parsed.planning) setSelectValueIfExists(el.filterPlanning, parsed.planning);
+    else if (resetMissing && el.filterPlanning) el.filterPlanning.value = "all";
     if (parsed.status) setSelectValueIfExists(el.filterStatus, parsed.status);
     else if (resetMissing && el.filterStatus) el.filterStatus.value = "all";
     if (parsed.area) setSelectValueIfExists(el.filterArea, parsed.area);
@@ -676,8 +697,8 @@ function clearQuickAreaSelection() {
 }
 
 function syncPrimaryFilterState() {
-    const primaryFilters = [el.filterAdminUnit, el.filterPrice, el.filterType, el.filterLegal, el.filterStatus].filter(Boolean);
-    const advancedFilters = [el.filterArea, el.filterDirection, el.filterBeds, el.filterBaths, el.sortBy].filter(Boolean);
+    const primaryFilters = [el.filterAdminUnit, el.filterPrice, el.filterType, el.filterArea, el.filterLegal].filter(Boolean);
+    const advancedFilters = [el.filterStatus, el.filterPlanning, el.filterDirection, el.filterBeds, el.filterBaths, el.sortBy].filter(Boolean);
     primaryFilters.forEach((select) => {
         select.classList.toggle("active-filter", select.value !== "all");
     });
@@ -693,7 +714,7 @@ function syncPrimaryFilterState() {
 }
 
 function bindEvents() {
-    [el.filterType, el.filterPrice, el.filterArea, el.filterDirection, el.filterBeds, el.filterBaths, el.filterLegal, el.filterStatus, el.filterAdminUnit, el.sortBy]
+    [el.filterType, el.filterPrice, el.filterArea, el.filterDirection, el.filterBeds, el.filterBaths, el.filterLegal, el.filterStatus, el.filterPlanning, el.filterAdminUnit, el.sortBy]
         .filter(Boolean)
         .forEach(f => f.addEventListener("change", () => {
             if (f === el.filterAdminUnit) state.selectedAreaCenter = null;
@@ -813,6 +834,7 @@ function bindEvents() {
             if (el.filterBaths) el.filterBaths.value = "all";
             if (el.filterLegal) el.filterLegal.value = "all";
             if (el.filterStatus) el.filterStatus.value = "all";
+            if (el.filterPlanning) el.filterPlanning.value = "all";
             if (el.sortBy) el.sortBy.value = "recommended";
             state.showFavoritesOnly = false;
             state.selectedAreaCenter = null;
@@ -1230,6 +1252,66 @@ function listingMatchesStatus(listing, status) {
     return true;
 }
 
+function normalizePlanningState(listing) {
+    const text = normalizeSearchText(listing?.planningStatus || "");
+    if (!text || /\b(chua ro|chua kiem tra|chua check)\b/.test(text)) return "unchecked";
+    if (/\b(khong bi|khong dinh|khong quy hoach|quy hoach sach|khu dan cu on dinh)\b/.test(text)) return "clear";
+    if (/\b(dinh|bi quy hoach|lo gioi|treo)\b/.test(text)) return "affected";
+    if (/\b(can kiem tra|can xac minh|kiem tra lai|xac minh lai)\b/.test(text)) return "recheck";
+    return "checked";
+}
+
+function listingMatchesPlanning(listing, planning) {
+    if (!planning || planning === "all") return true;
+    const stateValue = normalizePlanningState(listing);
+    if (planning === "checked") return stateValue === "checked" || stateValue === "clear" || stateValue === "affected";
+    return stateValue === planning;
+}
+
+function listingMatchesLegal(listing, legal) {
+    if (!legal || legal === "all") return true;
+    const text = normalizeSearchText(listing?.legal || "");
+    const target = normalizeSearchText(legal);
+    if (target === "so") return text.includes("so");
+    if (target === "so rieng") return text.includes("so") && (text.includes("rieng") || text.includes("do") || text.includes("hong"));
+    if (target === "so chung") return text.includes("so") && text.includes("chung");
+    if (target === "dang tach") return text.includes("tach");
+    if (target === "giay tay") return text.includes("giay tay");
+    return text.includes(target);
+}
+
+function planningLabel(listing) {
+    const labels = {
+        unchecked: "Chưa kiểm tra",
+        checked: "Đã kiểm tra",
+        clear: "Không dính quy hoạch",
+        affected: "Có dính quy hoạch",
+        recheck: "Cần xác minh lại"
+    };
+    return labels[normalizePlanningState(listing)] || "Chưa kiểm tra";
+}
+
+function listingSaleStatus(listing) {
+    const raw = normalizeSearchText(listing?.status || listing?.saleStatus || "");
+    if (raw.includes("sold") || raw.includes("da ban")) return "Đã bán";
+    if (raw.includes("pending") || raw.includes("coc")) return "Đang cọc";
+    if (raw.includes("hide") || raw.includes("an")) return "Tạm ẩn";
+    return "Còn bán";
+}
+
+function verificationLabel(listing) {
+    const text = normalizeSearchText(`${listing?.verified || ""} ${listing?.verificationStatus || ""} ${listing?.legal || ""} ${listing?.description || ""}`);
+    if (text.includes("xac minh") || text.includes("chinh chu") || text.includes("so do") || text.includes("so hong")) return "Đã xác minh";
+    return "Chưa xác minh";
+}
+
+function ownerTypeLabel(listing) {
+    const text = normalizeSearchText(`${listing?.ownerType || ""} ${listing?.brokerage || ""} ${listing?.description || ""}`);
+    if (text.includes("moi gioi") || text.includes("sale") || text.includes("san")) return "Môi giới";
+    if (text.includes("chinh chu")) return "Chính chủ";
+    return listing?.owner?.name ? "Chính chủ/môi giới" : "Chưa rõ";
+}
+
 function applyFilters() {
     const kw = getKeywordValue();
     setKeywordValue(kw);
@@ -1243,6 +1325,7 @@ function applyFilters() {
     const baths = el.filterBaths.value;
     const legal = el.filterLegal?.value || "all";
     const status = el.filterStatus?.value || "all";
+    const planning = el.filterPlanning?.value || "all";
     const normalizedKeyword = normalizeSearchText(parsedSearch.effectiveKeyword || kw);
     const adminUnit = getSelectedAdminUnit();
     state.selectedAdminUnit = adminUnit;
@@ -1256,11 +1339,12 @@ function applyFilters() {
         const mDirection = direction === "all" || normalizeSearchText(l.direction).includes(normalizeSearchText(direction));
         const mBeds = beds === "all" || l.beds >= Number(beds);
         const mBaths = baths === "all" || l.baths >= Number(baths);
-        const mLegal = legal === "all" || String(l.legal || "").toLowerCase().includes(legal.toLowerCase());
+        const mLegal = listingMatchesLegal(l, legal);
         const mStatus = listingMatchesStatus(l, status);
+        const mPlanning = listingMatchesPlanning(l, planning);
         const mRoadIntent = !parsedSearch.roadIntent || Number(l.roadWidth || 0) >= 4 || getListingSearchBlob(l).includes("hem oto");
         const mFavorite = !state.showFavoritesOnly || state.savedFavorites.includes(String(l.id));
-        return mTyp && mPrc && mArea && mDirection && mBeds && mBaths && mLegal && mStatus && mRoadIntent && mFavorite;
+        return mTyp && mPrc && mArea && mDirection && mBeds && mBaths && mLegal && mStatus && mPlanning && mRoadIntent && mFavorite;
     });
 
     state.exactMatches = baseMatches.filter(l => {
@@ -1274,7 +1358,7 @@ function applyFilters() {
 
     state.suggestedMatches = [];
     
-    const isSearching = normalizedKeyword !== "" || Boolean(adminUnit) || typ !== "all" || prc !== "all" || areaRange !== "all" || direction !== "all" || beds !== "all" || baths !== "all" || legal !== "all" || status !== "all" || state.showFavoritesOnly;
+    const isSearching = normalizedKeyword !== "" || Boolean(adminUnit) || typ !== "all" || prc !== "all" || areaRange !== "all" || direction !== "all" || beds !== "all" || baths !== "all" || legal !== "all" || status !== "all" || planning !== "all" || state.showFavoritesOnly;
     if (isSearching && state.exactMatches.length > 0 && state.exactMatches.length < baseMatches.length) {
         const exactIds = new Set(state.exactMatches.map((item) => String(item.id)));
         const related = baseMatches
@@ -2593,11 +2677,13 @@ window.openFullscreenModal = function(id) {
             ["Giá/m2", formatPricePerM2(listing)],
             ["Ngang", formatFact(listing.frontage, "m")],
             ["Dài", formatFact(listing.depth, "m")],
-            ["Đường", formatFact(listing.roadWidth, "m")],
-            ["Hướng", listing.direction || "Chưa rõ"],
+            ["Trạng thái tin", listingSaleStatus(listing)],
+            ["Xác minh", verificationLabel(listing)],
+            ["Người đăng", ownerTypeLabel(listing)],
+            ["Pháp lý", listing.legal || "Chưa rõ"],
             ["Thổ cư", listing.landUse || "Chưa rõ"],
-            ["Quy hoạch", listing.planningStatus || "Chưa rõ"],
-            ["Vay ngân hàng", listing.bankLoan || "Chưa rõ"]
+            ["Quy hoạch", planningLabel(listing)],
+            ["Đường", formatFact(listing.roadWidth, "m")]
         ];
         realFacts.innerHTML = facts.map(([label, value]) => `<div><span>${label}</span><strong>${value}</strong></div>`).join("");
     }
@@ -2608,6 +2694,8 @@ window.openFullscreenModal = function(id) {
         streetViewTab.hidden = !hasStreetViewCandidate(listing);
         streetViewTab.title = streetViewTab.hidden ? "Khu vực này chưa có dữ liệu 360° ổn định" : "";
     }
+    const tab3d = document.getElementById("tab-3d");
+    if (tab3d) tab3d.hidden = !listing.vrUrl;
     
     const contact = getContact();
     const callLinks = [
@@ -2630,7 +2718,7 @@ window.openFullscreenModal = function(id) {
         link.onclick = () => trackEvent("ZALO", { listingId: listing.id });
         link.target = "_blank";
         link.rel = "noopener";
-        if (link.id === "modal-sticky-zalo-link") link.textContent = "💬 Chat Zalo";
+        link.textContent = link.id === "modal-sticky-zalo-link" ? "💬 Chat Zalo" : "💬 Gửi nhanh qua Zalo";
     });
 
     if (el.leadMessage) {
@@ -2710,7 +2798,7 @@ window.openFullscreenModal = function(id) {
     const iframe3d = document.getElementById("iframe-3d");
     if (iframe3d) {
         iframe3d.removeAttribute("src");
-        iframe3d.setAttribute("data-src", listing.vrUrl || "https://kuula.co/share/collection/7l1c8?fs=1&vr=1&sd=1&initload=0&thumbs=1&chromeless=1&logo=0");
+        iframe3d.setAttribute("data-src", listing.vrUrl || "");
     }
     const iframeStreetview = document.getElementById("iframe-streetview");
     if (iframeStreetview) iframeStreetview.removeAttribute("src");

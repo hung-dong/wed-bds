@@ -48,6 +48,7 @@ body {
 button { cursor: pointer; font-family: inherit; border: none; background: none; }
 input, select { font-family: inherit; }
 .install-btn.hidden { display: none; }
+.mvp-deferred { display: none !important; }
 
 /* ================== MAP CONTAINER ================== */
 .map-fullscreen { position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100vw; height: 100vh; z-index: 1; }
@@ -1094,7 +1095,16 @@ body.dark-mode .compare-empty {
     box-shadow: 0 18px 48px rgba(0,0,0,0.24);
     backdrop-filter: blur(16px);
 }
-.glass-filters > :not(#filter-admin-unit):not(#filter-price):not(#filter-type):not(#filter-legal):not(#filter-status):not(.mobile-keyword-search):not(.smart-search-chips) {
+body:not(.advanced-filter-open) #toggle-zoning,
+body:not(.advanced-filter-open) #filter-status,
+body:not(.advanced-filter-open) #filter-planning,
+body:not(.advanced-filter-open) #filter-direction,
+body:not(.advanced-filter-open) #filter-beds,
+body:not(.advanced-filter-open) #filter-baths,
+body:not(.advanced-filter-open) #sort-by,
+body:not(.advanced-filter-open) #show-favorites,
+body:not(.advanced-filter-open) .filter-divider,
+body:not(.advanced-filter-open) .manual-place-search {
     display: none !important;
 }
 .mobile-keyword-search {
@@ -1112,10 +1122,11 @@ body.dark-mode .compare-empty {
 #filter-admin-unit { order: 3; }
 #filter-price { order: 4; }
 #filter-type { order: 5; }
-#filter-legal { order: 6; }
-#filter-status { order: 7; }
-#toggle-zoning { order: 8; }
-#filter-area { order: 9; }
+#filter-area { order: 6; }
+#filter-legal { order: 7; }
+#filter-status { order: 8; }
+#filter-planning { order: 9; }
+#toggle-zoning { order: 10; }
 #filter-direction { order: 10; }
 #filter-beds { order: 11; }
 #filter-baths { order: 12; }
@@ -1161,8 +1172,10 @@ body.dark-mode .compare-empty {
 #filter-admin-unit,
 #filter-type,
 #filter-price,
+#filter-area,
 #filter-legal,
-#filter-status {
+#filter-status,
+#filter-planning {
     width: 100%;
     min-width: 0;
     height: 42px;
@@ -1250,7 +1263,8 @@ body.advanced-filter-open .filter-divider {
     display: none !important;
 }
 body.advanced-filter-open #toggle-zoning,
-body.advanced-filter-open #filter-area,
+body.advanced-filter-open #filter-status,
+body.advanced-filter-open #filter-planning,
 body.advanced-filter-open #filter-direction,
 body.advanced-filter-open #filter-beds,
 body.advanced-filter-open #filter-baths,
@@ -1263,6 +1277,8 @@ body.advanced-filter-open #filter-direction,
 body.advanced-filter-open #filter-beds,
 body.advanced-filter-open #filter-baths,
 body.advanced-filter-open #filter-legal,
+body.advanced-filter-open #filter-status,
+body.advanced-filter-open #filter-planning,
 body.advanced-filter-open #sort-by {
     display: block !important;
 }
@@ -1270,14 +1286,8 @@ body.advanced-filter-open .smart-search-chips,
 body.advanced-filter-open .manual-place-search {
     grid-column: 1 / -1;
 }
-body.advanced-filter-open .glass-filters > :not(#filter-admin-unit):not(#filter-price):not(#filter-type):not(#filter-legal):not(#filter-status) {
-    display: flex !important;
-}
 body.advanced-filter-open .manual-place-search {
     display: none !important;
-}
-body.advanced-filter-open .glass-filters > select:not(#filter-admin-unit):not(#filter-price):not(#filter-type):not(#filter-legal):not(#filter-status) {
-    display: block !important;
 }
 body.advanced-filter-open .glass-filters > .filter-divider {
     display: none !important;

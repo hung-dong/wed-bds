@@ -18,8 +18,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" crossorigin="" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" crossorigin="" />
-    <link rel="stylesheet" href="style.css?v=54">
-    <link rel="stylesheet" href="mobile-app.css?v=54">
+    <link rel="stylesheet" href="style.css?v=55">
+    <link rel="stylesheet" href="mobile-app.css?v=55">
 </head>
 <body>
     
@@ -139,7 +139,10 @@
             <select class="filter-btn" id="filter-legal">
                 <option value="all">Pháp lý</option>
                 <option value="Sổ">Có sổ</option>
-                <option value="Hoàn công">Hoàn công</option>
+                <option value="Sổ riêng">Sổ riêng</option>
+                <option value="Sổ chung">Sổ chung</option>
+                <option value="Đang tách">Đang tách thửa</option>
+                <option value="Giấy tay">Giấy tay</option>
                 <option value="Hợp đồng">Hợp đồng</option>
             </select>
             <select class="filter-btn" id="filter-status">
@@ -148,6 +151,14 @@
                 <option value="good-price">Giá tốt</option>
                 <option value="verified">Đã xác minh</option>
                 <option value="negotiable">Có thương lượng</option>
+            </select>
+            <select class="filter-btn" id="filter-planning">
+                <option value="all">Quy hoạch</option>
+                <option value="unchecked">Chưa kiểm tra</option>
+                <option value="checked">Đã kiểm tra</option>
+                <option value="clear">Không dính quy hoạch</option>
+                <option value="affected">Có dính quy hoạch</option>
+                <option value="recheck">Cần xác minh lại</option>
             </select>
             <select class="filter-btn" id="sort-by">
                 <option value="recommended">Đề xuất</option>
@@ -190,7 +201,7 @@
                     <div class="modal-gallery-actions">
                         <button class="btn-gallery-tab active" id="tab-photos">Ảnh</button>
                         <button class="btn-gallery-tab" id="tab-streetview">360°</button>
-                        <button class="btn-gallery-tab" id="tab-3d">VR</button>
+                        <button class="btn-gallery-tab" id="tab-3d" hidden>VR</button>
                     </div>
                     <div id="modal-gallery" class="modal-gallery"></div>
                     <button id="gallery-prev" class="gallery-nav-btn prev">❮</button>
@@ -228,7 +239,7 @@
                             <a id="modal-sticky-zalo-link" href="#" class="btn-modern btn-zalo">Chat Zalo</a>
                         </div>
                         
-                        <div class="social-action-bar">
+                        <div class="social-action-bar mvp-deferred">
                             <div class="rating-group">
                                 <button class="action-btn btn-like" onclick="window.toggleLike(this)">❤️ Yêu thích</button>
                                 <button class="action-btn btn-dislike" onclick="window.toggleDislike(this)">👎 Bỏ qua</button>
@@ -266,7 +277,7 @@
                         <p id="lead-message" class="lead-message"></p>
                     </form>
                     
-                    <div class="mortgage-calc-box">
+                    <div class="mortgage-calc-box mvp-deferred">
                         <h3>Dự toán Dòng tiền (Vay mua nhà)</h3>
                         <div class="bank-select-wrap">
                             <label>Tổ chức Tín dụng / Ngân hàng:</label>
@@ -292,7 +303,7 @@
                         </div>
                     </div>
                     
-                    <div class="esg-box">
+                    <div class="esg-box mvp-deferred">
                         <h3>Môi trường Xung quanh (Hyper-Local)</h3>
                         <div class="esg-grid">
                             <div class="esg-item"><span class="e-icon">📍</span> <span id="modal-walk-score" class="e-text"><strong>Khoảng cách tiện ích</strong> Đang tính...</span></div>
@@ -301,7 +312,7 @@
                         </div>
                     </div>
                     
-                    <div class="comments-section">
+                    <div class="comments-section mvp-deferred">
                         <h3>💬 Bình luận đánh giá</h3>
                         <div class="comments-list" id="comments-list">
                             <div class="comment-item">
@@ -335,12 +346,12 @@
     </div>
 
     <!-- COMPARE FAB -->
-    <div id="compare-fab" class="compare-fab" onclick="window.openCompareModal()">
+    <div id="compare-fab" class="compare-fab mvp-deferred" onclick="window.openCompareModal()">
         <span>⚖️ So sánh (0)</span>
     </div>
 
     <!-- COMPARE MODAL -->
-    <div id="compare-modal-backdrop" class="compare-modal-backdrop" onclick="if(event.target===this) window.closeCompareModal()">
+    <div id="compare-modal-backdrop" class="compare-modal-backdrop mvp-deferred" onclick="if(event.target===this) window.closeCompareModal()">
         <div class="compare-modal">
             <div class="compare-header">
                 <h2>So sánh Bất động sản</h2>
@@ -355,8 +366,8 @@
     <!-- JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js" crossorigin=""></script>
-    <script src="supabase-client.js?v=54"></script>
-    <script src="mobile-app.js?v=54"></script>
-    <script src="app.js?v=54"></script>
+    <script src="supabase-client.js?v=55"></script>
+    <script src="mobile-app.js?v=55"></script>
+    <script src="app.js?v=55"></script>
 </body>
 </html>

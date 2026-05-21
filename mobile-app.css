@@ -118,8 +118,10 @@ svg {
     #filter-admin-unit,
     #filter-type,
     #filter-price,
+    #filter-area,
     #filter-legal,
-    #filter-status {
+    #filter-status,
+    #filter-planning {
         height: 34px;
         padding: 0 9px;
         border-radius: 999px;
@@ -633,8 +635,10 @@ svg {
     #filter-admin-unit,
     #filter-type,
     #filter-price,
+    #filter-area,
     #filter-legal,
-    #filter-status {
+    #filter-status,
+    #filter-planning {
         height: 36px;
         padding-inline: 7px;
         font-size: 0.64rem;
