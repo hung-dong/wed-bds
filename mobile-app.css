@@ -376,9 +376,9 @@ svg {
         font-size: 0.86rem;
     }
 
-    .price-zestimate-row {
+    .price-row {
         display: grid;
-        grid-template-columns: minmax(0, 0.9fr) minmax(142px, 1fr);
+        grid-template-columns: minmax(0, 1fr);
         align-items: stretch;
         gap: 10px;
         margin-bottom: 12px;
@@ -389,24 +389,6 @@ svg {
         align-self: center;
         font-size: clamp(1.8rem, 10vw, 2.55rem);
         line-height: 1;
-    }
-
-    .zestimate-box {
-        align-items: center;
-        justify-content: center;
-        min-height: 86px;
-        padding: 9px;
-        border-radius: 14px;
-        text-align: center;
-    }
-
-    .z-icon {
-        font-size: 0.7rem;
-        letter-spacing: 0;
-    }
-
-    .z-val {
-        font-size: 1.45rem;
     }
 
     .z-lbl {

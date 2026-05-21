@@ -294,9 +294,22 @@
     }
 
     async function updateLead(leadId, payload) {
+        const current = (await getLeads()).find((lead) => lead.id === leadId) || {};
         const rows = await rest(`leads?id=eq.${encodeURIComponent(leadId)}`, {
             method: "PATCH",
-            body: JSON.stringify({ status: payload.status || "NEW", note: payload.note || "", updated_at: new Date().toISOString() })
+            body: JSON.stringify({
+                status: payload.status || "NEW",
+                note: payload.note || "",
+                data: {
+                    ...current,
+                    ...(payload.data || {}),
+                    temperature: payload.temperature || "COLD",
+                    assignee: payload.assignee || "",
+                    appointmentAt: payload.appointmentAt || "",
+                    note: payload.note || ""
+                },
+                updated_at: new Date().toISOString()
+            })
         });
         return { ok: true, lead: rowToLead(rows[0]) };
     }

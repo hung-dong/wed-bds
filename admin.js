@@ -16,6 +16,7 @@
 const nativeConfirm = window.confirm.bind(window);
 const STATIC_ADMIN_USERNAME = "admin";
 const STATIC_ADMIN_PASSWORD = "Admin@123456";
+const LOCAL_LEADS_KEY = "ndvLocalLeads";
 
 const elements = {
     loginView: document.getElementById("login-view"),
@@ -225,7 +226,7 @@ async function loadStaticDashboard() {
     if (window.NDV_SUPABASE && await window.NDV_SUPABASE.init()) {
         const data = await window.NDV_SUPABASE.adminBootstrap();
         state.listings = data.listings || [];
-        state.leads = data.leads || [];
+        state.leads = mergeLocalLeads(data.leads || []);
         state.submissions = data.submissions || [];
         state.site = data.site || null;
         state.analytics = data.analytics || null;
@@ -247,7 +248,7 @@ async function loadStaticDashboard() {
         fetchStaticJSON("/data/submissions.json?v=51", [])
     ]);
     state.listings = Array.isArray(listings) ? listings : [];
-    state.leads = Array.isArray(leads) ? leads : [];
+    state.leads = mergeLocalLeads(Array.isArray(leads) ? leads : []);
     state.submissions = Array.isArray(submissions) ? submissions : [];
     state.site = site || {
         brandName: "Nhà Đất Việt",
@@ -356,7 +357,7 @@ async function loadDashboard() {
     }
     const data = await request("/api/admin/bootstrap");
     state.listings = data.listings;
-    state.leads = data.leads || [];
+    state.leads = mergeLocalLeads(data.leads || []);
     state.submissions = data.submissions || [];
     state.analytics = data.analytics || null;
     state.site = data.site;
@@ -387,6 +388,36 @@ function leadStatusLabel(status) {
         LOST: "Không phù hợp"
     };
     return map[status] || "Khách mới";
+}
+
+function leadTemperatureLabel(value = "") {
+    const map = {
+        HOT: "Khách nóng",
+        WARM: "Khách ấm",
+        COLD: "Khách lạnh"
+    };
+    return map[String(value || "").toUpperCase()] || "Chưa phân loại";
+}
+
+function readLocalLeads() {
+    try {
+        const parsed = JSON.parse(localStorage.getItem(LOCAL_LEADS_KEY) || "[]");
+        return Array.isArray(parsed) ? parsed : [];
+    } catch {
+        return [];
+    }
+}
+
+function writeLocalLeads(leads) {
+    localStorage.setItem(LOCAL_LEADS_KEY, JSON.stringify(leads.slice(0, 200)));
+}
+
+function mergeLocalLeads(leads) {
+    const seen = new Set(leads.map((lead) => lead.id));
+    return [
+        ...readLocalLeads().filter((lead) => !seen.has(lead.id)),
+        ...leads
+    ];
 }
 
 function renderStats() {
@@ -768,9 +799,11 @@ function renderLeadList() {
         article.innerHTML = `
             <div>
                 <span class="lead-status-badge">${leadStatusLabel(lead.status)}</span>
+                <span class="lead-status-badge">${leadTemperatureLabel(lead.temperature)}</span>
                 <h3>${escapeHTML(lead.name)}</h3>
                 <p>${escapeHTML(lead.phone)} • ${created}</p>
                 <p class="lead-need">${escapeHTML(lead.need || "Chưa ghi nhu cầu cụ thể.")}</p>
+                <p>${escapeHTML([lead.budget, lead.areaInterest, lead.purpose, lead.buyingTime].filter(Boolean).join(" • "))}</p>
                 ${lead.note ? `<p class="lead-need">Ghi chú: ${escapeHTML(lead.note)}</p>` : ""}
             </div>
             <div class="lead-actions">
@@ -783,25 +816,68 @@ function renderLeadList() {
                     <option value="CLOSED">Đã chốt</option>
                     <option value="LOST">Không phù hợp</option>
                 </select>
-                <textarea data-lead-note rows="2" placeholder="Ghi chú chăm sóc khách">${escapeHTML(lead.note || "")}</textarea>
+                <select data-lead-temperature>
+                    <option value="HOT">Khách nóng</option>
+                    <option value="WARM">Khách ấm</option>
+                    <option value="COLD">Khách lạnh</option>
+                </select>
+                <input data-lead-assignee placeholder="Sale phụ trách" value="${escapeHTML(lead.assignee || "")}">
+                <input data-lead-appointment type="datetime-local" value="${toDateTimeLocal(lead.appointmentAt)}">
+                <textarea data-lead-note rows="2" placeholder="Ghi chú cuộc gọi/lịch hẹn">${escapeHTML(lead.note || "")}</textarea>
                 <button class="button button-ghost" type="button" data-lead-save>Lưu trạng thái</button>
                 <a class="button button-ghost" href="tel:${escapeHTML(lead.phone)}">Gọi</a>
             </div>
         `;
         const statusSelect = article.querySelector("[data-lead-status]");
         if (statusSelect) statusSelect.value = lead.status || "NEW";
+        const temperatureSelect = article.querySelector("[data-lead-temperature]");
+        if (temperatureSelect) temperatureSelect.value = lead.temperature || "COLD";
         article.querySelector("[data-lead-save]")?.addEventListener("click", () => updateLeadStatus(lead.id, article));
         elements.leadList.appendChild(article);
     });
+}
+
+function toDateTimeLocal(value) {
+    const time = Date.parse(value || "");
+    if (Number.isNaN(time)) return "";
+    const date = new Date(time);
+    date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+    return date.toISOString().slice(0, 16);
 }
 
 async function updateLeadStatus(id, article) {
     try {
         const status = article.querySelector("[data-lead-status]")?.value || "NEW";
         const note = article.querySelector("[data-lead-note]")?.value || "";
+        const temperature = article.querySelector("[data-lead-temperature]")?.value || "COLD";
+        const assignee = article.querySelector("[data-lead-assignee]")?.value || "";
+        const appointmentAt = article.querySelector("[data-lead-appointment]")?.value || "";
+        const localLead = state.leads.find((item) => item.id === id && String(item.id).startsWith("local-lead-"));
+        if (localLead) {
+            const updated = {
+                ...localLead,
+                status,
+                note,
+                temperature,
+                assignee,
+                appointmentAt: appointmentAt ? new Date(appointmentAt).toISOString() : "",
+                updatedAt: new Date().toISOString()
+            };
+            state.leads = state.leads.map((item) => item.id === id ? updated : item);
+            writeLocalLeads(state.leads.filter((item) => String(item.id).startsWith("local-lead-")));
+            renderStats();
+            renderLeadList();
+            return;
+        }
         const result = await request(`/api/admin/leads/${encodeURIComponent(id)}`, {
             method: "PUT",
-            body: JSON.stringify({ status, note })
+            body: JSON.stringify({
+                status,
+                note,
+                temperature,
+                assignee,
+                appointmentAt: appointmentAt ? new Date(appointmentAt).toISOString() : ""
+            })
         });
         state.leads = state.leads.map((item) => item.id === id ? result.lead : item);
         renderStats();
@@ -903,10 +979,15 @@ function emptyListing() {
         landUse: "",
         planningStatus: "",
         bankLoan: "",
+        verificationStatus: "Chưa xác minh",
+        ownerType: "Chưa rõ",
+        saleStatus: "Còn bán",
+        priceUpdatedAt: "",
+        assignee: "",
+        source: "",
         image: "",
         video: "",
         vrUrl: "",
-        aiValuation: "",
         walkScore: "",
         coordinates: [13.9833, 108.0],
         description: "",
@@ -928,10 +1009,16 @@ function fillListingForm(listing) {
     if (elements.listingEditor.direction) elements.listingEditor.direction.value = listing.direction || "";
     elements.listingEditor.beds.value = listing.beds ?? "";
     elements.listingEditor.baths.value = listing.baths ?? "";
-    elements.listingEditor.legal.value = listing.legal || "";
+    setSelectOrInputValue(elements.listingEditor.legal, listing.legal || "");
     if (elements.listingEditor.landUse) elements.listingEditor.landUse.value = listing.landUse || "";
-    if (elements.listingEditor.planningStatus) elements.listingEditor.planningStatus.value = listing.planningStatus || "";
+    if (elements.listingEditor.planningStatus) setSelectOrInputValue(elements.listingEditor.planningStatus, listing.planningStatus || "Chưa kiểm tra");
     if (elements.listingEditor.bankLoan) elements.listingEditor.bankLoan.value = listing.bankLoan || "";
+    if (elements.listingEditor.verificationStatus) setSelectOrInputValue(elements.listingEditor.verificationStatus, listing.verificationStatus || "Chưa xác minh");
+    if (elements.listingEditor.ownerType) setSelectOrInputValue(elements.listingEditor.ownerType, listing.ownerType || "Chưa rõ");
+    if (elements.listingEditor.saleStatus) setSelectOrInputValue(elements.listingEditor.saleStatus, listing.saleStatus || listing.status || "Còn bán");
+    if (elements.listingEditor.priceUpdatedAt) elements.listingEditor.priceUpdatedAt.value = dateInputValue(listing.priceUpdatedAt || listing.updatedAt || listing.createdAt);
+    if (elements.listingEditor.assignee) elements.listingEditor.assignee.value = listing.assignee || listing.responsiblePerson || "";
+    if (elements.listingEditor.source) elements.listingEditor.source.value = listing.source || listing.sourceTrackingCode || "";
     elements.listingEditor.image.value = listing.image || "";
     elements.listingEditor.imagesText.value = (listing.images && listing.images.length ? listing.images : (listing.image ? [listing.image] : [])).join("\n");
     setTimeout(() => window.populateDropzoneFromListing?.(listing), 0);
@@ -939,7 +1026,6 @@ function fillListingForm(listing) {
     
     // Thuộc tính 2026
     if(elements.listingEditor.vrUrl) elements.listingEditor.vrUrl.value = listing.vrUrl || "";
-    if(elements.listingEditor.aiValuation) elements.listingEditor.aiValuation.value = listing.aiValuation || "";
     if(elements.listingEditor.walkScore) elements.listingEditor.walkScore.value = listing.walkScore || "";
 
     elements.listingEditor.latitude.value = listing.coordinates?.[0] ?? 13.9833;
@@ -952,6 +1038,26 @@ function fillListingForm(listing) {
     if (state.adminMap) {
         setTimeout(() => state.adminMap.invalidateSize(), 300);
     }
+}
+
+function setSelectOrInputValue(field, value) {
+    if (!field) return;
+    const next = String(value || "");
+    if (field.tagName !== "SELECT") {
+        field.value = next;
+        return;
+    }
+    const hasOption = [...field.options].some((option) => option.value === next);
+    if (next && !hasOption) {
+        field.add(new Option(next, next));
+    }
+    field.value = next;
+}
+
+function dateInputValue(value) {
+    const time = Date.parse(value || "");
+    if (Number.isNaN(time)) return "";
+    return new Date(time).toISOString().slice(0, 10);
 }
 
 function renderNearbyEditor(items) {
@@ -1020,11 +1126,18 @@ function collectListingPayload() {
         landUse: elements.listingEditor.landUse?.value.trim() || "",
         planningStatus: elements.listingEditor.planningStatus?.value.trim() || "",
         bankLoan: elements.listingEditor.bankLoan?.value.trim() || "",
+        verificationStatus: elements.listingEditor.verificationStatus?.value || "Chưa xác minh",
+        ownerType: elements.listingEditor.ownerType?.value || "Chưa rõ",
+        saleStatus: elements.listingEditor.saleStatus?.value || "Còn bán",
+        status: elements.listingEditor.saleStatus?.value || "Còn bán",
+        priceUpdatedAt: elements.listingEditor.priceUpdatedAt?.value || "",
+        assignee: elements.listingEditor.assignee?.value.trim() || "",
+        responsiblePerson: elements.listingEditor.assignee?.value.trim() || "",
+        source: elements.listingEditor.source?.value.trim() || "",
         image: validateURL(elements.listingEditor.image.value.trim()) || validateURL(images[0]) || "",
         images: images.map(validateURL).filter(Boolean),
         video: validateURL(elements.listingEditor.video.value.trim()),
         vrUrl: validateURL(elements.listingEditor.vrUrl?.value.trim()),
-        aiValuation: elements.listingEditor.aiValuation?.value ? Number(elements.listingEditor.aiValuation.value) : null,
         walkScore: elements.listingEditor.walkScore?.value ? Number(elements.listingEditor.walkScore.value) : null,
         coordinates: [
             Number(elements.listingEditor.latitude.value),
@@ -1247,28 +1360,3 @@ window.detectMyLocation = function() {
         { enableHighAccuracy: true }
     );
 };
-
-// ================== AI PRICE PREDICTION ==================
-window.predictPrice = function() {
-    const area = parseFloat(elements.listingEditor.area.value);
-    const type = (elements.listingEditor.type.value || "").toLowerCase();
-    if (isNaN(area) || area <= 0) {
-        alert("Nhập diện tích trước khi dùng AI gợi ý giá.");
-        return;
-    }
-    let basePricePerM2 = 50; // triệu/m2
-    if (type.includes("biệt thự")) basePricePerM2 = 120;
-    else if (type.includes("căn hộ")) basePricePerM2 = 60;
-    else if (type.includes("đất")) basePricePerM2 = 35;
-    else if (type.includes("nhà phố")) basePricePerM2 = 70;
-
-    const factor = 0.9 + (Math.random() * 0.2);
-    const est = (area * basePricePerM2 * factor) / 1000;
-    if (elements.listingEditor.aiValuation) elements.listingEditor.aiValuation.value = est.toFixed(1);
-    if (elements.listingEditor.walkScore && !elements.listingEditor.walkScore.value) {
-        elements.listingEditor.walkScore.value = Math.floor(Math.random() * 40) + 60;
-    }
-    elements.editorMessage.textContent = "AI đã gợi ý giá!";
-    setTimeout(() => elements.editorMessage.textContent = "", 3000);
-};
-

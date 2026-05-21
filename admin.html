@@ -17,8 +17,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-    <link rel="stylesheet" href="admin.css?v=52">
-    <link rel="stylesheet" href="mobile-app.css?v=52">
+    <link rel="stylesheet" href="admin.css?v=57">
+    <link rel="stylesheet" href="mobile-app.css?v=57">
 </head>
 <body>
     <main class="admin-shell">
@@ -180,8 +180,53 @@
                                 <label><span>Loại hình</span><input name="type" type="text" required></label>
                                 <label><span>Giá bán (tỷ)</span><input name="price" type="number" min="0" step="0.1" required></label>
                                 <label><span>Diện tích (m²)</span><input name="area" type="number" min="1" step="1" required></label>
-                                <label><span>Pháp lý</span><input name="legal" type="text" required></label>
+                                <label><span>Pháp lý</span>
+                                    <select name="legal" required>
+                                        <option value="">Chọn pháp lý</option>
+                                        <option value="Sổ riêng">Sổ riêng</option>
+                                        <option value="Sổ chung">Sổ chung</option>
+                                        <option value="Đang tách thửa">Đang tách thửa</option>
+                                        <option value="Giấy tay">Giấy tay</option>
+                                        <option value="Đất ở">Đất ở</option>
+                                        <option value="Đất nông nghiệp">Đất nông nghiệp</option>
+                                        <option value="Có hoàn công">Có hoàn công</option>
+                                        <option value="Chưa hoàn công">Chưa hoàn công</option>
+                                        <option value="Chưa kiểm tra pháp lý">Chưa kiểm tra pháp lý</option>
+                                    </select>
+                                </label>
                                 <label><span>Hướng</span><input name="direction" type="text" placeholder="Đông Nam..."></label>
+                            </div>
+                        </details>
+
+                        <details class="form-section" open>
+                            <summary>✅ Niềm tin & giao dịch</summary>
+                            <div class="grid-form">
+                                <label><span>Trạng thái xác minh</span>
+                                    <select name="verificationStatus">
+                                        <option value="Chưa xác minh">Chưa xác minh</option>
+                                        <option value="Đã xác minh">Đã xác minh</option>
+                                        <option value="Cần kiểm tra lại">Cần kiểm tra lại</option>
+                                    </select>
+                                </label>
+                                <label><span>Người đăng</span>
+                                    <select name="ownerType">
+                                        <option value="Chưa rõ">Chưa rõ</option>
+                                        <option value="Chính chủ">Chính chủ</option>
+                                        <option value="Môi giới">Môi giới</option>
+                                        <option value="Ký gửi">Ký gửi</option>
+                                    </select>
+                                </label>
+                                <label><span>Trạng thái bán</span>
+                                    <select name="saleStatus">
+                                        <option value="Còn bán">Còn bán</option>
+                                        <option value="Đã cọc">Đã cọc</option>
+                                        <option value="Đã bán">Đã bán</option>
+                                        <option value="Tạm ngưng">Tạm ngưng</option>
+                                    </select>
+                                </label>
+                                <label><span>Ngày cập nhật giá</span><input name="priceUpdatedAt" type="date"></label>
+                                <label><span>Người phụ trách</span><input name="assignee" type="text" placeholder="VD: Anh Hùng"></label>
+                                <label><span>Nguồn tin</span><input name="source" type="text" placeholder="Chính chủ, ký gửi, thành viên gửi..."></label>
                             </div>
                         </details>
 
@@ -196,7 +241,15 @@
                                 <label><span>Phòng tắm</span><input name="baths" type="number" min="0" step="1" required></label>
                                 <label><span>Thổ cư</span><input name="landUse" type="text" placeholder="100m² thổ cư"></label>
                                 <label><span>Vay ngân hàng</span><input name="bankLoan" type="text" placeholder="Có/không"></label>
-                                <label class="full"><span>Quy hoạch/lộ giới</span><input name="planningStatus" type="text" placeholder="Không quy hoạch, dính lộ giới..."></label>
+                                <label class="full"><span>Quy hoạch/lộ giới</span>
+                                    <select name="planningStatus">
+                                        <option value="Chưa kiểm tra">Chưa kiểm tra</option>
+                                        <option value="Không dính quy hoạch">Không dính quy hoạch</option>
+                                        <option value="Dính một phần">Dính một phần</option>
+                                        <option value="Dính toàn bộ">Dính toàn bộ</option>
+                                        <option value="Cần xác minh lại">Cần xác minh lại</option>
+                                    </select>
+                                </label>
                                 <label class="full"><span>Mô tả</span><textarea name="description" rows="4" required></textarea></label>
                             </div>
                         </details>
@@ -247,14 +300,11 @@
                             </div>
                         </details>
 
-                        <!-- ====== ACCORDION SECTION 5: Prop-Tech 2026 ====== -->
+                        <!-- ====== ACCORDION SECTION 5: Tab phụ ====== -->
                         <details class="form-section">
-                            <summary>🤖 Prop-Tech 2026</summary>
+                            <summary>Tab phụ: 360/VR & tiện ích</summary>
                             <div class="grid-form">
                                 <label class="full"><span>URL Không gian 3D / VR</span><input name="vrUrl" type="url" placeholder="https://kuula.co/share/..."></label>
-                                <label><span>Định giá AI (Tỷ)</span>
-                                    <div style="display:flex; gap:6px;"><input name="aiValuation" type="number" min="0" step="0.1" placeholder="4.5" style="flex:1;"><button type="button" onclick="predictPrice()" class="button button-ghost" style="padding:0 10px; font-size:0.78rem; height:48px;">🤖 Gợi ý</button></div>
-                                </label>
                                 <label><span>Walk Score (1-100)</span><input name="walkScore" type="number" min="1" max="100" step="1" placeholder="95"></label>
                             </div>
                         </details>
@@ -321,8 +371,8 @@
     </template>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-    <script src="supabase-client.js?v=53"></script>
-    <script src="mobile-app.js?v=53"></script>
-    <script src="admin.js?v=53"></script>
+    <script src="supabase-client.js?v=57"></script>
+    <script src="mobile-app.js?v=57"></script>
+    <script src="admin.js?v=57"></script>
 </body>
 </html>

@@ -681,15 +681,20 @@ function sanitizeListing(input) {
         landUse: cleanText(input.landUse, 160),
         planningStatus: cleanText(input.planningStatus, 300),
         bankLoan: cleanText(input.bankLoan, 160),
+        verificationStatus: cleanText(input.verificationStatus, 80),
+        ownerType: cleanText(input.ownerType, 80),
+        saleStatus: cleanText(input.saleStatus || input.status, 80),
+        status: cleanText(input.saleStatus || input.status, 80),
+        priceUpdatedAt: cleanText(input.priceUpdatedAt, 40),
+        assignee: cleanText(input.assignee || input.responsiblePerson, 120),
+        responsiblePerson: cleanText(input.responsiblePerson || input.assignee, 120),
+        source: cleanText(input.source, 160),
         image: primaryImage,
         images,
         description: cleanText(input.description, 5000),
         coordinates,
         video: sanitizeMediaUrl(input.video),
         vrUrl: sanitizeMediaUrl(input.vrUrl),
-        aiValuation: input.aiValuation === null || input.aiValuation === undefined || input.aiValuation === ""
-            ? null
-            : Number(input.aiValuation),
         walkScore: input.walkScore === null || input.walkScore === undefined || input.walkScore === ""
             ? null
             : Number(input.walkScore),
@@ -728,6 +733,7 @@ function validateListing(listing) {
 }
 
 function sanitizeLead(input) {
+    const temperature = String(input.temperature || "").trim().toUpperCase();
     return {
         id: `lead-${Date.now()}-${crypto.randomBytes(3).toString("hex")}`,
         listingId: String(input.listingId || "").trim(),
@@ -735,10 +741,17 @@ function sanitizeLead(input) {
         name: String(input.name || "").trim(),
         phone: sanitizePhone(input.phone),
         need: String(input.need || "").trim(),
+        budget: cleanText(input.budget, 120),
+        areaInterest: cleanText(input.areaInterest, 160),
+        purpose: cleanText(input.purpose, 80),
+        buyingTime: cleanText(input.buyingTime, 80),
         source: String(input.source || "website").trim(),
         createdAt: new Date().toISOString(),
         status: "NEW",
-        note: ""
+        temperature: ["HOT", "WARM", "COLD"].includes(temperature) ? temperature : "COLD",
+        assignee: "",
+        appointmentAt: "",
+        note: cleanText(input.note, 1000)
     };
 }
 
@@ -1300,7 +1313,12 @@ async function handleApi(req, res, pathname) {
             leads[index] = {
                 ...leads[index],
                 status: allowedStatuses.has(status) ? status : leads[index].status,
-                note: String(body.note || "").trim(),
+                temperature: ["HOT", "WARM", "COLD"].includes(String(body.temperature || "").trim().toUpperCase())
+                    ? String(body.temperature || "").trim().toUpperCase()
+                    : leads[index].temperature || "COLD",
+                assignee: cleanText(body.assignee, 120),
+                appointmentAt: cleanText(body.appointmentAt, 80),
+                note: cleanText(body.note, 1000),
                 updatedAt: new Date().toISOString()
             };
             await writeJson(LEADS_FILE, leads);

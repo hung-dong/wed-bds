@@ -18,8 +18,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" crossorigin="" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" crossorigin="" />
-    <link rel="stylesheet" href="style.css?v=56">
-    <link rel="stylesheet" href="mobile-app.css?v=56">
+    <link rel="stylesheet" href="style.css?v=57">
+    <link rel="stylesheet" href="mobile-app.css?v=57">
 </head>
 <body>
     
@@ -143,10 +143,18 @@
                 <option value="Sổ chung">Sổ chung</option>
                 <option value="Đang tách">Đang tách thửa</option>
                 <option value="Giấy tay">Giấy tay</option>
-                <option value="Hợp đồng">Hợp đồng</option>
+                <option value="Đất ở">Đất ở</option>
+                <option value="Đất nông nghiệp">Đất nông nghiệp</option>
+                <option value="Có hoàn công">Có hoàn công</option>
+                <option value="Chưa hoàn công">Chưa hoàn công</option>
+                <option value="Chưa kiểm tra">Chưa kiểm tra pháp lý</option>
             </select>
             <select class="filter-btn" id="filter-status">
                 <option value="all">Trạng thái</option>
+                <option value="available">Còn bán</option>
+                <option value="deposit">Đã cọc</option>
+                <option value="sold">Đã bán</option>
+                <option value="paused">Tạm ngưng</option>
                 <option value="new">Mới đăng</option>
                 <option value="good-price">Giá tốt</option>
                 <option value="verified">Đã xác minh</option>
@@ -157,7 +165,8 @@
                 <option value="unchecked">Chưa kiểm tra</option>
                 <option value="checked">Đã kiểm tra</option>
                 <option value="clear">Không dính quy hoạch</option>
-                <option value="affected">Có dính quy hoạch</option>
+                <option value="affected-part">Dính một phần</option>
+                <option value="affected-full">Dính toàn bộ</option>
                 <option value="recheck">Cần xác minh lại</option>
             </select>
             <select class="filter-btn" id="sort-by">
@@ -225,13 +234,14 @@
                         <span id="modal-type" class="map-popup-badge static"></span>
                         <h2 id="modal-title" class="modal-title"></h2>
                         <div id="modal-location" class="modal-location"></div>
-                        <div class="price-zestimate-row price-only-row">
+                        <div class="price-row price-only-row">
                             <div id="modal-price" class="modal-price"></div>
                         </div>
 
                         <div class="modal-primary-actions">
                             <a id="modal-sticky-call-link" href="tel:0900000000" class="btn-modern btn-call">Gọi ngay</a>
                             <a id="modal-sticky-zalo-link" href="#" class="btn-modern btn-zalo">Chat Zalo</a>
+                            <button id="modal-send-listing-button" class="btn-modern btn-send-listing" type="button">Gửi tin này cho khách</button>
                         </div>
                         
                         <div class="social-action-bar mvp-deferred">
@@ -266,8 +276,23 @@
                         <div class="lead-grid">
                             <input id="lead-name" name="name" type="text" placeholder="Tên khách" required>
                             <input id="lead-phone" name="phone" type="tel" placeholder="Số điện thoại" required>
+                            <input id="lead-budget" name="budget" type="text" placeholder="Ngân sách: VD dưới 2 tỷ">
+                            <input id="lead-area-interest" name="areaInterest" type="text" placeholder="Khu vực quan tâm">
+                            <select id="lead-purpose" name="purpose">
+                                <option value="">Nhu cầu mua</option>
+                                <option value="Mua ở">Mua ở</option>
+                                <option value="Đầu tư">Đầu tư</option>
+                                <option value="Ký gửi/bán lại">Ký gửi/bán lại</option>
+                            </select>
+                            <select id="lead-buying-time" name="buyingTime">
+                                <option value="">Thời gian muốn mua</option>
+                                <option value="Trong 7 ngày">Trong 7 ngày</option>
+                                <option value="Trong 30 ngày">Trong 30 ngày</option>
+                                <option value="1-3 tháng">1-3 tháng</option>
+                                <option value="Chưa gấp">Chưa gấp</option>
+                            </select>
                         </div>
-                        <textarea id="lead-need" name="need" rows="2" placeholder="Nhu cầu: xem nhà, hỏi pháp lý, thương lượng giá..."></textarea>
+                        <textarea id="lead-need" name="need" rows="2" placeholder="Ghi chú: xem đất, hỏi pháp lý, thương lượng giá..."></textarea>
                         <button class="btn-lead-submit" type="submit">Gửi yêu cầu</button>
                         <p id="lead-message" class="lead-message"></p>
                     </form>
@@ -334,6 +359,7 @@
                     <div class="modal-footer-actions">
                         <a id="modal-call-link" href="tel:0900000000" class="btn-modern btn-call">📞 GỌI ĐIỆN NGAY</a>
                         <a id="modal-zalo-link" href="#" class="btn-modern btn-zalo">💬 CHAT ZALO</a>
+                        <button id="modal-send-listing-bottom-button" class="btn-modern btn-send-listing" type="button">📤 GỬI TIN CHO KHÁCH</button>
                     </div>
                 </div>
             </div>
@@ -361,8 +387,8 @@
     <!-- JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js" crossorigin=""></script>
-    <script src="supabase-client.js?v=56"></script>
-    <script src="mobile-app.js?v=56"></script>
-    <script src="app.js?v=56"></script>
+    <script src="supabase-client.js?v=57"></script>
+    <script src="mobile-app.js?v=57"></script>
+    <script src="app.js?v=57"></script>
 </body>
 </html>

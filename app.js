@@ -7,6 +7,7 @@ const LIST_PAGE_SIZE = 40;
 const VIEWED_LISTINGS_KEY = "ndvViewedListingIds";
 const DATA_CACHE_PREFIX = "ndvDataCache:";
 const DATA_CACHE_TTL = 5 * 60 * 1000;
+const LOCAL_LEADS_KEY = "ndvLocalLeads";
 const DEFAULT_ROAD_PRICE_TABLE = [
     { keys: ["le duan"], price: 30 },
     { keys: ["truong chinh"], price: 28 },
@@ -189,6 +190,8 @@ el.showFavorites = document.getElementById("show-favorites");
 el.installAppButton = document.getElementById("install-app-button");
 el.leadForm = document.getElementById("lead-form");
 el.leadMessage = document.getElementById("lead-message");
+el.sendListingButton = document.getElementById("modal-send-listing-button");
+el.sendListingBottomButton = document.getElementById("modal-send-listing-bottom-button");
 el.quickAreaButtons = document.querySelectorAll(".quick-area-bar button");
 el.smartSearchHint = document.getElementById("smart-search-hint");
 el.smartSearchChips = document.getElementById("smart-search-chips");
@@ -859,6 +862,9 @@ function bindEvents() {
     if (el.leadForm) {
         el.leadForm.addEventListener("submit", handleLeadSubmit);
     }
+    [el.sendListingButton, el.sendListingBottomButton].filter(Boolean).forEach((button) => {
+        button.addEventListener("click", handleSendListingToCustomer);
+    });
 
     window.addEventListener("hashchange", openListingFromHash);
     setupInstallPrompt();
@@ -1049,18 +1055,47 @@ async function handleLeadSubmit(event) {
     event.preventDefault();
     const listing = state.listings.find((item) => item.id === state.currentListingId);
     const formData = new FormData(el.leadForm);
+    const budget = String(formData.get("budget") || "").trim();
+    const areaInterest = String(formData.get("areaInterest") || "").trim();
+    const purpose = String(formData.get("purpose") || "").trim();
+    const buyingTime = String(formData.get("buyingTime") || "").trim();
+    const note = String(formData.get("need") || "").trim();
     const payload = {
         listingId: listing?.id || "",
         listingTitle: listing?.title || "",
         name: String(formData.get("name") || "").trim(),
         phone: String(formData.get("phone") || "").trim(),
-        need: String(formData.get("need") || "").trim(),
+        budget,
+        areaInterest,
+        purpose,
+        buyingTime,
+        note,
+        need: [
+            budget ? `Ngân sách: ${budget}` : "",
+            areaInterest ? `Khu vực: ${areaInterest}` : "",
+            purpose ? `Nhu cầu: ${purpose}` : "",
+            buyingTime ? `Thời gian mua: ${buyingTime}` : "",
+            note
+        ].filter(Boolean).join(" | "),
+        temperature: classifyLeadTemperature({ budget, purpose, buyingTime, note }),
         source: "property-detail"
     };
 
     el.leadMessage.className = "lead-message";
     el.leadMessage.textContent = "Đang gửi...";
 
+    try {
+        await submitLead(payload);
+        el.leadForm.reset();
+        el.leadMessage.classList.add("ok");
+        el.leadMessage.textContent = "Đã lưu khách. Admin có thể xem trong trang quản trị.";
+    } catch (error) {
+        el.leadMessage.classList.add("error");
+        el.leadMessage.textContent = error.message;
+    }
+}
+
+async function submitLead(payload) {
     try {
         const response = await fetch("/api/leads", {
             method: "POST",
@@ -1069,13 +1104,36 @@ async function handleLeadSubmit(event) {
         });
         const data = await response.json().catch(() => ({}));
         if (!response.ok) throw new Error(data.error || "Không gửi được yêu cầu.");
-        el.leadForm.reset();
-        el.leadMessage.classList.add("ok");
-        el.leadMessage.textContent = "Đã lưu khách. Admin có thể xem trong trang quản trị.";
+        return data;
     } catch (error) {
-        el.leadMessage.classList.add("error");
-        el.leadMessage.textContent = error.message;
+        const localLead = {
+            ...payload,
+            id: `local-lead-${Date.now()}`,
+            status: "NEW",
+            createdAt: new Date().toISOString()
+        };
+        const leads = readLocalLeads();
+        leads.unshift(localLead);
+        localStorage.setItem(LOCAL_LEADS_KEY, JSON.stringify(leads.slice(0, 200)));
+        return { ok: true, lead: localLead, local: true };
     }
+}
+
+function readLocalLeads() {
+    try {
+        const raw = localStorage.getItem(LOCAL_LEADS_KEY);
+        const parsed = raw ? JSON.parse(raw) : [];
+        return Array.isArray(parsed) ? parsed : [];
+    } catch {
+        return [];
+    }
+}
+
+function classifyLeadTemperature(input = {}) {
+    const text = normalizeSearchText(`${input.budget || ""} ${input.purpose || ""} ${input.buyingTime || ""} ${input.note || ""}`);
+    if (text.includes("7 ngay") || text.includes("dat coc") || text.includes("xem") || text.includes("goi")) return "HOT";
+    if (text.includes("30 ngay") || text.includes("dau tu") || text.includes("thuong luong")) return "WARM";
+    return "COLD";
 }
 
 function normalizeSearchText(value) {
@@ -1234,6 +1292,11 @@ function showSmartHint(message, timeout = 4200) {
 function listingMatchesStatus(listing, status) {
     if (!status || status === "all") return true;
     const blob = getListingSearchBlob(listing);
+    const saleState = saleStatusState(listing);
+    if (status === "available") return saleState === "available";
+    if (status === "deposit") return saleState === "deposit";
+    if (status === "sold") return saleState === "sold";
+    if (status === "paused") return saleState === "paused";
     if (status === "new") {
         const time = Date.parse(listing.updatedAt || listing.createdAt || "");
         return Number.isNaN(time) || Date.now() - time <= 21 * 24 * 60 * 60 * 1000;
@@ -1256,7 +1319,9 @@ function normalizePlanningState(listing) {
     const text = normalizeSearchText(listing?.planningStatus || "");
     if (!text || /\b(chua ro|chua kiem tra|chua check)\b/.test(text)) return "unchecked";
     if (/\b(khong bi|khong dinh|khong quy hoach|quy hoach sach|khu dan cu on dinh)\b/.test(text)) return "clear";
-    if (/\b(dinh|bi quy hoach|lo gioi|treo)\b/.test(text)) return "affected";
+    if (/\b(dinh toan bo|toan bo|full)\b/.test(text)) return "affected-full";
+    if (/\b(dinh mot phan|mot phan|lo gioi|treo)\b/.test(text)) return "affected-part";
+    if (/\b(dinh|bi quy hoach)\b/.test(text)) return "affected-part";
     if (/\b(can kiem tra|can xac minh|kiem tra lai|xac minh lai)\b/.test(text)) return "recheck";
     return "checked";
 }
@@ -1264,7 +1329,8 @@ function normalizePlanningState(listing) {
 function listingMatchesPlanning(listing, planning) {
     if (!planning || planning === "all") return true;
     const stateValue = normalizePlanningState(listing);
-    if (planning === "checked") return stateValue === "checked" || stateValue === "clear" || stateValue === "affected";
+    if (planning === "checked") return ["checked", "clear", "affected", "affected-part", "affected-full"].includes(stateValue);
+    if (planning === "affected") return stateValue === "affected-part" || stateValue === "affected-full";
     return stateValue === planning;
 }
 
@@ -1277,6 +1343,11 @@ function listingMatchesLegal(listing, legal) {
     if (target === "so chung") return text.includes("so") && text.includes("chung");
     if (target === "dang tach") return text.includes("tach");
     if (target === "giay tay") return text.includes("giay tay");
+    if (target === "dat o") return text.includes("dat o") || text.includes("tho cu");
+    if (target === "dat nong nghiep") return text.includes("nong nghiep") || text.includes("cln") || text.includes("hkn");
+    if (target === "co hoan cong") return text.includes("hoan cong") && !text.includes("chua");
+    if (target === "chua hoan cong") return text.includes("chua hoan cong");
+    if (target === "chua kiem tra") return text.includes("chua kiem tra") || text.includes("chua ro");
     return text.includes(target);
 }
 
@@ -1286,21 +1357,34 @@ function planningLabel(listing) {
         checked: "Đã kiểm tra",
         clear: "Không dính quy hoạch",
         affected: "Có dính quy hoạch",
+        "affected-part": "Dính một phần",
+        "affected-full": "Dính toàn bộ",
         recheck: "Cần xác minh lại"
     };
     return labels[normalizePlanningState(listing)] || "Chưa kiểm tra";
 }
 
-function listingSaleStatus(listing) {
+function saleStatusState(listing) {
     const raw = normalizeSearchText(listing?.status || listing?.saleStatus || "");
-    if (raw.includes("sold") || raw.includes("da ban")) return "Đã bán";
-    if (raw.includes("pending") || raw.includes("coc")) return "Đang cọc";
-    if (raw.includes("hide") || raw.includes("an")) return "Tạm ẩn";
-    return "Còn bán";
+    if (raw.includes("sold") || raw.includes("da ban")) return "sold";
+    if (raw.includes("pending") || raw.includes("coc")) return "deposit";
+    if (raw.includes("pause") || raw.includes("tam ngung") || raw.includes("hide") || raw.includes("an")) return "paused";
+    return "available";
+}
+
+function listingSaleStatus(listing) {
+    const labels = {
+        available: "Còn bán",
+        deposit: "Đã cọc",
+        sold: "Đã bán",
+        paused: "Tạm ngưng"
+    };
+    return labels[saleStatusState(listing)] || "Còn bán";
 }
 
 function verificationLabel(listing) {
     const text = normalizeSearchText(`${listing?.verified || ""} ${listing?.verificationStatus || ""} ${listing?.legal || ""} ${listing?.description || ""}`);
+    if (text.includes("can xac minh") || text.includes("kiem tra lai")) return "Cần kiểm tra lại";
     if (text.includes("xac minh") || text.includes("chinh chu") || text.includes("so do") || text.includes("so hong")) return "Đã xác minh";
     return "Chưa xác minh";
 }
@@ -1308,8 +1392,64 @@ function verificationLabel(listing) {
 function ownerTypeLabel(listing) {
     const text = normalizeSearchText(`${listing?.ownerType || ""} ${listing?.brokerage || ""} ${listing?.description || ""}`);
     if (text.includes("moi gioi") || text.includes("sale") || text.includes("san")) return "Môi giới";
+    if (text.includes("ky gui")) return "Ký gửi";
     if (text.includes("chinh chu")) return "Chính chủ";
     return listing?.owner?.name ? "Chính chủ/môi giới" : "Chưa rõ";
+}
+
+function formatDateVN(value) {
+    const time = Date.parse(value || "");
+    if (Number.isNaN(time)) return "Chưa cập nhật";
+    return new Date(time).toLocaleDateString("vi-VN");
+}
+
+function listingAssignee(listing) {
+    return listing?.assignee || listing?.responsiblePerson || listing?.owner?.name || "Admin";
+}
+
+function listingSourceLabel(listing) {
+    return listing?.source || listing?.sourceTrackingCode || (listing?.sourceSubmissionId ? "Tin thành viên gửi" : "Admin nhập");
+}
+
+function listingHighlights(listing) {
+    return [
+        listing.roadWidth ? `đường ${listing.roadWidth}m` : "",
+        listing.frontage ? `ngang ${listing.frontage}m` : "",
+        listing.landUse || "",
+        planningLabel(listing)
+    ].filter(Boolean).slice(0, 3).join(", ");
+}
+
+function buildListingShareText(listing) {
+    const contact = getContact();
+    return [
+        `Tin BĐS: ${listing.title || "Nhà đất"}`,
+        `Vị trí: ${listing.location || "Đang cập nhật"}`,
+        `Diện tích: ${listing.area || "-"} m2${listing.frontage && listing.depth ? ` (${listing.frontage}x${listing.depth})` : ""}`,
+        `Giá: ${formatPrice(listing.price)} tỷ`,
+        `Pháp lý: ${listing.legal || "Chưa rõ"}`,
+        `Đường: ${listing.roadWidth ? `${listing.roadWidth}m` : "Chưa cập nhật"}`,
+        `Quy hoạch: ${planningLabel(listing)}`,
+        `Ưu điểm: ${listingHighlights(listing) || "Vị trí dễ xem, có thể gọi kiểm tra thêm"}`,
+        `Liên hệ: ${contact.phoneDisplay || contact.phoneRaw || "0900000000"}`
+    ].join("\n");
+}
+
+async function handleSendListingToCustomer() {
+    const listing = state.listings.find((item) => item.id === state.currentListingId);
+    if (!listing) return;
+    const text = buildListingShareText(listing);
+    const contact = getContact();
+    try {
+        await navigator.clipboard.writeText(text);
+        showToast("Đã copy nội dung tin. Dán vào Zalo để gửi cho khách.");
+    } catch {
+        window.prompt("Copy nội dung gửi khách:", text);
+    }
+    trackEvent("SHARE", { listingId: listing.id, summary: "Gửi tin này cho khách" });
+    if (contact.zaloUrl) {
+        window.open(contact.zaloUrl, "_blank", "noopener");
+    }
 }
 
 function applyFilters() {
@@ -1451,6 +1591,22 @@ function checkArea(area, range) {
 
 function formatPrice(price) {
     return price % 1 === 0 ? price : price.toFixed(1);
+}
+
+function showToast(message) {
+    let toast = document.getElementById("ndv-toast");
+    if (!toast) {
+        toast = document.createElement("div");
+        toast.id = "ndv-toast";
+        toast.style.cssText = "position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:99999;background:#0f172a;color:#fff;padding:12px 16px;border-radius:999px;font-weight:800;box-shadow:0 14px 40px rgba(15,23,42,.25);max-width:calc(100vw - 32px);text-align:center;";
+        document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.hidden = false;
+    window.clearTimeout(showToast._timer);
+    showToast._timer = window.setTimeout(() => {
+        toast.hidden = true;
+    }, 2600);
 }
 
 function pricePerM2Number(listing) {
@@ -1880,9 +2036,6 @@ function getNearbyComparablePrice(listing) {
 }
 
 function getListingValuation(listing) {
-    if (Number(listing.aiValuation) > 0) {
-        return Number(listing.aiValuation);
-    }
     const area = Number(listing.area || 0);
     if (!area) return Number(listing.price || 0);
 
@@ -2653,7 +2806,10 @@ window.openFullscreenModal = function(id) {
             ["Pháp lý", listing.legal || "Chưa rõ"],
             ["Thổ cư", listing.landUse || "Chưa rõ"],
             ["Quy hoạch", planningLabel(listing)],
-            ["Đường", formatFact(listing.roadWidth, "m")]
+            ["Đường", formatFact(listing.roadWidth, "m")],
+            ["Cập nhật giá", formatDateVN(listing.priceUpdatedAt || listing.updatedAt || listing.createdAt)],
+            ["Phụ trách", listingAssignee(listing)],
+            ["Nguồn tin", listingSourceLabel(listing)]
         ];
         realFacts.innerHTML = facts.map(([label, value]) => `<div><span>${label}</span><strong>${value}</strong></div>`).join("");
     }
@@ -2689,6 +2845,9 @@ window.openFullscreenModal = function(id) {
         link.target = "_blank";
         link.rel = "noopener";
         link.textContent = link.id === "modal-sticky-zalo-link" ? "💬 Chat Zalo" : "💬 Gửi nhanh qua Zalo";
+    });
+    [el.sendListingButton, el.sendListingBottomButton].filter(Boolean).forEach((button) => {
+        button.dataset.listingId = listing.id;
     });
 
     if (el.leadMessage) {
