@@ -530,7 +530,7 @@ function scoreListingQuality(listing = {}) {
 }
 
 function sanitizeEvent(input, req) {
-    const allowedTypes = new Set(["VIEW", "CALL", "ZALO", "SHARE", "SEARCH"]);
+    const allowedTypes = new Set(["VIEW", "CALL", "ZALO", "SHARE", "SEARCH", "DIRECTIONS"]);
     const type = String(input.type || "").trim().toUpperCase();
     if (!allowedTypes.has(type)) return null;
     return {

@@ -1403,6 +1403,14 @@ function formatDateVN(value) {
     return new Date(time).toLocaleDateString("vi-VN");
 }
 
+function getListingDirectionsUrl(listing) {
+    const coords = Array.isArray(listing?.coordinates) ? listing.coordinates.map(Number) : [];
+    if (coords.length !== 2 || coords.some((value) => !Number.isFinite(value))) return "";
+    const [lat, lng] = coords;
+    if (lat < 7 || lat > 24 || lng < 100 || lng > 115) return "";
+    return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+}
+
 function listingAssignee(listing) {
     return listing?.assignee || listing?.responsiblePerson || listing?.owner?.name || "Admin";
 }
@@ -1422,6 +1430,7 @@ function listingHighlights(listing) {
 
 function buildListingShareText(listing) {
     const contact = getContact();
+    const directionsUrl = getListingDirectionsUrl(listing);
     return [
         `Tin BĐS: ${listing.title || "Nhà đất"}`,
         `Vị trí: ${listing.location || "Đang cập nhật"}`,
@@ -1431,8 +1440,9 @@ function buildListingShareText(listing) {
         `Đường: ${listing.roadWidth ? `${listing.roadWidth}m` : "Chưa cập nhật"}`,
         `Quy hoạch: ${planningLabel(listing)}`,
         `Ưu điểm: ${listingHighlights(listing) || "Vị trí dễ xem, có thể gọi kiểm tra thêm"}`,
+        directionsUrl ? `Chỉ đường: ${directionsUrl}` : "",
         `Liên hệ: ${contact.phoneDisplay || contact.phoneRaw || "0900000000"}`
-    ].join("\n");
+    ].filter(Boolean).join("\n");
 }
 
 async function handleSendListingToCustomer() {
@@ -1944,6 +1954,7 @@ function showMobileListingPreview(listing, coverImg, contact) {
     const images = getListingImageUrls(listing);
     const firstImage = safeMediaUrl(coverImg) || images[0] || FALLBACK_IMAGE;
     const imageCount = images.length;
+    const directionsUrl = getListingDirectionsUrl(listing);
     popupSlideIndex[String(listing.id)] = Math.max(0, images.indexOf(firstImage));
     el.mobileListingPreview.innerHTML = `
         <article class="mobile-preview-card">
@@ -1973,6 +1984,7 @@ function showMobileListingPreview(listing, coverImg, contact) {
                     <button type="button" onclick="window.openFullscreenModal('${listing.id}')">Chi tiết</button>
                     <a href="tel:${contact.phoneRaw || ""}" onclick="window.trackListingEvent('CALL', '${listing.id}')">Gọi</a>
                     <a href="${contact.zaloUrl || "#"}" target="_blank" rel="noopener" onclick="window.trackListingEvent('ZALO', '${listing.id}')">Zalo</a>
+                    ${directionsUrl ? `<a href="${directionsUrl}" target="_blank" rel="noopener" onclick="window.trackListingEvent('DIRECTIONS', '${listing.id}')">Chỉ đường</a>` : ""}
                 </div>
             </div>
         </article>
@@ -2377,6 +2389,7 @@ function renderMapMarkers({ fitBounds = false, animate = true } = {}) {
                     <div class="map-popup-footer" style="margin-top:0;">
                         <a href="tel:${contact.phoneRaw}" class="btn-modern btn-call" style="font-size:0.85rem; padding: 10px;" onclick="window.trackListingEvent('CALL', '${listing.id}')">📞 ${contact.phoneDisplay || "Gọi điện"}</a>
                         <a href="${contact.zaloUrl || "#"}" class="btn-modern btn-zalo" style="font-size:0.85rem; padding: 10px;" target="_blank" rel="noopener" onclick="window.trackListingEvent('ZALO', '${listing.id}')">💬 ZALO</a>
+                        ${getListingDirectionsUrl(listing) ? `<a href="${getListingDirectionsUrl(listing)}" class="btn-modern btn-directions" style="font-size:0.85rem; padding: 10px;" target="_blank" rel="noopener" onclick="window.trackListingEvent('DIRECTIONS', '${listing.id}')">🧭 CHỈ ĐƯỜNG</a>` : ""}
                     </div>
                 </div>
             </div>
@@ -2832,6 +2845,10 @@ window.openFullscreenModal = function(id) {
         document.getElementById("modal-zalo-link"),
         document.getElementById("modal-sticky-zalo-link")
     ].filter(Boolean);
+    const directionsLinks = [
+        document.getElementById("modal-directions-link"),
+        document.getElementById("modal-sticky-directions-link")
+    ].filter(Boolean);
     callLinks.forEach((link) => {
         link.href = `tel:${contact.phoneRaw || "0900000000"}`;
         link.onclick = () => trackEvent("CALL", { listingId: listing.id });
@@ -2845,6 +2862,20 @@ window.openFullscreenModal = function(id) {
         link.target = "_blank";
         link.rel = "noopener";
         link.textContent = link.id === "modal-sticky-zalo-link" ? "💬 Chat Zalo" : "💬 Gửi nhanh qua Zalo";
+    });
+    const directionsUrl = getListingDirectionsUrl(listing);
+    directionsLinks.forEach((link) => {
+        if (!directionsUrl) {
+            link.hidden = true;
+            link.href = "#";
+            return;
+        }
+        link.hidden = false;
+        link.href = directionsUrl;
+        link.onclick = () => trackEvent("DIRECTIONS", { listingId: listing.id });
+        link.target = "_blank";
+        link.rel = "noopener";
+        link.textContent = link.id === "modal-sticky-directions-link" ? "🧭 Chỉ đường" : "🧭 CHỈ ĐƯỜNG";
     });
     [el.sendListingButton, el.sendListingBottomButton].filter(Boolean).forEach((button) => {
         button.dataset.listingId = listing.id;

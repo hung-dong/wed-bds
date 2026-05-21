@@ -403,6 +403,8 @@ select.filter-btn option:checked {
 .btn-call { background: var(--color-primary); color: white; }
 .btn-call:hover { box-shadow: var(--shadow-glow); }
 .btn-zalo { background: #00c300; color: white; }
+.btn-directions { background: #f59e0b; color: #111827; }
+.btn-directions:hover { background: #d97706; color: #fff; }
 
 .popup-social-bar { display: flex; justify-content: space-between; align-items: center; padding-top: 10px; border-top: 1px solid #f1f5f9; }
 .popup-social-bar .action-btn { padding: 5px 10px; font-size: 0.78rem; }
