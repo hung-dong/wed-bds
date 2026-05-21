@@ -630,23 +630,14 @@ body.modal-open .market-actions {
     background: rgba(255,255,255,0.25); transform: translateY(-1px);
 }
 
-/* ===== Price + Zestimate Row ===== */
+/* ===== Price Row ===== */
 .price-zestimate-row {
     display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
     margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #f1f5f9;
 }
-.zestimate-box {
-    background: linear-gradient(145deg, #f0fdf4, #dcfce7); border: 1px solid #bbf7d0;
-    padding: 10px 12px; border-radius: var(--radius-lg);
-    display: flex; flex-direction: column; align-items: flex-end;
-    box-shadow: 0 4px 15px rgba(22, 101, 52, 0.06);
+.price-zestimate-row.price-only-row {
+    justify-content: flex-start;
 }
-.z-icon { font-size: 0.78rem; color: #166534; font-weight: 800; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
-.z-val { font-size: 1.15rem; font-weight: 800; color: #15803d; line-height: 1; margin-bottom: 4px; }
-.z-lbl { font-size: 0.75rem; color: #15803d; background: #bbf7d0; padding: 3px 10px; border-radius: var(--radius-pill); font-weight: 600; }
-.zestimate-box.overpriced { background: linear-gradient(145deg, #fef2f2, #fee2e2); border-color: #fecaca; box-shadow: 0 4px 15px rgba(153, 27, 27, 0.06); }
-.zestimate-box.overpriced .z-icon, .zestimate-box.overpriced .z-val, .zestimate-box.overpriced .z-lbl { color: #991b1b; }
-.zestimate-box.overpriced .z-lbl { background: #fecaca; }
 
 .modal-primary-actions {
     display: grid; grid-template-columns: 1fr 1fr; gap: 10px;

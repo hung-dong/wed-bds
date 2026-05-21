@@ -1924,36 +1924,6 @@ function utilityDistanceLabel(distance) {
     return "vị trí yên tĩnh, tiện ích xa hơn";
 }
 
-function renderRuleBasedValuation(listing) {
-    const zbox = document.querySelector(".zestimate-box");
-    const zValueNode = document.getElementById("modal-zestimate-val");
-    const zLabelNode = document.getElementById("modal-zestimate-lbl");
-    if (!zbox || !zValueNode || !zLabelNode) return;
-
-    zbox.classList.remove("overpriced");
-    zValueNode.textContent = "...";
-    zLabelNode.textContent = "Đang phân tích dữ liệu khu vực...";
-
-    window.clearTimeout(renderRuleBasedValuation._timer);
-    renderRuleBasedValuation._timer = window.setTimeout(() => {
-        const zPrice = getListingValuation(listing);
-        if (!zPrice) {
-            zValueNode.textContent = "--";
-            zLabelNode.textContent = "Chưa đủ dữ liệu diện tích/giá";
-            return;
-        }
-
-        const askingPrice = Number(listing.price || 0);
-        const deltaPercent = askingPrice > 0 ? Math.round(Math.abs(zPrice - askingPrice) / askingPrice * 100) : 0;
-        const isCheaper = zPrice >= askingPrice;
-        zValueNode.textContent = formatPrice(zPrice) + " Tỷ";
-        zLabelNode.textContent = askingPrice > 0
-            ? (isCheaper ? `Thấp hơn ước tính ${deltaPercent}%` : `Cao hơn ước tính ${deltaPercent}%`)
-            : "Ước tính theo diện tích và vị trí";
-        zbox.classList.toggle("overpriced", !isCheaper);
-    }, 1500);
-}
-
 function trackEvent(type, details = {}) {
     fetch("/api/events", {
         method: "POST",
@@ -2725,9 +2695,6 @@ window.openFullscreenModal = function(id) {
         el.leadMessage.className = "lead-message";
         el.leadMessage.textContent = "";
     }
-
-    // AI định giá chạy local rule-based: không gọi API, không phát sinh chi phí.
-    renderRuleBasedValuation(listing);
 
     const utilityDistance = getUtilityDistance(listing);
     const walkNode = document.getElementById("modal-walk-score");
