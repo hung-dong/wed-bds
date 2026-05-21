@@ -18,8 +18,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" crossorigin="" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" crossorigin="" />
-    <link rel="stylesheet" href="style.css?v=51">
-    <link rel="stylesheet" href="mobile-app.css?v=51">
+    <link rel="stylesheet" href="style.css?v=54">
+    <link rel="stylesheet" href="mobile-app.css?v=54">
 </head>
 <body>
     
@@ -79,10 +79,11 @@
                 🗺️ Bật Quy Hoạch
             </button>
             <div class="filter-divider"></div>
-            <div class="mobile-keyword-search" role="search">
-                <input id="filter-keyword-mobile" type="search" placeholder="Nhập từ khóa, tên đường, khu vực..." autocomplete="off" inputmode="search" list="search-suggestions">
+            <div class="mobile-keyword-search smart-natural-search" role="search">
+                <input id="filter-keyword-mobile" type="search" placeholder="Tìm tự nhiên: đất Pleiku dưới 1 tỷ có sổ, nhà hẻm ô tô..." autocomplete="off" inputmode="search" list="search-suggestions">
                 <button id="run-search-mobile-button" type="button">Tìm</button>
             </div>
+            <div id="smart-search-chips" class="smart-search-chips hidden" aria-live="polite"></div>
             <div class="manual-place-search" role="search" aria-label="Nhập địa danh muốn tìm">
                 <input id="manual-place-input" type="search" placeholder="Nhập tay địa danh: Biển Hồ, Trường Chinh, Ia Grai..." autocomplete="off" inputmode="search" list="search-suggestions">
                 <button id="manual-place-button" type="button">Tìm địa danh</button>
@@ -140,6 +141,13 @@
                 <option value="Sổ">Có sổ</option>
                 <option value="Hoàn công">Hoàn công</option>
                 <option value="Hợp đồng">Hợp đồng</option>
+            </select>
+            <select class="filter-btn" id="filter-status">
+                <option value="all">Trạng thái</option>
+                <option value="new">Mới đăng</option>
+                <option value="good-price">Giá tốt</option>
+                <option value="verified">Đã xác minh</option>
+                <option value="negotiable">Có thương lượng</option>
             </select>
             <select class="filter-btn" id="sort-by">
                 <option value="recommended">Đề xuất</option>
@@ -347,8 +355,8 @@
     <!-- JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js" crossorigin=""></script>
-    <script src="supabase-client.js?v=53"></script>
-    <script src="mobile-app.js?v=53"></script>
-    <script src="app.js?v=53"></script>
+    <script src="supabase-client.js?v=54"></script>
+    <script src="mobile-app.js?v=54"></script>
+    <script src="app.js?v=54"></script>
 </body>
 </html>

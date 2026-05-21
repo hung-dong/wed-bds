@@ -47,7 +47,18 @@ const state = {
     visibleListCount: LIST_PAGE_SIZE,
     compareIds: [],
     viewedListingIds: [],
-    mapRenderToken: 0
+    mapRenderToken: 0,
+    smartSearch: {
+        raw: "",
+        effectiveKeyword: "",
+        chips: [],
+        width: null,
+        depth: null,
+        amenity: "",
+        roadIntent: "",
+        areaLabel: ""
+    },
+    naturalSearchInputDirty: false
 };
 
 let currentListingPrice = 0; // State cho Modal 2026
@@ -170,6 +181,7 @@ const el = {
 };
 
 el.filterLegal = document.getElementById("filter-legal");
+el.filterStatus = document.getElementById("filter-status");
 el.filterAdminUnit = document.getElementById("filter-admin-unit");
 el.sortBy = document.getElementById("sort-by");
 el.showFavorites = document.getElementById("show-favorites");
@@ -178,6 +190,7 @@ el.leadForm = document.getElementById("lead-form");
 el.leadMessage = document.getElementById("lead-message");
 el.quickAreaButtons = document.querySelectorAll(".quick-area-bar button");
 el.smartSearchHint = document.getElementById("smart-search-hint");
+el.smartSearchChips = document.getElementById("smart-search-chips");
 el.toggleFilters = document.getElementById("toggle-filters");
 el.openAdvancedPanel = document.getElementById("open-advanced-panel");
 el.marketDarkMode = document.getElementById("market-dark-mode");
@@ -457,7 +470,7 @@ function getTypeFilterText() {
 function getActiveFilterSummary() {
     const parts = [];
     if (state.selectedAdminUnit?.label) parts.push(state.selectedAdminUnit.label);
-    [el.filterType, el.filterPrice, el.filterArea, el.filterDirection, el.filterBeds, el.filterBaths, el.filterLegal]
+    [el.filterType, el.filterPrice, el.filterLegal, el.filterStatus, el.filterArea, el.filterDirection, el.filterBeds, el.filterBaths]
         .filter(Boolean)
         .forEach((select) => {
             if (select.value !== "all") parts.push(getSelectText(select));
@@ -480,14 +493,191 @@ function setKeywordValue(value) {
     if (el.manualPlaceInput && el.manualPlaceInput.value !== next) el.manualPlaceInput.value = next;
 }
 
+function setSelectValueIfExists(select, value) {
+    if (!select || !value) return false;
+    const hasOption = [...select.options].some((option) => option.value === value);
+    if (!hasOption) return false;
+    select.value = value;
+    return true;
+}
+
+function inferTypeFromQuery(normalized) {
+    if (/\b(dat|dat nen|lo dat|nen)\b/.test(normalized)) return "Đất nền";
+    if (/\b(nha vuon|vuon)\b/.test(normalized)) return "Nhà vườn";
+    if (/\b(biet thu|villa)\b/.test(normalized)) return "Biệt thự";
+    if (/\b(kho|xuong|kho xuong)\b/.test(normalized)) return "Kho/xưởng";
+    if (/\b(can ho|chung cu)\b/.test(normalized)) return "Căn hộ";
+    if (/\b(nha|nha pho|hem)\b/.test(normalized)) return "Nhà phố";
+    return "";
+}
+
+function inferPriceFromQuery(normalized) {
+    const millionMatch = normalized.match(/(?:duoi\s*)?(\d+(?:[.,]\d+)?)\s*(tr|trieu)\b/);
+    if (millionMatch) {
+        const billion = Number(millionMatch[1].replace(",", ".")) / 1000;
+        if (billion < 1) return "under-1";
+    }
+    const billionMatch = normalized.match(/(?:duoi|duoi tam|tam|khoang|tren)?\s*(\d+(?:[.,]\d+)?)\s*(ty|ti)\b/);
+    const value = billionMatch ? Number(billionMatch[1].replace(",", ".")) : 0;
+    const isUnder = /\b(duoi|khong qua|toi da|nho hon)\b/.test(normalized);
+    const isAbove = /\b(tren|hon|tu)\b/.test(normalized) && !isUnder;
+    if (value > 0 && isUnder) {
+        if (value <= 1) return "under-1";
+        if (value <= 2) return "1-2";
+        if (value <= 3) return "2-3";
+        if (value <= 5) return "3-5";
+        if (value <= 10) return "5-10";
+        return "10-plus";
+    }
+    if (value > 0 && isAbove) return value >= 10 ? "10-plus" : "5-10";
+    if (value > 0) {
+        if (value < 1) return "under-1";
+        if (value <= 2) return "1-2";
+        if (value <= 3) return "2-3";
+        if (value <= 5) return "3-5";
+        if (value <= 10) return "5-10";
+        return "10-plus";
+    }
+    return "";
+}
+
+function inferAreaFromDimensions(raw, chips) {
+    const match = normalizeSearchText(raw).match(/\b(\d+(?:[.,]\d+)?)\s*x\s*(\d+(?:[.,]\d+)?)\b/);
+    if (!match) return { areaRange: "", width: null, depth: null };
+    const width = Number(match[1].replace(",", "."));
+    const depth = Number(match[2].replace(",", "."));
+    const area = width * depth;
+    if (Number.isFinite(width) && Number.isFinite(depth) && area > 0) {
+        chips.push(`${Number.isInteger(width) ? width : width.toFixed(1)}x${Number.isInteger(depth) ? depth : depth.toFixed(1)}`);
+        if (area < 100) return { areaRange: "under-100", width, depth };
+        if (area <= 300) return { areaRange: "100-300", width, depth };
+        if (area <= 1000) return { areaRange: "300-1000", width, depth };
+        return { areaRange: "1000-plus", width, depth };
+    }
+    return { areaRange: "", width: null, depth: null };
+}
+
+function inferLegalFromQuery(normalized) {
+    if (/\b(so do|so hong|co so|so rieng|phap ly ro)\b/.test(normalized)) return "Sổ";
+    if (/\b(hoan cong)\b/.test(normalized)) return "Hoàn công";
+    if (/\b(hop dong|giay tay)\b/.test(normalized)) return "Hợp đồng";
+    return "";
+}
+
+function inferStatusFromQuery(normalized) {
+    if (/\b(moi|moi dang|tin moi)\b/.test(normalized)) return "new";
+    if (/\b(gia tot|re|ngop|can ban gap|dau tu)\b/.test(normalized)) return "good-price";
+    if (/\b(xac minh|da xac minh|chinh chu)\b/.test(normalized)) return "verified";
+    if (/\b(thoa thuan|thuong luong|bot loc)\b/.test(normalized)) return "negotiable";
+    return "";
+}
+
+function inferAreaLabelFromQuery(raw) {
+    const normalized = normalizeSearchText(raw);
+    const knownAreas = ["Pleiku", "Biển Hồ", "Đắk Đoa", "Dak Doa", "Chư Păh", "Chư Sê", "Ia Grai", "An Khê", "Ayun Pa", "Quy Nhơn", "Phù Cát"];
+    const foundKnown = knownAreas.find((area) => normalized.includes(normalizeSearchText(area)));
+    if (foundKnown) return foundKnown === "Dak Doa" ? "Đắk Đoa" : foundKnown;
+    const unit = state.adminUnits.find((item) => getAdminUnitTokens(item).some((token) => normalized.includes(token)));
+    return unit?.label || "";
+}
+
+function inferAmenityFromQuery(normalized) {
+    if (/\b(gan cho|cho)\b/.test(normalized)) return "Gần chợ";
+    if (/\b(gan truong|truong hoc)\b/.test(normalized)) return "Gần trường";
+    if (/\b(gan benh vien|benh vien)\b/.test(normalized)) return "Gần bệnh viện";
+    if (/\b(gan bien|bien)\b/.test(normalized)) return "Gần biển";
+    return "";
+}
+
+function buildEffectiveKeyword(raw) {
+    let normalized = normalizeSearchText(raw);
+    const removePatterns = [
+        /\b(dat nen|lo dat|dat|nha pho|nha vuon|nha hem|nha|biet thu|villa|can ho|chung cu|kho xuong|kho|xuong)\b/g,
+        /\b(duoi|tren|hon|tu|tam|khoang|khong qua|toi da|nho hon)\s*\d+(?:[.,]\d+)?\s*(ty|ti|tr|trieu)\b/g,
+        /\b\d+(?:[.,]\d+)?\s*(ty|ti|tr|trieu)\b/g,
+        /\b\d+(?:[.,]\d+)?\s*x\s*\d+(?:[.,]\d+)?\b/g,
+        /\b(co so|so do|so hong|so rieng|phap ly ro|hoan cong|hop dong|giay tay)\b/g,
+        /\b(moi dang|tin moi|gia tot|can ban gap|ngop|dau tu|xac minh|da xac minh|chinh chu|thoa thuan|thuong luong|bot loc)\b/g,
+        /\b(gan cho|gan truong|truong hoc|gan benh vien|benh vien|gan bien|hem oto|hem o to|oto|o to)\b/g
+    ];
+    removePatterns.forEach((pattern) => {
+        normalized = normalized.replace(pattern, " ");
+    });
+    return normalized.replace(/\s+/g, " ").trim();
+}
+
+function parseNaturalSearch(raw) {
+    const normalized = normalizeSearchText(raw);
+    const chips = [];
+    const parsed = {
+        type: inferTypeFromQuery(normalized),
+        price: inferPriceFromQuery(normalized),
+        legal: inferLegalFromQuery(normalized),
+        status: inferStatusFromQuery(normalized),
+        areaLabel: inferAreaLabelFromQuery(raw),
+        amenity: inferAmenityFromQuery(normalized),
+        roadIntent: /\b(hem oto|hem o to|oto|o to)\b/.test(normalized) ? "Hẻm ô tô" : "",
+        effectiveKeyword: buildEffectiveKeyword(raw),
+        width: null,
+        depth: null
+    };
+    const area = inferAreaFromDimensions(raw, chips);
+    parsed.area = area.areaRange;
+    parsed.width = area.width;
+    parsed.depth = area.depth;
+    if (parsed.areaLabel) chips.push(parsed.areaLabel);
+    if (parsed.type) chips.push(parsed.type);
+    if (parsed.price && el.filterPrice) {
+        const text = [...el.filterPrice.options].find((option) => option.value === parsed.price)?.textContent;
+        if (text) chips.push(text);
+    }
+    if (parsed.legal) chips.push(parsed.legal === "Sổ" ? "Có sổ" : parsed.legal);
+    if (parsed.status && el.filterStatus) {
+        const text = [...el.filterStatus.options].find((option) => option.value === parsed.status)?.textContent;
+        if (text) chips.push(text);
+    }
+    if (parsed.amenity) chips.push(parsed.amenity);
+    if (parsed.roadIntent) chips.push(parsed.roadIntent);
+    parsed.chips = [...new Set(chips.filter(Boolean))];
+    return parsed;
+}
+
+function applyNaturalSearchToControls(raw, resetMissing = false) {
+    const parsed = parseNaturalSearch(raw);
+    state.smartSearch = parsed;
+    if (parsed.type) setSelectValueIfExists(el.filterType, parsed.type);
+    else if (resetMissing && el.filterType) el.filterType.value = "all";
+    if (parsed.price) setSelectValueIfExists(el.filterPrice, parsed.price);
+    else if (resetMissing && el.filterPrice) el.filterPrice.value = "all";
+    if (parsed.legal) setSelectValueIfExists(el.filterLegal, parsed.legal);
+    else if (resetMissing && el.filterLegal) el.filterLegal.value = "all";
+    if (parsed.status) setSelectValueIfExists(el.filterStatus, parsed.status);
+    else if (resetMissing && el.filterStatus) el.filterStatus.value = "all";
+    if (parsed.area) setSelectValueIfExists(el.filterArea, parsed.area);
+    else if (resetMissing && el.filterArea) el.filterArea.value = "all";
+    renderSmartSearchChips(parsed.chips);
+    return parsed;
+}
+
+function renderSmartSearchChips(chips) {
+    if (!el.smartSearchChips) return;
+    if (!chips.length) {
+        el.smartSearchChips.classList.add("hidden");
+        el.smartSearchChips.innerHTML = "";
+        return;
+    }
+    el.smartSearchChips.innerHTML = chips.map((chip) => `<span>${escapeHTML(chip)}</span>`).join("");
+    el.smartSearchChips.classList.remove("hidden");
+}
+
 function clearQuickAreaSelection() {
     state.selectedAreaCenter = null;
     el.quickAreaButtons.forEach((item) => item.classList.remove("active"));
 }
 
 function syncPrimaryFilterState() {
-    const primaryFilters = [el.filterAdminUnit, el.filterType, el.filterPrice].filter(Boolean);
-    const advancedFilters = [el.filterArea, el.filterDirection, el.filterBeds, el.filterBaths, el.filterLegal, el.sortBy].filter(Boolean);
+    const primaryFilters = [el.filterAdminUnit, el.filterPrice, el.filterType, el.filterLegal, el.filterStatus].filter(Boolean);
+    const advancedFilters = [el.filterArea, el.filterDirection, el.filterBeds, el.filterBaths, el.sortBy].filter(Boolean);
     primaryFilters.forEach((select) => {
         select.classList.toggle("active-filter", select.value !== "all");
     });
@@ -503,7 +693,7 @@ function syncPrimaryFilterState() {
 }
 
 function bindEvents() {
-    [el.filterType, el.filterPrice, el.filterArea, el.filterDirection, el.filterBeds, el.filterBaths, el.filterLegal, el.filterAdminUnit, el.sortBy]
+    [el.filterType, el.filterPrice, el.filterArea, el.filterDirection, el.filterBeds, el.filterBaths, el.filterLegal, el.filterStatus, el.filterAdminUnit, el.sortBy]
         .filter(Boolean)
         .forEach(f => f.addEventListener("change", () => {
             if (f === el.filterAdminUnit) state.selectedAreaCenter = null;
@@ -514,6 +704,7 @@ function bindEvents() {
         if (!input) return;
         input.addEventListener("input", () => {
             clearQuickAreaSelection();
+            state.naturalSearchInputDirty = true;
             if (mirror) setKeywordValue(input.value);
             clearTimeout(timer);
             timer = setTimeout(applyFilters, 300);
@@ -521,6 +712,7 @@ function bindEvents() {
         input.addEventListener("keydown", (event) => {
             if (event.key === "Enter") {
                 clearTimeout(timer);
+                state.naturalSearchInputDirty = true;
                 if (mirror) setKeywordValue(input.value);
                 applyFilters();
             }
@@ -532,6 +724,7 @@ function bindEvents() {
     if (el.searchButton) {
         el.searchButton.addEventListener("click", () => {
             clearQuickAreaSelection();
+            state.naturalSearchInputDirty = true;
             setKeywordValue(el.keywordInput?.value || "");
             applyFilters();
         });
@@ -539,6 +732,7 @@ function bindEvents() {
     if (el.mobileSearchButton) {
         el.mobileSearchButton.addEventListener("click", () => {
             clearQuickAreaSelection();
+            state.naturalSearchInputDirty = true;
             setKeywordValue(el.mobileKeywordInput?.value || "");
             applyFilters();
         });
@@ -546,6 +740,7 @@ function bindEvents() {
     if (el.manualPlaceButton) {
         el.manualPlaceButton.addEventListener("click", () => {
             clearQuickAreaSelection();
+            state.naturalSearchInputDirty = true;
             setKeywordValue(el.manualPlaceInput?.value || "");
             applyFilters();
         });
@@ -582,6 +777,7 @@ function bindEvents() {
         button.addEventListener("click", () => {
             el.quickAreaButtons.forEach((item) => item.classList.remove("active"));
             button.classList.add("active");
+            state.naturalSearchInputDirty = true;
             setKeywordValue(button.dataset.areaKeyword || "");
             const lat = Number(button.dataset.lat);
             const lng = Number(button.dataset.lng);
@@ -616,9 +812,13 @@ function bindEvents() {
             if (el.filterBeds) el.filterBeds.value = "all";
             if (el.filterBaths) el.filterBaths.value = "all";
             if (el.filterLegal) el.filterLegal.value = "all";
+            if (el.filterStatus) el.filterStatus.value = "all";
             if (el.sortBy) el.sortBy.value = "recommended";
             state.showFavoritesOnly = false;
             state.selectedAreaCenter = null;
+            state.smartSearch = { raw: "", effectiveKeyword: "", chips: [], width: null, depth: null, amenity: "", roadIntent: "", areaLabel: "" };
+            state.naturalSearchInputDirty = false;
+            renderSmartSearchChips([]);
             setKeywordValue("");
             el.quickAreaButtons.forEach((item) => item.classList.remove("active"));
             el.showFavorites?.classList.remove("active-filter");
@@ -1009,7 +1209,32 @@ function showSmartHint(message, timeout = 4200) {
     }, timeout);
 }
 
+function listingMatchesStatus(listing, status) {
+    if (!status || status === "all") return true;
+    const blob = getListingSearchBlob(listing);
+    if (status === "new") {
+        const time = Date.parse(listing.updatedAt || listing.createdAt || "");
+        return Number.isNaN(time) || Date.now() - time <= 21 * 24 * 60 * 60 * 1000;
+    }
+    if (status === "good-price") {
+        const asking = Number(listing.price || 0);
+        const valuation = getListingValuation(listing);
+        return getInvestmentScore(listing) > 0 || (asking > 0 && valuation > 0 && asking <= valuation * 1.03);
+    }
+    if (status === "verified") {
+        return /\b(so|so do|so hong|chinh chu|xac minh)\b/.test(normalizeSearchText(`${listing.legal || ""} ${listing.description || ""}`));
+    }
+    if (status === "negotiable") {
+        return /\b(thoa thuan|thuong luong|bot loc|co bot|gap)\b/.test(blob);
+    }
+    return true;
+}
+
 function applyFilters() {
+    const kw = getKeywordValue();
+    setKeywordValue(kw);
+    const parsedSearch = applyNaturalSearchToControls(kw, state.naturalSearchInputDirty);
+    state.naturalSearchInputDirty = false;
     const typ = el.filterType.value;
     const prc = el.filterPrice.value;
     const areaRange = el.filterArea?.value || "all";
@@ -1017,9 +1242,8 @@ function applyFilters() {
     const beds = el.filterBeds.value;
     const baths = el.filterBaths.value;
     const legal = el.filterLegal?.value || "all";
-    const kw = getKeywordValue();
-    setKeywordValue(kw);
-    const normalizedKeyword = normalizeSearchText(kw);
+    const status = el.filterStatus?.value || "all";
+    const normalizedKeyword = normalizeSearchText(parsedSearch.effectiveKeyword || kw);
     const adminUnit = getSelectedAdminUnit();
     state.selectedAdminUnit = adminUnit;
     state.searchScores = new Map();
@@ -1033,8 +1257,10 @@ function applyFilters() {
         const mBeds = beds === "all" || l.beds >= Number(beds);
         const mBaths = baths === "all" || l.baths >= Number(baths);
         const mLegal = legal === "all" || String(l.legal || "").toLowerCase().includes(legal.toLowerCase());
+        const mStatus = listingMatchesStatus(l, status);
+        const mRoadIntent = !parsedSearch.roadIntent || Number(l.roadWidth || 0) >= 4 || getListingSearchBlob(l).includes("hem oto");
         const mFavorite = !state.showFavoritesOnly || state.savedFavorites.includes(String(l.id));
-        return mTyp && mPrc && mArea && mDirection && mBeds && mBaths && mLegal && mFavorite;
+        return mTyp && mPrc && mArea && mDirection && mBeds && mBaths && mLegal && mStatus && mRoadIntent && mFavorite;
     });
 
     state.exactMatches = baseMatches.filter(l => {
@@ -1048,7 +1274,7 @@ function applyFilters() {
 
     state.suggestedMatches = [];
     
-    const isSearching = normalizedKeyword !== "" || Boolean(adminUnit) || typ !== "all" || prc !== "all" || areaRange !== "all" || direction !== "all" || beds !== "all" || baths !== "all" || legal !== "all" || state.showFavoritesOnly;
+    const isSearching = normalizedKeyword !== "" || Boolean(adminUnit) || typ !== "all" || prc !== "all" || areaRange !== "all" || direction !== "all" || beds !== "all" || baths !== "all" || legal !== "all" || status !== "all" || state.showFavoritesOnly;
     if (isSearching && state.exactMatches.length > 0 && state.exactMatches.length < baseMatches.length) {
         const exactIds = new Set(state.exactMatches.map((item) => String(item.id)));
         const related = baseMatches

@@ -204,6 +204,26 @@ select.filter-btn option:checked {
     line-height: 1.45;
     font-weight: 700;
 }
+.smart-search-chips {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-width: 0;
+}
+.smart-search-chips.hidden { display: none !important; }
+.smart-search-chips span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: rgba(59,130,246,0.16);
+    color: #dbeafe;
+    border: 1px solid rgba(59,130,246,0.35);
+    font-size: 0.72rem;
+    font-weight: 900;
+}
 
 /* ================== MAP MARKER & POPUPS ================== */
 .custom-marker {
@@ -1065,7 +1085,7 @@ body.dark-mode .compare-empty {
 .floating-ui-wrap .glass-filters.hidden { display: grid !important; }
 .glass-filters {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 8px;
     padding: 8px;
     background: rgba(15, 23, 42, 0.94);
@@ -1074,11 +1094,10 @@ body.dark-mode .compare-empty {
     box-shadow: 0 18px 48px rgba(0,0,0,0.24);
     backdrop-filter: blur(16px);
 }
-.glass-filters > :not(#filter-admin-unit):not(#filter-type):not(#filter-price):not(.mobile-keyword-search):not(.manual-place-search) {
+.glass-filters > :not(#filter-admin-unit):not(#filter-price):not(#filter-type):not(#filter-legal):not(#filter-status):not(.mobile-keyword-search):not(.smart-search-chips) {
     display: none !important;
 }
-.mobile-keyword-search,
-.manual-place-search {
+.mobile-keyword-search {
     grid-column: 1 / -1;
     display: flex;
     min-width: 0;
@@ -1087,10 +1106,22 @@ body.dark-mode .compare-empty {
     border-radius: 999px;
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.14);
+    order: 1;
 }
-.manual-place-search {
-    display: flex !important;
-}
+.smart-search-chips { order: 2; }
+#filter-admin-unit { order: 3; }
+#filter-price { order: 4; }
+#filter-type { order: 5; }
+#filter-legal { order: 6; }
+#filter-status { order: 7; }
+#toggle-zoning { order: 8; }
+#filter-area { order: 9; }
+#filter-direction { order: 10; }
+#filter-beds { order: 11; }
+#filter-baths { order: 12; }
+#sort-by { order: 13; }
+#show-favorites { order: 14; }
+.manual-place-search { display: none !important; }
 .mobile-keyword-search:focus-within,
 .manual-place-search:focus-within {
     border-color: rgba(59,130,246,0.75);
@@ -1129,7 +1160,9 @@ body.dark-mode .compare-empty {
 }
 #filter-admin-unit,
 #filter-type,
-#filter-price {
+#filter-price,
+#filter-legal,
+#filter-status {
     width: 100%;
     min-width: 0;
     height: 42px;
@@ -1221,7 +1254,6 @@ body.advanced-filter-open #filter-area,
 body.advanced-filter-open #filter-direction,
 body.advanced-filter-open #filter-beds,
 body.advanced-filter-open #filter-baths,
-body.advanced-filter-open #filter-legal,
 body.advanced-filter-open #sort-by,
 body.advanced-filter-open #show-favorites {
     display: flex !important;
@@ -1234,13 +1266,17 @@ body.advanced-filter-open #filter-legal,
 body.advanced-filter-open #sort-by {
     display: block !important;
 }
+body.advanced-filter-open .smart-search-chips,
 body.advanced-filter-open .manual-place-search {
     grid-column: 1 / -1;
 }
-body.advanced-filter-open .glass-filters > :not(#filter-admin-unit):not(#filter-type):not(#filter-price) {
+body.advanced-filter-open .glass-filters > :not(#filter-admin-unit):not(#filter-price):not(#filter-type):not(#filter-legal):not(#filter-status) {
     display: flex !important;
 }
-body.advanced-filter-open .glass-filters > select:not(#filter-admin-unit):not(#filter-type):not(#filter-price) {
+body.advanced-filter-open .manual-place-search {
+    display: none !important;
+}
+body.advanced-filter-open .glass-filters > select:not(#filter-admin-unit):not(#filter-price):not(#filter-type):not(#filter-legal):not(#filter-status) {
     display: block !important;
 }
 body.advanced-filter-open .glass-filters > .filter-divider {
@@ -1370,7 +1406,7 @@ body.dark-mode .comment-input-box input {
     }
     .glass-header { display: none; }
     .glass-filters {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(5, minmax(0, 1fr));
         gap: 5px;
         padding: 6px;
         max-height: none;
@@ -1378,7 +1414,9 @@ body.dark-mode .comment-input-box input {
     }
     #filter-admin-unit,
     #filter-type,
-    #filter-price {
+    #filter-price,
+    #filter-legal,
+    #filter-status {
         height: 38px;
         padding: 0 8px;
         font-size: 0.67rem;

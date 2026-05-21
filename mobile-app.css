@@ -82,6 +82,7 @@ svg {
     }
 
     .glass-filters {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         border-radius: 14px;
         gap: 5px;
         padding: 5px;
@@ -116,7 +117,9 @@ svg {
 
     #filter-admin-unit,
     #filter-type,
-    #filter-price {
+    #filter-price,
+    #filter-legal,
+    #filter-status {
         height: 34px;
         padding: 0 9px;
         border-radius: 999px;
@@ -124,8 +127,28 @@ svg {
         line-height: 1;
     }
 
+    .smart-search-chips {
+        gap: 4px;
+        max-height: 34px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        flex-wrap: nowrap;
+        scrollbar-width: none;
+    }
+
+    .smart-search-chips::-webkit-scrollbar {
+        display: none;
+    }
+
+    .smart-search-chips span {
+        flex: 0 0 auto;
+        min-height: 26px;
+        font-size: 0.66rem;
+        padding-inline: 8px;
+    }
+
     .map-results-status {
-        top: 92px !important;
+        top: 132px !important;
         left: max(8px, var(--safe-left));
         right: max(8px, var(--safe-right));
         min-height: 38px;
@@ -149,7 +172,7 @@ svg {
     }
 
     .market-actions {
-        top: 142px !important;
+        top: 182px !important;
         left: max(8px, var(--safe-left));
         right: max(8px, var(--safe-right));
         display: flex;
@@ -609,7 +632,9 @@ svg {
 
     #filter-admin-unit,
     #filter-type,
-    #filter-price {
+    #filter-price,
+    #filter-legal,
+    #filter-status {
         height: 36px;
         padding-inline: 7px;
         font-size: 0.64rem;
